@@ -1,17 +1,16 @@
 ---
-title: RESTful 接口
+title: RESTful interface
 ---
 
-## 下载postman配置文件(可以在线测试restful api)
+## Download postman configuration file (to test RESTful API)
 
-[postman配置文件](https://github.com/xia-chu/ZLMediaKit/tree/master/postman)
+[Postman configuration file](https://github.com/xia-chu/ZLMediaKit/tree/master/postman)
 
-由于接口更新频繁，在观看本文档的同时，请大家再使用postman核对测试接口，同时本文档可能有些接口有遗漏，你也可以参考[代码](https://github.com/xia-chu/ZLMediaKit/blob/master/server/WebApi.cpp#L261)
+Due to frequent updates in the API, while reading this document, please use Postman to verify and test the API endpoints. It is possible that some endpoints may be missing in this document. You can also refer to the [code](https://github.com/xia-chu/ZLMediaKit/blob/master/server/WebApi.cpp#L261).
 
+## API Preview
 
-## API预览
-
-MediaServer是ZLMediaKit的主进程，目前支持以下http api接口，这些接口全部支持GET/POST方式，
+MediaServer is the main process of ZLMediaKit and currently supports the following HTTP API endpoints. All these endpoints support both GET and POST methods.
 
 ```ini
       "/index/api/addFFmpegSource",
@@ -50,62 +49,63 @@ MediaServer是ZLMediaKit的主进程，目前支持以下http api接口，这些
       "/index/api/getMediaPlayerList"
 ```
 
-其中POST方式，参数既可以使用urlencoded方式也可以使用json方式。
-操作这些api一般需要提供secret参数以便鉴权，如果操作ip是127.0.0.1，那么可以无需鉴权。
+For the POST method, parameters can be sent in either urlencoded or JSON format. To authenticate these API operations, the `secret` parameter needs to be provided. However, if the operation is performed from the IP address 127.0.0.1, authentication is not required.
 
 
-## API返回结果约定
 
-- HTTP层面统一返回200状态码，body统一为json。
-- body一般为以下样式：
+## API Response Conventions
+
+- At the HTTP level, a unified 200 status code is returned, and the response body is always in JSON format.
+- The response body generally follows the following format:
 
 ```json
 {
     "code" : -1,
-    "msg" : "失败提示"
+    "msg" : "Failure message"
 }
 ```
 
-- code值代表执行结果，目前包含以下类型：
+- The `code` field represents the execution result and can have the following values:
 
 ```c++
 typedef enum {
-    Exception = -400,//代码抛异常
-    InvalidArgs = -300,//参数不合法
-    SqlFailed = -200,//sql执行失败
-    AuthFailed = -100,//鉴权失败
-    OtherFailed = -1,//业务代码执行失败，
-    Success = 0//执行成功
+    Exception = -400, // Exception in the code
+    InvalidArgs = -300, // Invalid parameters
+    SqlFailed = -200, // SQL execution failed
+    AuthFailed = -100, // Authentication failed
+    OtherFailed = -1, // Business code execution failed
+    Success = 0 // Execution successful
 } ApiErr;
 ```
 
-- 如果执行成功，那么`code == 0`,并且一般无`msg`字段。
+- If the execution is successful, `code == 0`, and there is usually no `msg` field.
 
-- `code == -1`时代表业务代码执行不成功，更细的原因一般提供`result`字段，例如以下：
+- When `code == -1`, it indicates that the business code execution was unsuccessful. More specific reasons are usually provided in the `result` field, as shown below:
+
 
 ```json
 {
-    "code" : -1, # 代表业务代码执行失败
-    "msg" : "can not find the stream", # 失败提示
-    "result" : -2 # 业务代码执行失败具体原因
+    "code" : -1, // Business code execution failed
+    "msg" : "can not find the stream", // Failure message
+    "result" : -2 // Specific reason for business code execution failure
 }
 ```
 
-- 开发者一般只要关注`code`字段和`msg`字段，如果`code != 0`时，打印显示`msg`字段即可。
+- Developers generally only need to pay attention to the `code` and `msg` fields. If `code != 0`, printing the `msg` field is sufficient.
 
-- `code == 0`时代表完全成功，如果有数据返回，一般提供`data`字段返回数据。
+- When `code == 0`, it represents complete success. If data is returned, it is usually provided in the `data` field.
 
-## API详解
+## API Details
 
 ### 0、`/index/api/getApiList`
 
-- 功能：获取API列表
+- Function: Get the list of APIs.
 
-- 范例：[http://127.0.0.1/index/api/getApiList](http://127.0.0.1/index/api/getApiList)
+- Example：[http://127.0.0.1/index/api/getApiList](http://127.0.0.1/index/api/getApiList)
 
-- 参数：无
+- Parameters：None
 
-- 响应：
+- Response：
 
     ```json
     {
@@ -170,21 +170,21 @@ typedef enum {
 
 ### 1、`/index/api/getThreadsLoad`
 
-  - 功能：获取各epoll(或select)线程负载以及延时
+  - Function: Get the load and delay of each epoll (or select) thread.
 
-  - 范例：[http://127.0.0.1/index/api/getThreadsLoad](http://127.0.0.1/index/api/getThreadsLoad)
+  - Example：[http://127.0.0.1/index/api/getThreadsLoad](http://127.0.0.1/index/api/getThreadsLoad)
 
-  - 参数：无
+  - Parameters: None
 
-  - 响应: 
+  - Response: 
 
     ```json
     {
        "code" : 0,
        "data" : [
           {
-             "delay" : 0, # 该线程延时
-             "load" : 0 # 该线程负载，0 ~ 100
+             "delay" : 0, // Delay of the thread
+             "load" : 0 // Load of the thread, ranging from 0 to 100
           },
           {
              "delay" : 0,
@@ -198,21 +198,21 @@ typedef enum {
 
 ### 2、`/index/api/getWorkThreadsLoad`
 
-  - 功能：获取各后台epoll(或select)线程负载以及延时
+  - Function: Get the load and delay of each background epoll (or select) thread.
 
-  - 范例：[http://127.0.0.1/index/api/getWorkThreadsLoad](http://127.0.0.1/index/api/getWorkThreadsLoad)
+  - Example：[http://127.0.0.1/index/api/getWorkThreadsLoad](http://127.0.0.1/index/api/getWorkThreadsLoad)
 
-  - 参数：无
+  - Parameters: None
 
-  - 响应: 
+  - Response: 
 
     ```json
     {
        "code" : 0,
        "data" : [
           {
-             "delay" : 0, # 该线程延时
-             "load" : 0 # 该线程负载，0 ~ 100
+             "delay" : 0, // Delay of the thread
+             "load" : 0 // Load of the thread, ranging from 0 to 100
           },
           {
              "delay" : 0,
@@ -226,17 +226,17 @@ typedef enum {
 
 ### 3、`/index/api/getServerConfig`
 
-  - 功能：获取服务器配置
+  - Function: Get server configuration.
 
-  - 范例：[http://127.0.0.1/index/api/getServerConfig](http://127.0.0.1/index/api/getServerConfig)
+  - Example：[http://127.0.0.1/index/api/getServerConfig](http://127.0.0.1/index/api/getServerConfig)
 
-  - 参数：
+  - Parameters：
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
+    | Parameter | Required |                 Description                  |
+    | :-------: | :------: | :-----------------------------------------: |
+    |  secret   |    Y     | API operation key (configured in the file) |
 
-  - 响应：
+  - Response：
 
     ```json
     {
@@ -312,22 +312,22 @@ typedef enum {
 
 ### 4、`/index/api/setServerConfig`
 
-  - 功能：设置服务器配置
+  - Function: Set server configuration.
 
-  - 范例：[http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0(例如关闭http api调试)](http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0)
+  - Example：[http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0(例如关闭http api调试)](http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0)
 
-  - 参数：
+  - Parameters：
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
+     | Parameter | Required |                 Description                  |
+    | :-------: | :------: | :-----------------------------------------: |
+    |  secret   |    Y     | API operation key (configured in the file) |
 
-  - 响应：
+  - Response：
 
     ```json
     {
-       "changed" : 0, # 配置项变更个数
-       "code" : 0     # 0代表成功
+       "changed" : 0, // Number of configuration items changed
+       "code" : 0      // 0 represents success
     }
     ```
 
@@ -335,22 +335,22 @@ typedef enum {
 
 ### 5、`/index/api/restartServer`
 
-  - 功能：重启服务器,只有Daemon方式才能重启，否则是直接关闭！
+  - Function：Restart the server. Only possible in Daemon mode, otherwise it will be shut down directly!
 
-  - 范例：[http://127.0.0.1/index/api/restartServer](http://127.0.0.1/index/api/restartServer)
+  - Example：[http://127.0.0.1/index/api/restartServer](http://127.0.0.1/index/api/restartServer)
 
-  - 参数：
+  - Parameters：
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
+      | Parameter | Required |                     Description                      |
+    | :-------: | :------: | :--------------------------------------------------: |
+    |  secret   |    Y     |     API operation key (configured in the file)      |
 
-  - 响应：
+  - Response：
 
     ```json
     {
        "code" : 0,
-       "msg" : "服务器将在一秒后自动重启"
+       "msg" : "The server will automatically restart in one second."
     }
     ```
 
@@ -359,71 +359,71 @@ typedef enum {
 
 ### 6、`/index/api/getMediaList`
 
-  - 功能：获取流列表，可选筛选参数
+  - Function：Get the list of streams, with optional filtering parameters.
 
-  - 范例：[http://127.0.0.1/index/api/getMediaList](http://127.0.0.1/index/api/getMediaList)
+  - Example：[http://127.0.0.1/index/api/getMediaList](http://127.0.0.1/index/api/getMediaList)
 
-  - 参数：
+  - Parameters：
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    N     |                  筛选协议，例如 rtsp或rtmp                   |
-    | vhost  |    N     |             筛选虚拟主机，例如`__defaultVhost__`             |
-    |  app   |    N     |                    筛选应用名，例如 live                     |
-    | stream |    N     |                    筛选流id，例如 test                     |
+   | Parameter | Required |                     Description                      |
+    | :-------: | :------: | :--------------------------------------------------: |
+    |  secret   |    Y     |     API operation key (configured in the file)      |
+    |  schema   |    N     |               Filter by protocol, e.g., rtsp or rtmp              |
+    |   vhost   |    N     |               Filter by virtual host, e.g., `__defaultVhost__`             |
+    |    app    |    N     |               Filter by application name, e.g., live                     |
+    |  stream   |    N     |               Filter by stream ID, e.g., test                     |
 
-  - 响应：
+  - Response：
 
     ```json
     {
       "code" : 0,
       "data" : [
       {
-         "app" : "live",  # 应用名
-         "readerCount" : 0, # 本协议观看人数
-         "totalReaderCount" : 0, # 观看总人数，包括hls/rtsp/rtmp/http-flv/ws-flv
-         "schema" : "rtsp", # 协议
-         "stream" : "obs", # 流id
-         "originSock": {  # 客户端和服务器网络信息，可能为null类型
+         "app" : "live",  # Application name
+         "readerCount" : 0, # Number of viewers for this protocol
+         "totalReaderCount" : 0, # Total number of viewers, including hls/rtsp/rtmp/http-flv/ws-flv
+         "schema" : "rtsp", # Protocol
+         "stream" : "obs", # Stream ID
+         "originSock": {  # Client and server network information, may be null
                 "identifier": "140241931428384",
                 "local_ip": "127.0.0.1",
                 "local_port": 1935,
                 "peer_ip": "127.0.0.1",
                 "peer_port": 50097
             },
-         "originType": 1, # 产生源类型，包括 unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7
+         "originType": 1, # Source type: unknown = 0, rtmp_push = 1, rtsp_push = 2, rtp_push = 3, pull = 4, ffmpeg_pull = 5, mp4_vod = 6, device_chn = 7
          "originTypeStr": "MediaOriginType::rtmp_push",
-         "originUrl": "rtmp://127.0.0.1:1935/live/hks2", #产生源的url
-         "createStamp": 1602205811, #GMT unix系统时间戳，单位秒
-         "aliveSecond": 100, #存活时间，单位秒
-         "bytesSpeed": 12345, #数据产生速度，单位byte/s
-         "tracks" : [    # 音视频轨道
+         "originUrl": "rtmp://127.0.0.1:1935/live/hks2", # URL of the source
+         "createStamp": 1602205811, # GMT Unix system timestamp in seconds
+         "aliveSecond": 100, # The time the stream remains alive, in seconds
+         "bytesSpeed": 12345, # Data generation speed in bytes/s
+         "tracks" : [    # Audio and video tracks
             {
-               "channels" : 1, # 音频通道数
+               "channels" : 1, # Number of audio channels
                "codec_id" : 2, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-               "codec_id_name" : "CodecAAC", # 编码类型名称 
+               "codec_id_name" : "CodecAAC", # Codec type name  
                "codec_type" : 1, # Video = 0, Audio = 1
-               "ready" : true, # 轨道是否准备就绪
-               "frames" : 1119, #累计接收帧数
-               "sample_bit" : 16, # 音频采样位数
-               "sample_rate" : 8000 # 音频采样率
+               "ready" : true, # Whether the track is ready
+               "frames" : 1119, # Accumulated received frames
+               "sample_bit" : 16, # Audio sample bit depth
+               "sample_rate" : 8000 # Audio sample rate
             },
             {
                "codec_id" : 0, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-               "codec_id_name" : "CodecH264", # 编码类型名称  
+               "codec_id_name" : "CodecH264", #  Codec type name    
                "codec_type" : 0, # Video = 0, Audio = 1
-               "fps" : 59,  # 视频fps
-               "frames" : 1119, #累计接收帧数，不包含sei/aud/sps/pps等不能解码的帧
-               "gop_interval_ms" : 1993, #gop间隔时间，单位毫秒
-               "gop_size" : 60, #gop大小，单位帧数
-               "key_frames" : 21, #累计接收关键帧数
-               "height" : 720, # 视频高
-               "ready" : true,  # 轨道是否准备就绪
-               "width" : 1280 # 视频宽
+               "fps" : 59,  # Video frames per second
+               "frames" : 1119, # Accumulated received frames, excluding sei/aud/sps/pps frames that cannot be decoded
+               "gop_interval_ms" : 1993, # GOP interval in milliseconds
+               "gop_size" : 60, # gop size, unit number of frames
+               "key_frames" : 21, # Accumulated received key frames
+               "height" : 720, # video high
+               "ready" : true,  # Is the track ready?
+               "width" : 1280 # video width
             }
          ],
-         "vhost" : "__defaultVhost__" # 虚拟主机名
+         "vhost" : "__defaultVhost__" # Virtual host name
        }
       ]
     }
@@ -431,75 +431,75 @@ typedef enum {
 
     
 
-### 7、`/index/api/close_stream`(已过期，请使用close_streams接口替换)
+### 7、`/index/api/close_stream`(Deprecated, please use the `close_streams` API instead)
 
-  - 功能：关闭流(目前所有类型的流都支持关闭)
+  - Function: Close a stream (supports closing streams of all types).
 
-  - 范例：[http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
+  - Example：[http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    Y     |                    协议，例如 rtsp或rtmp                     |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                       流id，例如 test                        |
-    | force  |    N     |              是否强制关闭(有人在观看是否还关闭)              |
+    | Parameter | Required |                           Description                            |
+    | :-------: | :------: | :-------------------------------------------------------------: |
+    |  secret   |    Y     |                  API operation secret key (configured in the file)                  |
+    |  schema   |    Y     |                       Protocol, e.g., rtsp or rtmp                        |
+    |   vhost   |    Y     |                        Virtual host, e.g., `__defaultVhost__`                        |
+    |    app    |    Y     |                           Application name, e.g., live                            |
+    |  stream   |    Y     |                                Stream ID, e.g., test                                 |
+    |   force   |    N     |                 Whether to force close (even if someone is watching)                 |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "result" : 0,# 0:成功，-1:关闭失败，-2:该流不存在
+       "result" : 0,  # 0: success, -1: failed to close, -2: stream does not exist
        "msg" : "success"
     }
     ```
 
 ### 8、`/index/api/close_streams`
 
-  - 功能：关闭流(目前所有类型的流都支持关闭)
+  - Function: Close a stream (supports closing streams of all types).
 
-  - 范例：[http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
+  - Example：[http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
 
-  - 参数：
+  - Parameters：
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    N     |                    协议，例如 rtsp或rtmp                     |
-    | vhost  |    N     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    N     |                      应用名，例如 live                       |
-    | stream |    N     |                       流id，例如 test                        |
-    | force  |    N     |              是否强制关闭(有人在观看是否还关闭)              |
+    | Parameter | Required |                           Description                            |
+    | :-------: | :------: | :-------------------------------------------------------------: |
+    |  secret   |    Y     |                  API operation secret key (configured in the file)                  |
+    |  schema   |    N     |                       Protocol, e.g., rtsp or rtmp                        |
+    |   vhost   |    N     |                        Virtual host, e.g., `__defaultVhost__`                        |
+    |    app    |    N     |                           Application name, e.g., live                            |
+    |  stream   |    N     |                                Stream ID, e.g., test                                 |
+    |   force   |    N     |                 Whether to force close (even if someone is watching)                 |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "count_hit" : 1,  # 筛选命中的流个数
-       "count_closed" : 1 # 被关闭的流个数，可能小于count_hit
+       "count_hit" : 1,  # Number of streams hit by the filter
+       "count_closed" : 1 # Number of streams closed, which may be less than count_hit
     }
     ```
 
 ### 9、`/index/api/getAllSession`
 
-  - 功能：获取所有TcpSession列表(获取所有tcp客户端相关信息)
+  - Function: Get a list of all TcpSessions (retrieve information about all TCP clients).
 
-  - 范例：[http://127.0.0.1/index/api/getAllSession](http://127.0.0.1/index/api/getAllSession)
+  - Example：[http://127.0.0.1/index/api/getAllSession](http://127.0.0.1/index/api/getAllSession)
 
-  - 参数：
+  - Parameters：
 
-    |    参数    | 是否必选 |                             释意                             |
-    | :--------: | :------: | :----------------------------------------------------------: |
-    |   secret   |    Y     | api操作密钥(配置文件配置) |
-    | local_port |    N     |             筛选本机端口，例如筛选rtsp链接：554              |
-    |  peer_ip   |    N     |                         筛选客户端ip                         |
+    |   Parameter   | Required |                           Description                            |
+    | :-----------: | :------: | :-------------------------------------------------------------: |
+    |    secret     |    Y     |                  API operation secret key (configured in the file)                  |
+    |  local_port   |    N     |                     Filter by local port, e.g., 554                     |
+    |    peer_ip    |    N     |                          Filter by client IP                          |
 
-  - 响应：
+  - Response:
 
     ```json
     {
@@ -522,12 +522,12 @@ typedef enum {
              "typeid" : "16WebSocketSessionI11EchoSessionN8mediakit11HttpSessionEE"
           },
           {
-             "id" : "140614440178720",  # 该tcp链接唯一id
-             "local_ip" : "127.0.0.1",  # 本机网卡ip
-             "local_port" : 1935, 			# 本机端口号	(这是个rtmp播放器或推流器)
-             "peer_ip" : "127.0.0.1",   # 客户端ip 
-             "peer_port" : 51130,				# 客户端端口号
-             "typeid" : "N8mediakit11RtmpSessionE"  # 客户端TCPSession typeid
+             "id" : "140614440178720",  # Unique ID for this TCP connection
+             "local_ip" : "127.0.0.1",  # Local IP address
+             "local_port" : 1935,       # Local port number (this is an RTMP player or publisher)
+             "peer_ip" : "127.0.0.1",   # Client IP address
+             "peer_port" : 51130,       # Client port number
+             "typeid" : "N8mediakit11RtmpSessionE"  # Client TCPSession typeid
           }
        ]
     }
