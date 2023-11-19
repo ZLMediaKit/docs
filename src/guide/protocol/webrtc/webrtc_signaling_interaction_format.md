@@ -1,21 +1,21 @@
 ---
-title: webrtc信令交互格式
+title: WebRTC Signaling Interaction Format
 ---
-## 前言
-zlmediakit webrtc信令格式新增支持whip/whep标准，测试地址如下：
+## Introduction
+zlmediakit has added support for the whip/whep standard in the WebRTC signaling format. The test url are as follows:
 
-推流：https://zlmediakit.com/index/api/whip?app=live&stream=test
+Push stream：https://zlmediakit.com/index/api/whip?app=live&stream=test
 
-拉流：https://zlmediakit.com/index/api/whep?app=live&stream=test
+Pull stream：https://zlmediakit.com/index/api/whep?app=live&stream=test
 
-本文后续篇幅为私有信令格式。
+The subsequent sections of this article will cover the private signaling format.
 
-## 一、webrtc sdp交换请求基本格式
+## 1. Basic Format of WebRTC SDP Exchange Request
 
-- 请求地址: /index/api/webrtc?app=live&stream=test&type=[push/play/echo]
-- 请求方式: http post
-- 请求body: webrtc offer sdp
-- 回复body: 
+- Request URL: /index/api/webrtc?app=live&stream=test&type=[push/play/echo]
+- Request Method: HTTP POST
+- Request Body: WebRTC offer SDP
+- Response Body: 
 ```json
 {
    "code" : 0,
@@ -25,14 +25,14 @@ zlmediakit webrtc信令格式新增支持whip/whep标准，测试地址如下：
 }
 ```
 
-## 二、支持的type类型
-- push: webrtc推流
-- play: webrtc播放
-- echo: webrtc镜像回显(仅用于webrtc双向测试)
-- 用户可以二次开发注册更多类型插件。
+## 2. Supported Type Types
+- push: WebRTC streaming
+- play: WebRTC playback
+- echo: WebRTC mirroring and echo (only for WebRTC bidirectional testing)
+- Users can develop and register additional type plugins for customization.
 
-## 三、范例
-- 请求：
+## 3. Example
+- Request：
 ```http
 POST /index/api/webrtc?app=live&stream=test&type=push HTTP/1.1
 Host: 127.0.0.1:8080
@@ -134,7 +134,7 @@ a=ssrc:3937745592 cname:{e94c5049-fb95-4bd6-b2d1-221cd51b713f}
 a=ssrc-group:FID 3676200744 3937745592
 ```
 
-- 响应：
+- Response：
 ```http
 HTTP/1.1 200 OK
 Access-Control-Allow-Credentials: true

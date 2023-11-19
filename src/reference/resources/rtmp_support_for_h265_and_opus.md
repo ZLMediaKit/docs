@@ -1,18 +1,15 @@
 ---
-title: RTMP对H265和OPUS的支持
+title: RTMP supports H265 and OPUS
 ---
-## 背景
-rtmp/flv是直播行业事实上的标准，这两者在国内直播领域应用非常广泛。在浏览器上要实现无插件的低延时直播播放，基本绕不开rtmp/flv.
-由于rtmp/flv是Adobe设计的私有协议，原生是不支持H265(视频监控应用广泛)和opus(RTC应用广泛)的，而目前视频监控、RTC相关行业都有使用直播基础设施的需求，所以对rtmp进行修改，使其添加对H265和opus的支持比较重要。
+## Background
+RTMP/FLV is the de facto standard in the live streaming industry, and they are widely used in the domestic live streaming field. To achieve plugin-free low-latency live streaming playback in web browsers, RTMP/FLV is essential.
+Since RTMP/FLV is a proprietary protocol designed by Adobe, it does not natively support H.265 (widely used in video surveillance applications) and Opus (widely used in RTC applications). However, there is a growing demand for live streaming infrastructure in the video surveillance and RTC industries. Therefore, it is important to modify RTMP to add support for H.265 and Opus.
 
-## 实现方式
-rtmp通过codec id来判断编码格式，同时通过message type来区分数据类型(包括音频包、视频包)，所以音视频的codec_id是可以相同的(相同类型不冲突即可)；
-例如H264的codec id为7，G711A的codec id也为7。
-目前国内默认定义H265的codec id为**12**(由金山云首先[实现并公布](https://github.com/ksvc/FFmpeg/wiki)).
-而对opus的rtmp扩展目前还未有广泛共识，作者在与相关人士讨论后，协商定义其codec id为**13**，目前已经实现了对FFmpeg(基于最新版本)的修改，添加了对[h265/opus的rtmp扩展](https://gitee.com/xia-chu/FFmpeg).
+## Implementation Approach
+RTMP determines the encoding format through codec ID and distinguishes data types (including audio packets and video packets) through message type. Therefore, the codec_id for audio and video can be the same as long as they are of the same type and do not conflict.
+For example, the codec ID for H.264 is 7, and the codec ID for G.711A is also 7.
+Currently, the default codec ID for H.265 in China is **12** (implemented and published by [金山云](https://github.com/ksvc/FFmpeg/wiki)).
+As for the RTMP extension for Opus, there is currently no widespread consensus. After discussions with relevant individuals, the author has negotiated and defined its codec ID as **13**. The modification has already been implemented for FFmpeg (based on the latest version) to add support for[h265/opus RTMP extension](https://gitee.com/xia-chu/FFmpeg).
 
-## 服务器实现
-ZLMediaKit已经实现了rtsp/rtmp/mp4/hls对h265/opus的全面支持, 欢迎各位测试使用。
-
-
-
+## Server Implementation
+ZLMediaKit has already implemented comprehensive support for H.265/Opus in RTSP/RTMP/MP4/HLS. Feel free to test and use it.

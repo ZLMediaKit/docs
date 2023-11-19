@@ -1,5 +1,5 @@
 ---
-title: Test
+title: Testing
 icon: vials
 index: true
 ---

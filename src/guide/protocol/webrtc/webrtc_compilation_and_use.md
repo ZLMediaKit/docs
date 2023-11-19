@@ -1,19 +1,19 @@
 ---
-title: webrtc编译与使用
+title: Compiling and Using WebRTC
 ---
 
-## 环境
+## Environment
 
 ```shell
-编译机器：
+machine
 centos 7.6
 gcc version 5.4.0 (GCC)
 cmake version 3.20.5
 ```
 
-## 依赖准备
+## Dependency Preparation
 
-- openssl 安装 (openssl版本要求1.1以上)
+- Install OpenSSL (version 1.1 or above)
 
     ```shell
     $ wget https://www.openssl.org/source/openssl-1.1.1k.tar.gz
@@ -28,9 +28,9 @@ cmake version 3.20.5
     $ openssl version -a
     ```
 
-- libsrtp安装
+- Install libsrtp
 
-    点击[这里](https://codeload.github.com/cisco/libsrtp/tar.gz/refs/tags/v2.3.0)下载安装
+    Click [here](https://codeload.github.com/cisco/libsrtp/tar.gz/refs/tags/v2.3.0) to download and install.
 
     ```shell
     $ tar -xvzf libsrtp-2.3.0.tar.gz
@@ -39,26 +39,26 @@ cmake version 3.20.5
     $ make -j8 && make install
     ```
 
-    对于一些比较新的编译环境（如GCC 10+），编译 libsrtp-2.3.0 可能会存在问题，可以考虑切换到 2.5.0 版本，即
+    For some newer compilation environments (such as GCC 10+), there may be issues when compiling libsrtp-2.3.0. You can consider switching to version 2.5.0 as follows:
     ```
     $ wget https://github.com/cisco/libsrtp/archive/refs/tags/v2.5.0.tar.gz
     $ tar -xvzf libsrtp-2.5.0.tar.gz
     $ cd libsrtp-2.5.0
     ```
 
-## 编译
+## Compilation
 
-- 下载zlm源码
+- Download ZLMediaKit source code
 
     ```shell
-    #国内用户推荐从同步镜像网站gitee下载 
+    # Chinese users are recommended to download from the mirror site gitee
     git clone --depth 1 https://gitee.com/xia-chu/ZLMediaKit
     cd ZLMediaKit
-    #千万不要忘记执行这句命令
+    # Do not forget to execute this command
     git submodule update --init
     ```
 
-- 编译
+- Compilation
 
     ```shell
     $ mkdir build
@@ -66,7 +66,7 @@ cmake version 3.20.5
     $ cmake .. -DENABLE_WEBRTC=true  -DOPENSSL_ROOT_DIR=/usr/local/openssl  -DOPENSSL_LIBRARIES=/usr/local/openssl/lib
     $ cmake --build . --target MediaServer
     
-    # 最终输出
+    # final result
     [ 96%] Built target test_rtcp_fci
     [ 96%] Building CXX object tests/CMakeFiles/test_rtp.dir/test_rtp.cpp.o
     [ 97%] Linking CXX executable ../../release/linux/Debug/test_rtp
@@ -81,54 +81,52 @@ cmake version 3.20.5
     [ 98%] Linking CXX executable ../../release/linux/Debug/MediaServer
     [100%] Built target MediaServer
     ```
-## 修改配置文件
-由于webrtc协议需要告知播放器服务器所在ip，如果该ip对播放器不可见，会导致webrtc无法联通。请修改配置文件中`rtc.externIP`为播放器可见ip，如果不设置该配置项，zlmediakit将获取网卡ip(一般是内网ip)，那么将无法跨域nat使用webrtc。
+## Modify Configuration File
+Since WebRTC protocol requires informing the player of the server's IP address, if the IP address is not visible to the player, WebRTC communication will fail. Please modify the `rtc.externIP` configuration item in the configuration file to the visible IP address of the player. If this configuration item is not set, zlmediakit will retrieve the IP address of the network card (usually an internal IP address), which will prevent cross-domain NAT usage of WebRTC.
 ```ini
 [rtc]
-#rtc播放推流、播放超时时间
+# Timeout for RTC streaming and playback
 timeoutSec=15
-#本机对rtc客户端的可见ip，作为服务器时一般为公网ip，置空时，会自动获取网卡ip
+# IP address visible to RTC clients on this machine, generally a public IP address when acting as a server, leave it blank to automatically retrieve the IP address of the network card
 externIP=
-#rtc udp服务器监听端口号，所有rtc客户端将通过该端口传输stun/dtls/srtp/srtcp数据，
-#该端口是多线程的，同时支持客户端网络切换导致的连接迁移
-#需要注意的是，如果服务器在nat内，需要做端口映射时，必须确保外网映射端口跟该端口一致
+# UDP server listening port for RTC, all RTC clients will transmit stun/dtls/srtp/srtcp data through this port,
+# This port is multithreaded and supports connection migration caused by client network switching
+# Note that if the server is behind NAT and requires port mapping, the external mapped port must be consistent with this port
 port=8000
-#设置remb比特率，非0时关闭twcc并开启remb。该设置在rtc推流时有效，可以控制推流画质
+# Set remb bitrate, closing twcc and enabling remb when non-zero. This setting is effective during RTC streaming and can control the streaming quality
 rembBitRate=1000000
 ```
 
-## 测试
+## Testing
 
-最新的zlmediakit源码自带有效的ssl证书`default.pem`,对应的域名是`default.zlmediakit.com`,该域名解析到的ip为`127.0.0.1`,用户在浏览器中打开 [https://default.zlmediakit.com/webrtc/](https://default.zlmediakit.com/webrtc/)即可开始测试。请先推流后，再测试播放。如果webrtc无法播放，
-请参考此[issue](https://github.com/ZLMediaKit/ZLMediaKit/issues/1277)
+The latest zlmediakit source code comes with a valid SSL certificate `default.pem`, corresponding to the domain name `default.zlmediakit.com`, which resolves to the IP address `127.0.0.1`. To start testing, open [https://default.zlmediakit.com/webrtc/](https://default.zlmediakit.com/webrtc/) in your browser. Please start streaming first before testing playback. If WebRTC playback is not working, please refer to this [issue](https://github.com/ZLMediaKit/ZLMediaKit/issues/1277).
 
-## 问题解决
+## Troubleshooting
 
-- 提示 `gmake[3]: *** No rule to make target `/usr/lib64/libssl.so', needed by `../release/linux/Debug/MediaServer'.  Stop.`
+- Error message: `gmake[3]: *** No rule to make target `/usr/lib64/libssl.so', needed by `../release/linux/Debug/MediaServer'.  Stop.`
 
     ```
     cd /usr/local/openssl/lib
     cp -r ./* /usr/lib64/
     ```
-- ubuntu编译
+- Compilation on Ubuntu
+  You can refer to this [blog post](https://blog.csdn.net/haysonzeng/article/details/116754065) written by a skilled user.
 
-  可以参考网友大神自制[这里](https://blog.csdn.net/haysonzeng/article/details/116754065)
+- Compilation on Windows
 
-- windows编译
+  You can refer to this [blog post](https://blog.csdn.net/byna11sina11/article/details/119786889) written by a skilled user.
 
-  可以参考网友大神自制[这里](https://blog.csdn.net/byna11sina11/article/details/119786889)
+  Also, refer to [this comment](https://github.com/ZLMediaKit/ZLMediaKit/issues/1081#issuecomment-910141630).
 
-  还有[这里](https://github.com/ZLMediaKit/ZLMediaKit/issues/1081#issuecomment-910141630)
-## Q And A(播放问题) ?
-- obs 推流 rtc 播放一卡一卡？
+## Q&A(Playback Issues) ?
+- OBS streaming and RTC playback stuttering?
 
-  web的rtc h264 不支持B帧，需要去掉B帧, 使用FFmpeg时需要添加`-bf 0`参数，或者指定h264 profile为baseline
+  WebRTC H.264 does not support B-frames, so B-frames need to be removed when using FFmpeg. You can add the `-bf 0` parameter or specify the H.264 profile as baseline.
 
-- rtsp 推流，rtc 播放不成功？
+- RTSP streaming, unsuccessful RTC playback?
 
-  rtsp 推流需要把zlm的配置文件中的directProxy 设置为0
+  Set `directProxy` in the zlm configuration file to 0 for RTSP streaming.
 
-- webrtc 视频或者音频播放不出来？
+- WebRTC video or audio not playing?
 
-  web客户端的rtc 支持h264,opus/48000/2,pcma/8000,pcmu/8000等编码格式，检查一下编码格式是否正确，一般都是音频不支持，需要使用transcode 分支来转码（视频不会转码）
-
+  WebRTC in the web client supports encoding formats such as H.264, opus/48000/2, pcma/8000, pcmu/8000. Check if the encoding format is correct. Usually, theaudio is not supported, and you need to use the transcode branch for transcoding (video does not require transcoding).
