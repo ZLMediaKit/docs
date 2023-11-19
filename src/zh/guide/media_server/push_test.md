@@ -29,7 +29,7 @@ ffmpeg -re -i "/path/to/test.mp4" -vcodec h265 -acodec aac -f rtp_mpegts rtp://1
 
 ## 观察日志
 如果推流成功，会打印这种日志：
-![image](https://user-images.githubusercontent.com/11495632/78963526-5568dd00-7b2a-11ea-850b-0af7d022aa2e.png)
+![image](/images/push_test.png)
 
 日志中相关字符串分别代表：
 ```bash
@@ -39,6 +39,6 @@ ffmpeg -re -i "/path/to/test.mp4" -vcodec h265 -acodec aac -f rtp_mpegts rtp://1
 ```
 
 ## 播放地址
-请按照[播放url规则](https://github.com/xiongziliang/ZLMediaKit/wiki/%E6%92%AD%E6%94%BEurl%E8%A7%84%E5%88%99)来播放上述的推流。
+请按照[播放url规则](./play_url_rules.md)来播放上述的推流。
 
 

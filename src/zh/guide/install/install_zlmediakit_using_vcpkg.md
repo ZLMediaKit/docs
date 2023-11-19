@@ -66,8 +66,7 @@ git clone https://github.com/microsoft/vcpkg
   ```
 
 - 安装路径
-<img width="639" alt="图片" src="https://github.com/ZLMediaKit/ZLMediaKit/assets/11495632/5474953e-e8b4-4424-bd87-b998a5d11a47">
-
+![](/images/install_zlmediakit_using_vcpkg_1.png)
 > MediaServer进程依赖的config.ini, default.pem, www等相关文件可以从源码拷贝过来
 
 ## 3、安装不同版本
@@ -114,6 +113,6 @@ git clone https://github.com/microsoft/vcpkg
   # 然后安装动态库版本
   ./vcpkg/vcpkg install zlmediakit\[core,mp4,openssl,webrtc,sctp\]:x64-linux-dynamic
   ```
+![install_zlmediakit_using_vcpkg_2](/images/install_zlmediakit_using_vcpkg_2.png)
 
-<img width="687" alt="图片" src="https://github.com/ZLMediaKit/ZLMediaKit/assets/11495632/9301cef0-c84b-49ea-b173-99149e91a5bb">
 

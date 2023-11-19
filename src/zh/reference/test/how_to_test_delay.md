@@ -65,8 +65,8 @@ ffplay -i rtmp://xxxxxxx -fflags nobuffer
 
 
 ## 关于延时的更多信息
-[直播延时的本质](https://github.com/xiongziliang/ZLMediaKit/wiki/%E7%9B%B4%E6%92%AD%E5%BB%B6%E6%97%B6%E7%9A%84%E6%9C%AC%E8%B4%A8)
+[直播延时的本质](../documents/the_nature_of_live_broadcast_delay.md)
 
-[延时相关测试](/zh/reference/test/delay_test.html)
+[延时相关测试](./delay_test.md)
 
 

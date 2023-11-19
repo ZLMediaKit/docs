@@ -31,7 +31,7 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
 
 - 启动命令:
 
-![图片](https://user-images.githubusercontent.com/11495632/93867961-579bae00-fcfc-11ea-843a-dcb473957fb7.png)
+![图片](/images/start_server_1.png)
 
 
 - 注意事项：
@@ -41,7 +41,7 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
 
 ## 配置文件的热加载
 修改并保存配置文件后，在shell里面输入`killall -1 MediaServer`就能使ZLMediaKit热加载配置文件，如果生效，会打印下面样式的日志：
-![图片](https://user-images.githubusercontent.com/11495632/93873207-e7912600-fd03-11ea-83f7-00132f917540.png)
+![图片](/images/start_server_2.png)
 
 
 ## 关闭服务器
@@ -49,7 +49,7 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
 - 否则你可以同时按下`Ctr + C`退出程序。
 - MediaServer退出时日志如下：
 
-![图片](https://user-images.githubusercontent.com/11495632/93867941-51a5cd00-fcfc-11ea-8ab7-be5914929c90.png)
+![图片](/images/start_server_3.png)
 
 
 

@@ -28,15 +28,15 @@ icon: terminal
 - 代码经过长期大量的稳定性、性能测试，已经在线上商用验证已久。
 - 支持linux、macos、ios、android、windows全平台。
 - 支持x86、arm、risc-v、mips、龙芯、申威等指令集平台。
-- 支持画面秒开、极低延时([500毫秒内，最低可达100毫秒](https://github.com/ZLMediaKit/ZLMediaKit/wiki/%E5%BB%B6%E6%97%B6%E6%B5%8B%E8%AF%95))。
+- 支持画面秒开、极低延时([500毫秒内，最低可达100毫秒](../reference/test/delay_test.md))。
 - 提供完善的标准[C API](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include),可以作SDK用，或供其他语言调用。
 - 提供完整的[MediaServer](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/server)服务器，可以免开发直接部署为商用服务器。
-- 提供完善的[restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-API)以及[web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API)，支持丰富的业务逻辑。
+- 提供完善的[restful api](./media_server/restful_api.md)以及[web hook](./media_server/web_hook_api.md)，支持丰富的业务逻辑。
 - 打通了视频监控协议栈与直播协议栈，对RTSP/RTMP支持都很完善。
 - 全面支持H265/H264/AAC/G711/OPUS。
 - 功能完善，支持集群、按需转协议、按需推拉流、先播后推、断连续推等功能。
 - 极致性能，单机10W级别播放器，100Gb/s级别io带宽能力。
-- 极致体验，[独家特性](https://github.com/ZLMediaKit/ZLMediaKit/wiki/ZLMediakit%E7%8B%AC%E5%AE%B6%E7%89%B9%E6%80%A7%E4%BB%8B%E7%BB%8D)
+- 极致体验，[独家特性](../reference/documents/exclusive_features.md)
 - [谁在使用zlmediakit?](https://github.com/ZLMediaKit/ZLMediaKit/issues/511)
 - 全面支持ipv6网络
 
@@ -108,7 +108,7 @@ flowchart TD
   - 支持websocket-flv直播
   - 支持H264/H265/AAC/G711/OPUS编码，其他编码能转发但不能转协议
   - 支持[RTMP-H265](https://github.com/ksvc/FFmpeg/wiki)
-  - 支持[RTMP-OPUS](https://github.com/ZLMediaKit/ZLMediaKit/wiki/RTMP%E5%AF%B9H265%E5%92%8COPUS%E7%9A%84%E6%94%AF%E6%8C%81)
+  - 支持[RTMP-OPUS](../reference/resources/rtmp_support_for_h265_and_opus.md)
   - 支持[enhanced-rtmp(H265)](https://github.com/veovera/enhanced-rtmp)
 
 - HLS
@@ -165,7 +165,7 @@ flowchart TD
   - 支持webrtc over tcp模式
   - 优秀的nack、jitter buffer算法, 抗丢包能力卓越
   - 支持whip/whep协议
-- [SRT支持](./srt/srt.md)
+- [SRT支持](./protocol/srt/README.md)
 - 其他
   - 支持丰富的restful api以及web hook事件 
   - 支持简单的telnet调试
@@ -183,14 +183,14 @@ flowchart TD
   
 
 ## 编译以及测试
-**编译前务必仔细参考wiki:[快速开始](https://github.com/ZLMediaKit/ZLMediaKit/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)操作!!!**
+**编译前务必仔细参考wiki:[快速开始](../tutorial/README.md)操作!!!**
 
 ## 怎么使用
 
  你有三种方法使用ZLMediaKit，分别是：
 
  - 1、使用c api，作为sdk使用，请参考[这里](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include).
- - 2、作为独立的流媒体服务器使用，不想做c/c++开发的，可以参考 [restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer支持的HTTP-API) 和 [web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer支持的HTTP-HOOK-API ).
+ - 2、作为独立的流媒体服务器使用，不想做c/c++开发的，可以参考 [restful api](./media_server/restful_api.md) 和 [web hook](./media_server/web_hook_api.md).
  - 3、如果想做c/c++开发，添加业务逻辑增加功能，可以参考这里的[测试程序](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/tests).
 
 ## Docker 镜像

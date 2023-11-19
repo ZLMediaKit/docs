@@ -19,28 +19,28 @@ make -j$(nproc)
 ```
 
 ## 二、创建证书
-- 如果你还没购买域名，可以使用[自签名证书](https://github.com/ZLMediaKit/ZLMediaKit/wiki/%E7%94%9F%E6%88%90SSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6%E5%B9%B6%E6%B5%8B%E8%AF%95)或zlmediakit自带默认证书`default.pem`测试。
+- 如果你还没购买域名，可以使用[自签名证书](./generate_ssl_self-signed_certificate_and_test.md)或zlmediakit自带默认证书`default.pem`测试。
 
 - **如果你已经购买域名，以阿里云为例，你可以选择为您的域名申请免费证书：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191882967-7a823548-8eb2-4419-bb3a-51a4dfef5c4e.png)
+![图片](/images/how_to_enable_https_related_functions_zh_1.png)
 
 - **申请免费证书额度后，可以点击`创建证书`按钮，在弹出页面输入您的域名：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191883407-29b22a27-0763-452d-9e26-0d32f718b196.png)
+![图片](/images/how_to_enable_https_related_functions_zh_2.png)
 
 - **点击下一步后提交审核:**
 
-![图片](https://user-images.githubusercontent.com/11495632/191883676-e4315e6b-2d77-488c-a433-cb156fb75af9.png)
+![图片](/images/how_to_enable_https_related_functions_zh_3.png)
 
 ## 三、下载证书并合并为zlmediakit支持的证书类型：
 - **下载证书：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191883919-ea64f77f-c170-4cc2-8284-04b386e2dea4.png)
+![图片](/images/how_to_enable_https_related_functions_zh_4.png)
 
 - **选择下载nginx或其他方式都可(两者证书类型一样)：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191884016-87192a79-8816-4ab0-b05c-b4384e26aa60.png)
+![图片](/images/how_to_enable_https_related_functions_zh_5.png)
 
 - **解压下载压缩包后文件如下**：
 
@@ -69,7 +69,7 @@ cp ~/Downloads/8516590_test.zlmediakit.com_nginx/default.pem ./
 ./MediaServer -s default.com
 ```
 
-![图片](https://user-images.githubusercontent.com/11495632/191885188-62cb4e02-3dbb-4142-a852-22a359a63680.png)
+![图片](/images/how_to_enable_https_related_functions_zh_6.png)
 
 
 
@@ -87,20 +87,20 @@ sudo vi /etc/hosts
 
 - **打开浏览器输入https地址测试：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191885959-5a20f3f7-0b39-4a06-bfaa-35b7a00427b4.png)
+![图片](/images/how_to_enable_https_related_functions_zh_7.png)
 
 - **查看证书：**
 
-![图片](https://user-images.githubusercontent.com/11495632/191886289-9c157ea0-2d61-4502-bda6-950832f73a75.png)
+![图片](/images/how_to_enable_https_related_functions_zh_8.png)
 
 
 ## 六、部署线上环境
 
 - 以上5步都走完了，验证通过，那么我们接下来可以部署线上环境；部署线上环境只需要把证书绑定的域名解析到您云主机的真实公网ip即可：
 
-![图片](https://user-images.githubusercontent.com/11495632/191887091-13b52373-12bc-4c54-8344-19e3c85d2337.png)
+![图片](/images/how_to_enable_https_related_functions_zh_9.png)
 
-![图片](https://user-images.githubusercontent.com/11495632/191887411-864e2fd7-9b9a-44e6-9f69-026aac313323.png)
+![图片](/images/how_to_enable_https_related_functions_zh_10.png)
 
 
 

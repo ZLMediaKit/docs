@@ -46,5 +46,5 @@ cat server.crt server.key > ./ssl.pem
 ```bash
 ./MediaServer -s ./ssl.pem
 ```
-![图片.png](https://upload-images.jianshu.io/upload_images/8409177-a3e64c0c8b642521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![图片.png](/images/generate_ssl_self-signed_certificate_and_test.webp)
 

@@ -3,9 +3,10 @@ title: 时序图
 ---
 
 ```mermaid
-  sequenceDiagram
-  	Title:按需拉流流程
-  
+---
+title: 按需拉流流程
+---
+sequenceDiagram 
     participant 播放器
     participant ZLMediaKit
     participant 摄像头
@@ -27,12 +28,11 @@ title: 时序图
     ZLMediaKit ->> 摄像头:关闭拉流
 ```
 
-
-
 ```mermaid
-  sequenceDiagram
-  	Title:按需推流流程
-  
+---
+title: 按需推流流程
+---
+sequenceDiagram
     participant 播放器
     participant ZLMediaKit
     participant 推流摄像头
@@ -53,11 +53,11 @@ title: 时序图
     ZLMediaKit ->> 推流摄像头:掐断推流  
 ```
 
-
 ```mermaid
-  sequenceDiagram
-  	Title:播放鉴权
-  
+---
+title: 播放鉴权
+---
+sequenceDiagram
     participant 播放器
     participant ZLMediaKit
     participant 你的业务服务器
@@ -69,9 +69,10 @@ title: 时序图
 ```
 
 ```mermaid
-  sequenceDiagram
-  	Title:推流鉴权
-  
+---
+title: 推流鉴权
+---
+sequenceDiagram
     participant 推流器
     participant ZLMediaKit
     participant 你的业务服务器

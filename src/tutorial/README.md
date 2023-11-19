@@ -20,6 +20,7 @@ description: This tutorial will guide you through the process of compiling and r
 If you're a beginner, we highly recommend compiling ZLMediaKit using Ubuntu16 or later versions. macOS is the second recommended platform. The least recommended platforms are CentOS6.* and Windows.
 
 
+zlmediakit has been launched on vcpkg, please refer to [install zlmediakit using vcpkg](../guide/install/install_zlmediakit_using_vcpkg.md) for convenient installation.
 
 ## 3. Compiler
 
@@ -156,7 +157,8 @@ Most of the third-party libraries that ZLMediaKit depends on are optional. Durin
 
 ## 6. Building and Compiling the Project
 
-The activation of webrtc related features is complex and is not enabled for compilation by default. If you are interested in the webrtc feature of zlmediakit, you can refer to [here](https://github.com/ZLMediaKit/ZLMediaKit/wiki/zlm%E5%90%AF%E7%94%A8webrtc%E7%BC%96%E8%AF%91%E6%8C%87%E5%8D%97).
+The activation of webrtc related features is complex and is not enabled for compilation by default. If you are 
+interested in the webrtc feature of zlmediakit, you can refer to [here](../guide/protocol/webrtc/webrtc_compilation_and_use.md).
 
 - On Linux or macOS systems, you should operate as follows:
 
@@ -191,7 +193,7 @@ The activation of webrtc related features is complex and is not enabled for comp
      5 Locate the target file and run the test case.
     ```
 
-  - Also, you can refer to [here](https://github.com/ZLMediaKit/ZLMediaKit/wiki/Windows-%E7%89%88%E7%BC%96%E8%AF%91%E8%AF%B4%E6%98%8E) for Windows compilation.
+  - Also, you can refer to [here](../guide/install/compilation_instructions_for_windows_version.md) for Windows compilation.
 
 - If you want to compile the Android version, you can open the Android directory in Android Studio.
 
@@ -211,7 +213,7 @@ The ZLMediaKit project mainly generates three types of binary target files, whic
 
 - MediaServer Process
 
-  This is the main process of ZLMediaKit as a server. This process can be used directly as a streaming media server for testing without any development. If you need more complex business logic, you can implement it through [Web HOOK](https://github.com/zlmediakit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API) and [RESTful API](https://github.com/zlmediakit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-API). At the same time, you can control its parameters through the [configuration file](https://github.com/zlmediakit/ZLMediaKit/wiki/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6).
+  This is the main process of ZLMediaKit as a server. This process can be used directly as a streaming media server for testing without any development. If you need more complex business logic, you can implement it through [Web HOOK](../guide/media_server/web_hook_api.md) and [RESTful API](../guide/media_server/restful_api.md). At the same time, you can control its parameters through the [configuration file](../guide/media_server/config_file.md).
 
   - Start on Linux:
 
@@ -268,4 +270,4 @@ The ZLMediaKit project mainly generates three types of binary target files, whic
 
 ## 8. Testing
 
-Please refer to [this article](https://github.com/xiongziliang/ZLMediaKit/wiki/ZLMediaKit%E6%8E%A8%E6%B5%81%E6%B5%8B%E8%AF%95) to complete the stream push and play test.
+Please refer to [this article](../guide/media_server/push_test.md) to complete the stream push and play test.

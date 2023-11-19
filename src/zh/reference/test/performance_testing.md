@@ -30,21 +30,21 @@ title: 性能测试
 |  rtmp推流  |  10K   | 224% | 1.6G | 2.16Gb/s |     约30K      |
 
 ## 1.3、测试详细数据
-- [rtmp拉流](https://github.com/ZLMediaKit/ZLMediaKit/wiki/rtmp%E6%8B%89%E6%B5%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95)
-- [rtmp推流](https://github.com/ZLMediaKit/ZLMediaKit/wiki/rtmp%E6%8E%A8%E6%B5%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95)
-- [rtsp拉流](https://github.com/ZLMediaKit/ZLMediaKit/wiki/rtsp%E6%8B%89%E6%B5%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95)
-- [rtsp推流](https://github.com/ZLMediaKit/ZLMediaKit/wiki/rtsp%E6%8E%A8%E6%B5%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95)
+- [rtmp拉流](./rtmp_pull_stream_performance_test.md)
+- [rtmp推流](./rtmp_push_stream_performance_test.md)
+- [rtsp拉流](./rtsp_pull_stream_performance_test.md)
+- [rtsp推流](./rtsp_push_stream_performance_test.md)
 
 
 # 二、较早的性能测试记录
 - [rtmp拉流性能测试](https://github.com/ZLMediaKit/ZLMediaKit/issues/406)
 - [GB28181性能测试](https://github.com/ZLMediaKit/ZLMediaKit/issues/961)
 - [rtsp音频拉流性能测试](https://github.com/ZLMediaKit/ZLMediaKit/issues/1271)
-- [过时的性能测试记录](https://github.com/zlmediakit/ZLMediaKit/wiki/Benchmark)
+- [过时的性能测试记录](./benchmark.md)
 
 # 三、性能测试与优化
-- [rtsp性能优化与测试](https://github.com/ZLMediaKit/ZLMediaKit/wiki/RTSP%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
-- [hls性能优化与测试](https://github.com/ZLMediaKit/ZLMediaKit/wiki/zlmediakit%E7%9A%84hls%E9%AB%98%E6%80%A7%E8%83%BD%E4%B9%8B%E6%97%85)
+- [rtsp性能优化与测试](../development_log/rtsp_performance_optimization.md)
+- [hls性能优化与测试](../development_log/hls_high_performance_journey.md)
 - [rtmp性能优化](https://github.com/ZLMediaKit/ZLMediaKit/issues/540)
 
 

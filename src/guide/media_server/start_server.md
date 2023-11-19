@@ -31,7 +31,7 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
 
 - Startup command:
 
-![Image](https://user-images.githubusercontent.com/11495632/93867961-579bae00-fcfc-11ea-843a-dcb473957fb7.png)
+![Image](/images/start_server_1.png)
 
 - Notes:
   - 1. If you need to close the shell after starting MediaServer, you need to enter `exit` to exit the shell, otherwise closing the shell will also close the MediaServer.
@@ -39,14 +39,12 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
 
 ## Hot Loading of Configuration Files
 After modifying and saving the configuration file, enter `killall -1 MediaServer` in the shell to make ZLMediaKit hot load the configuration file. If successful, it will print the following style of logs:
-![Image](https://user-images.githubusercontent.com/11495632/93873207-e791
-
-2600-fd03-11ea-83f7-00132f917540.png)
+![Image](/images/start_server_2.png)
 
 ## Stopping the Server
 - If you started the server in the background, please enter `killall -2 MediaServer` in the shell to gracefully shut down the server (the program will automatically release resources and exit after receiving the SIGINT signal).
 - Otherwise, you can press `Ctr + C` to exit the program.
 - The logs when MediaServer exits are as follows:
 
-![Image](https://user-images.githubusercontent.com/11495632/93867941-51a5cd00-fcfc-11ea-8ab7-be5914929c90.png)
+![Image](/images/start_server_3.png)
 

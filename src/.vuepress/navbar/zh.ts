@@ -10,7 +10,7 @@ export const zhNavbar = navbar([
         prefix: "/zh/reference/",
         children: ["test",
             "resources",
-            "documents"
+            "documents", "development_log"
         ],
     },
     {
