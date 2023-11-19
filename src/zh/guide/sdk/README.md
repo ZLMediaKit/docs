@@ -1,6 +1,7 @@
 ---
 title: SDK API
-icon: lightbulb
+icon: cube
+index: false
 ---
 
 ## Introduction

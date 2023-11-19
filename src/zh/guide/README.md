@@ -1,10 +1,10 @@
 ---
-title: Guide
+title: 指南
 icon: terminal
 
 ---
 
-# An high-performance, enterprise-level streaming media service framework based on C++11.
+# 一个基于C++11的高性能运营级流媒体服务框架
 
 
 [![](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ZLMediaKit/ZLMediaKit/blob/master/LICENSE)
@@ -20,33 +20,34 @@ icon: terminal
 [![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/docker.yml/badge.svg)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
 [![](https://img.shields.io/docker/pulls/zlmediakit/zlmediakit)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
 
-## Project Features
-- Developed with C++11, avoiding the use of raw pointers, providing stable and reliable code with superior performance.
-- Supports multiple protocols (RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC), and protocol conversion.
-- Developed with multiplexing/multithreading/asynchronous network IO models, providing excellent concurrency performance and supporting massive client connections.
-- The code has undergone extensive stability and performance testing, and has been extensively used in production environments.
-- Supports all major platforms, including linux, macos, ios, android, and windows.
-- Supports multiple instruction set platforms, such as x86, arm, risc-v, mips, Loongson, and Shenwei.
-- Provides ultra-fast startup, extremely low latency (within 500 milliseconds, and can be as low as 100 milliseconds), and excellent user experience.
-- Provides a comprehensive standard [C API](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include) that can be used as an SDK or called by other languages.
-- Provides a complete [MediaServer](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/server) server, which can be deployed directly as a commercial server without additional development.
-- Provides a complete [restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-API) and [web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API), supporting rich business logic.
-- Bridges the video surveillance protocol stack and the live streaming protocol stack, and provides comprehensive support for RTSP/RTMP.
-- Fully supports H265/H264/AAC/G711/OPUS.
-- Provides complete functions, including clustering, on-demand protocol conversion, on-demand push/pull streams, playback before publishing, and continuous publishing after disconnection.
-- Provides ultimate performance, supporting 10W-level players on a single machine and 100Gb/s-level IO bandwidth capability.
-- Provides ultimate user experience with [exclusive features](https://github.com/ZLMediaKit/ZLMediaKit/wiki/ZLMediakit%E7%8B%AC%E5%AE%B6%E7%89%B9%E6%80%A7%E4%BB%8B%E7%BB%8D).
-- [Who is using zlmediakit?](https://github.com/ZLMediaKit/ZLMediaKit/issues/511)
-- Fully supports IPv6 networks.
+## 项目特点
 
-## Project Positioning
+- 基于C++11开发，避免使用裸指针，代码稳定可靠，性能优越。
+- 支持多种协议(RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC),支持协议互转。
+- 使用多路复用/多线程/异步网络IO模式开发，并发性能优越，支持海量客户端连接。
+- 代码经过长期大量的稳定性、性能测试，已经在线上商用验证已久。
+- 支持linux、macos、ios、android、windows全平台。
+- 支持x86、arm、risc-v、mips、龙芯、申威等指令集平台。
+- 支持画面秒开、极低延时([500毫秒内，最低可达100毫秒](https://github.com/ZLMediaKit/ZLMediaKit/wiki/%E5%BB%B6%E6%97%B6%E6%B5%8B%E8%AF%95))。
+- 提供完善的标准[C API](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include),可以作SDK用，或供其他语言调用。
+- 提供完整的[MediaServer](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/server)服务器，可以免开发直接部署为商用服务器。
+- 提供完善的[restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-API)以及[web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-HOOK-API)，支持丰富的业务逻辑。
+- 打通了视频监控协议栈与直播协议栈，对RTSP/RTMP支持都很完善。
+- 全面支持H265/H264/AAC/G711/OPUS。
+- 功能完善，支持集群、按需转协议、按需推拉流、先播后推、断连续推等功能。
+- 极致性能，单机10W级别播放器，100Gb/s级别io带宽能力。
+- 极致体验，[独家特性](https://github.com/ZLMediaKit/ZLMediaKit/wiki/ZLMediakit%E7%8B%AC%E5%AE%B6%E7%89%B9%E6%80%A7%E4%BB%8B%E7%BB%8D)
+- [谁在使用zlmediakit?](https://github.com/ZLMediaKit/ZLMediaKit/issues/511)
+- 全面支持ipv6网络
 
-- Cross-platform streaming media solution for mobile and embedded systems.
-- Commercial-grade streaming media server.
-- Network programming secondary development SDK.
+## 项目定位
 
-## Feature List
-### Overview of Features
+- 移动嵌入式跨平台流媒体解决方案。
+- 商用级流媒体服务器。
+- 网络编程二次开发SDK。
+
+## 功能清单
+### 功能一览
 
 ```mermaid
 ---
@@ -88,121 +89,120 @@ flowchart TD
 ```
 
 - RTSP[S]
-  - RTSP[S] server, supports RTMP/MP4/HLS to RTSP[S] conversion, supports devices such as Amazon Echo Show
-  - RTSP[S] player, supports RTSP proxy, supports generating silent audio
-  - RTSP[S] push client and server
-  - Supports four RTP transmission modes: `rtp over udp` `rtp over tcp` `rtp over http` `rtp multicast`
-  - Server/client fully supports Basic/Digest authentication, asynchronous configurable authentication interface
-  - Supports H265 encoding
-  - The server supports RTSP pushing (including `rtp over udp` and `rtp over tcp`)
-  - Supports H264/H265/AAC/G711/OPUS/MJPEG encoding. Other encodings can be forwarded but cannot be converted to protocol
+  - RTSP[S] 服务器，支持RTMP/MP4/HLS转RTSP[S],支持亚马逊echo show这样的设备
+  - RTSP[S] 播放器，支持RTSP代理，支持生成静音音频
+  - RTSP[S] 推流客户端与服务器
+  - 支持 `rtp over udp` `rtp over tcp` `rtp over http` `rtp组播`  四种RTP传输方式 
+  - 服务器/客户端完整支持Basic/Digest方式的登录鉴权，全异步可配置化的鉴权接口
+  - 支持H265编码
+  - 服务器支持RTSP推流(包括`rtp over udp` `rtp over tcp`方式)
+  - 支持H264/H265/AAC/G711/OPUS/MJPEG编码，其他编码能转发但不能转协议
 
 - RTMP[S]
-  - RTMP[S] playback server, supports RTSP/MP4/HLS to RTMP conversion
-  - RTMP[S] publishing server, supports recording and publishing streams
-  - RTMP[S] player, supports RTMP proxy, supports generating silent audio
-  - RTMP[S] push client
-  - Supports http[s]-flv live streaming server
-  - Supports http[s]-flv live streaming player
-  - Supports websocket-flv live streaming
-  - Supports H264/H265/AAC/G711/OPUS encoding. Other encodings can be forwarded but cannot be converted to protocol
-  - Supports [RTMP-H265](https://github.com/ksvc/FFmpeg/wiki)
-  - Supports [RTMP-OPUS](https://github.com/ZLMediaKit/ZLMediaKit/wiki/RTMP%E5%AF%B9H265%E5%92%8COPUS%E7%9A%84%E6%94%AF%E6%8C%81)
-  - Supports [enhanced-rtmp(H265)](https://github.com/veovera/enhanced-rtmp)
+  - RTMP[S] 播放服务器，支持RTSP/MP4/HLS转RTMP
+  - RTMP[S] 发布服务器，支持录制发布流
+  - RTMP[S] 播放器，支持RTMP代理，支持生成静音音频
+  - RTMP[S] 推流客户端
+  - 支持http[s]-flv直播服务器
+  - 支持http[s]-flv直播播放器
+  - 支持websocket-flv直播
+  - 支持H264/H265/AAC/G711/OPUS编码，其他编码能转发但不能转协议
+  - 支持[RTMP-H265](https://github.com/ksvc/FFmpeg/wiki)
+  - 支持[RTMP-OPUS](https://github.com/ZLMediaKit/ZLMediaKit/wiki/RTMP%E5%AF%B9H265%E5%92%8COPUS%E7%9A%84%E6%94%AF%E6%8C%81)
+  - 支持[enhanced-rtmp(H265)](https://github.com/veovera/enhanced-rtmp)
 
 - HLS
-  - Supports HLS file(mpegts/fmp4) generation and comes with an HTTP file server
-  - Through cookie tracking technology, it can simulate HLS playback as a long connection, which can achieve HLS on-demand pulling, playback statistics, and other businesses
-  - Supports HLS player and can pull HLS to rtsp/rtmp/mp4
-  - Supports H264/H265/AAC/G711/OPUS encoding
-
+  - 支持HLS文件(mpegts/fmp4)生成，自带HTTP文件服务器
+  - 通过cookie追踪技术，可以模拟HLS播放为长连接，可以实现HLS按需拉流、播放统计等业务
+  - 支持HLS播发器，支持拉流HLS转rtsp/rtmp/mp4
+  - 支持H264/H265/AAC/G711/OPUS编码
+  
 - TS
-  - Supports http[s]-ts live streaming
-  - Supports ws[s]-ts live streaming
-  - Supports H264/H265/AAC/G711/OPUS encoding
-
+  - 支持http[s]-ts直播
+  - 支持ws[s]-ts直播
+  - 支持H264/H265/AAC/G711/OPUS编码
+  
 - fMP4
-  - Supports http[s]-fmp4 live streaming
-  - Supports ws[s]-fmp4 live streaming
-  - Supports H264/H265/AAC/G711/OPUS/MJPEG encoding
+  - 支持http[s]-fmp4直播
+  - 支持ws[s]-fmp4直播
+  - 支持H264/H265/AAC/G711/OPUS/MJPEG编码
 
-- HTTP[S] and WebSocket
-  - The server supports `directory index generation`, `file download`, `form submission requests`
-  - The client provides `file downloader (supports resume breakpoint)`, `interface requestor`, `file uploader`
-  - Complete HTTP API server, which can be used as a web backend development framework
-  - Supports cross-domain access
-  - Supports http client/server cookie
-  - Supports WebSocket server and client
-  - Supports http file access authentication
- 
-- GB28181 and RTP Streaming
-  - Supports UDP/TCP RTP (PS/TS/ES) streaming server, which can be converted to RTSP/RTMP/HLS and other protocols
-  - Supports RTSP/RTMP/HLS and other protocol conversion to RTP streaming client, supports TCP/UDP mode, provides corresponding RESTful API, supports active and passive modes
-  - Supports H264/H265/AAC/G711/OPUS encoding
-  - Supports ES/PS/TS/EHOME RTP streaming
-  - Supports ES/PS RTP forwarding
-  - Supports GB28181 active pull mode
-  - Supports two-way voice intercom
+- HTTP[S]与WebSocket
+  - 服务器支持`目录索引生成`,`文件下载`,`表单提交请求`
+  - 客户端提供`文件下载器(支持断点续传)`,`接口请求器`,`文件上传器`
+  - 完整HTTP API服务器，可以作为web后台开发框架
+  - 支持跨域访问
+  - 支持http客户端、服务器cookie
+  - 支持WebSocket服务器和客户端
+  - 支持http文件访问鉴权
 
-- MP4 VOD and Recording
-  - Supports recording as FLV/HLS/MP4
-  - Supports MP4 file playback for RTSP/RTMP/HTTP-FLV/WS-FLV, supports seek
-  - Supports H264/H265/AAC/G711/OPUS encoding
+- GB28181与RTP推流
+  - 支持UDP/TCP RTP(PS/TS/ES)推流服务器，可以转换成RTSP/RTMP/HLS等协议
+  - 支持RTSP/RTMP/HLS等协议转rtp推流客户端，支持TCP/UDP模式，提供相应restful api，支持主动被动方式
+  - 支持H264/H265/AAC/G711/OPUS编码
+  - 支持es/ps/ts/ehome rtp推流
+  - 支持es/ps rtp转推
+  - 支持GB28181主动拉流模式
+  - 支持双向语音对讲
 
+- MP4点播与录制
+  - 支持录制为FLV/HLS/MP4
+  - RTSP/RTMP/HTTP-FLV/WS-FLV支持MP4文件点播，支持seek
+  - 支持H264/H265/AAC/G711/OPUS编码
+  
 - WebRTC
-  - Supports WebRTC streaming and conversion to other protocols
-  - Supports WebRTC playback and conversion from other protocols to WebRTC
-  - Supports two-way echo testing
-  - Supports simulcast streaming
-  - Supports uplink and downlink RTX/NACK packet loss retransmission
-  - **Supports single-port, multi-threaded, and client network connection migration (unique in the open source community)**.
-  - Supports TWCC RTCP dynamic rate control
-  - Supports REMB/PLI/SR/RR RTCP
-  - Supports RTP extension parsing
-  - Supports GOP buffer and instant WebRTC playback
-  - Supports data channels
-  - Supports WebRTC over TCP mode
-  - Excellent NACK and jitter buffer algorithms with outstanding packet loss resistance
-  - Supports WHIP/WHEP protocols
-- [SRT support](./srt/srt.md)
-- Others
-  - Supports rich RESTful APIs and webhook events
-  - Supports simple Telnet debugging
-  - Supports hot reloading of configuration files
-  - Supports traffic statistics, stream authentication, and other events
-  - Supports virtual hosts for isolating different domain names
-  - Supports on-demand streaming and automatic shutdown of streams with no viewers
-  - Supports pre-play before streaming to increase the rate of timely stream openings
-  - Provides a complete and powerful C API SDK
-  - Supports FFmpeg stream proxy for any format
-  - Supports HTTP API for real-time screenshot generation and return
-  - Supports on-demand demultiplexing and protocol conversion, reducing CPU usage by only enabling it when someone is watching
-  - Supports cluster deployment in traceable mode, with RTSP/RTMP/HLS/HTTP-TS support for traceable mode and HLS support for edge stations and multiple sources for source stations (using round-robin tracing)
-  - Can reconnect to streaming after abnormal disconnection in RTSP/RTMP/WebRTC pushing within a timeout period, with no impact on the player.
+  - 支持WebRTC推流，支持转其他协议
+  - 支持WebRTC播放，支持其他协议转WebRTC
+  - 支持双向echo test     
+  - 支持simulcast推流
+  - 支持上下行rtx/nack丢包重传
+  - **支持单端口、多线程、客户端网络连接迁移(开源界唯一)**。
+  - 支持TWCC rtcp动态调整码率
+  - 支持remb/pli/sr/rr rtcp
+  - 支持rtp扩展解析
+  - 支持GOP缓冲，webrtc播放秒开
+  - 支持datachannel
+  - 支持webrtc over tcp模式
+  - 优秀的nack、jitter buffer算法, 抗丢包能力卓越
+  - 支持whip/whep协议
+- [SRT支持](./srt/srt.md)
+- 其他
+  - 支持丰富的restful api以及web hook事件 
+  - 支持简单的telnet调试
+  - 支持配置文件热加载
+  - 支持流量统计、推拉流鉴权等事件
+  - 支持虚拟主机,可以隔离不同域名
+  - 支持按需拉流，无人观看自动关断拉流
+  - 支持先播放后推流，提高及时推流画面打开率
+  - 提供完整强大的c api sdk
+  - 支持FFmpeg拉流代理任意格式的流
+  - 支持http api生成并返回实时截图
+  - 支持按需解复用、转协议，当有人观看时才开启转协议，降低cpu占用率
+  - 支持溯源模式的集群部署，溯源方式支持rtsp/rtmp/hls/http-ts, 边沿站支持hls, 源站支持多个(采用round robin方式溯源)
+  - rtsp/rtmp/webrtc推流异常断开后，可以在超时时间内重连推流，播放器无感知
+  
 
-## How to build
+## 编译以及测试
+**编译前务必仔细参考wiki:[快速开始](https://github.com/ZLMediaKit/ZLMediaKit/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)操作!!!**
 
-It is recommended to compile on Ubuntu or macOS. Compiling on Windows is cumbersome, and some features are not compiled by default.
-[For details, please refer to Quick Start](/tutorial/)
+## 怎么使用
 
-## How to use
+ 你有三种方法使用ZLMediaKit，分别是：
 
-You have three ways to use ZLMediaKit, namely:
+ - 1、使用c api，作为sdk使用，请参考[这里](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include).
+ - 2、作为独立的流媒体服务器使用，不想做c/c++开发的，可以参考 [restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer支持的HTTP-API) 和 [web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/MediaServer支持的HTTP-HOOK-API ).
+ - 3、如果想做c/c++开发，添加业务逻辑增加功能，可以参考这里的[测试程序](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/tests).
 
-  - 1. Use c api as sdk, please refer to [here](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include).
-  - 2. Used as an independent streaming media server. If you don’t want to do c/c++ development, you can refer to [restful api](https://github.com/ZLMediaKit/ZLMediaKit/wiki/HTTP-API supported by MediaServer) and [web hook](https://github.com/ZLMediaKit/ZLMediaKit/wiki/HTTP-HOOK-API supported by MediaServer).
-  - 3. If you want to do c/c++ development and add business logic to increase functions, you can refer to the [test program] here (https://github.com/ZLMediaKit/ZLMediaKit/tree/master/tests).
+## Docker 镜像
 
-## Docker image
-
-You can download the compiled image from Docker Hub and start it:
+你可以从Docker Hub下载已经编译好的镜像并启动它：
 
 ```bash
-#This image is automatically compiled and pushed for github continuous integration, keeping it up to date with the code (master branch)
+#此镜像为github持续集成自动编译推送，跟代码(master分支)保持最新状态
 docker run -id -p 1935:1935 -p 8080:80 -p 8443:443 -p 8554:554 -p 10000:10000 -p 10000:10000/udp -p 8000:8000/udp -p 9000:9000/udp zlmediakit/zlmediakit:master
 ```
 
-You can also compile the image according to the Dockerfile:
+你也可以根据Dockerfile编译镜像：
 
 ```bash
 bash build_docker_images.sh

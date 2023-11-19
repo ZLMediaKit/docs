@@ -28,7 +28,7 @@ export const enNavbar = navbar([
     icon: "lightbulb",
     prefix: "/more/",
     children: [
-     "collaborative_projects", 'license', 'thanks', "contact",
+     "collaborative_projects", 'license', 'thanks', "contact", "use_cases"
     ],
   },
 ]);

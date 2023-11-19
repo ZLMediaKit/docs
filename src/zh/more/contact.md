@@ -1,11 +1,13 @@
 ---
-title: Contact US
+title: 联系我们
 icon: circle-info
 ---
 
-## Contact Information
+## 联系信息
 
-- Email: <1213642868@qq.com> (For project-related or streaming media-related questions, please follow the issue process. Otherwise, we will not reply to emails.)
-- QQ groups: Both QQ groups with a total of 4000 members are full. We will not create new QQ groups in the future. Users can join the [Knowledge Planet](https://github.com/ZLMediaKit/ZLMediaKit/issues/2364) to ask questions and support this project.
-- Follow WeChat Official Account:
-<img src=https://user-images.githubusercontent.com/11495632/232451702-4c50bc72-84d8-4c94-af2b-57290088ba7a.png width=15% />
+ - 邮箱：<1213642868@qq.com>(本项目相关或流媒体相关问题请走issue流程，否则恕不邮件答复)
+ - 请关注微信公众号获取最新消息推送：
+ <img src=https://user-images.githubusercontent.com/11495632/232451702-4c50bc72-84d8-4c94-af2b-57290088ba7a.png width=15% />
+ 
+ - 也可以自愿有偿加入知识星球咨询和获取资料：
+ <img src= https://user-images.githubusercontent.com/11495632/231946329-aa8517b0-3cf5-49cf-8c75-a93ed58cb9d2.png width=30% />

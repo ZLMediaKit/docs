@@ -1,14 +1,17 @@
 ---
-title: Acknowledgments
+title: 致谢
 icon: circle-info
 ---
-## Special Thanks
+## 特别感谢
 
-This project uses the [media-server](https://github.com/ireader/media-server) library developed by [Lao Chen](https://github.com/ireader). The reuse and de-multiplexing of ts/fmp4/mp4/ps container formats in this project depend on the media-server library. Lao Chen has provided invaluable help and support multiple times in implementing many functions of this project, and we would like to express our sincere gratitude to him!
+本项目采用了[老陈](https://github.com/ireader) 的 [media-server](https://github.com/ireader/media-server) 库，
+本项目的 ts/fmp4/mp4/ps 容器格式的复用解复用都依赖media-server库。在实现本项目诸多功能时，老陈多次给予了无私热情关键的帮助，
+特此对他表示诚挚的感谢！
 
-## Acknowledgments
 
-Thanks to all those who have supported this project in various ways, including but not limited to code contributions, problem feedback, and donations. The following list is not in any particular order:
+## 致谢
+
+感谢以下各位对本项目包括但不限于代码贡献、问题反馈、资金捐赠等各种方式的支持！以下排名不分先后：
 
 [老陈](https://github.com/ireader)
 [Gemfield](https://github.com/gemfield)
@@ -104,7 +107,12 @@ Thanks to all those who have supported this project in various ways, including b
 [linxiaoyan87](https://github.com/linxiaoyan)
 [waken](https://github.com/mc373906408)
 [Deepslient](https://github.com/Deepslient)
+[imp_rayjay](https://github.com/rayjay214)
+[ArmstrongCN](https://github.com/ArmstrongCN)
+[leibnewton](https://github.com/leibnewton)
+[1002victor](https://github.com/1002victor)
 
-Also thank to JetBrains for their support for open source project, we developed and debugged zlmediakit with CLion:
+同时感谢JetBrains对开源项目的支持，本项目使用CLion开发与调试：
 
 [![JetBrains](https://resources.jetbrains.com/storage/products/company/brand/logos/CLion.svg)](https://jb.gg/OpenSourceSupport)
+

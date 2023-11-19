@@ -1,26 +1,26 @@
 ---
 home: true
 icon: home
-title: Home
-description: An high-performance, enterprise-level streaming media service framework based on C++11.
+title: 首页
+description: 一个基于C++11的高性能运营级流媒体服务框架.
 heroImage: /logo.png
 bgImage: 
 bgImageDark: 
 bgImageStyle:
   background-attachment: fixed
 heroText: ZLMediaKit
-tagline: An high-performance, enterprise-level streaming media service framework based on C++11.
+tagline: 一个基于C++11的高性能运营级流媒体服务框架.
 actions:
-  - text: How to Use 💡
+  - text: 如何使用💡
     link: ./tutorial/
     type: primary
 
-  - text: Docs
+  - text: 文档
     link: ./guide/
 
 highlights:
-  - header: Features
-    description: Cross-platform streaming media solution for mobile and embedded systems.
+  - header: 特性
+    description: 该项目是一个商用级流媒体服务器流媒体解决方案,其中包括移动嵌入式跨平台支持以及网络编程二次开发SDK.
     image: /assets/image/features.svg
     bgImage: 
     bgImageDark: 
@@ -28,79 +28,79 @@ highlights:
       background-repeat: repeat
       background-size: initial
     features:
-      - title: Versatile Protocol Support
+      - title: c++11开发
         icon: bug-slash
-        details: Developed with C++11, avoiding the use of raw pointers, providing stable and reliable code with superior performance
+        details: 采用C++11开发,避免使用原始指针,提供稳定可靠的代码和卓越的性能.
         link: 
 
-      - title: Supports multiple protocols
+      - title: 支持多种协议
         icon: box-archive
-        details: Supports multiple protocols(RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC), and protocol conversion
+        details: 支持多种协议(RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC)与协议间互相转换
         link: 
 
-      - title: High Concurrency and Performance
+      - title: 高并发与高性能
         icon: bolt
-        details: Developed with multiplexing/multithreading/asynchronous network IO models, providing excellent concurrency performance and supporting massive client connections.
+        details: 采用多路复用/多线程/异步网络IO模型开发,提供卓越的并发性能,支持海量客户端连接.
         link: 
 
-      - title: Proven Stability and Production Usage
+      - title: 稳定可靠的生产环境使用
         icon: microscope
-        details: The code has undergone extensive stability and performance testing, and has been extensively used in production environments.
+        details: 代码经过广泛的稳定性和性能测试,在生产环境中得到广泛应用.
         link: 
 
-      - title: Cross-Platform Compatibility
+      - title: 跨平台兼容性
         icon: linux
-        details: Supports all major platforms, including linux, macos, ios, android, and windows.
+        details: 支持包括Linux、macOS、iOS、Android和Windows在内的所有主要平台.
         link: 
 
-      - title: Multiple Instruction Set Platforms
+      - title: 多指令集平台支持
         icon: microchip
-        details: Supports multiple instruction set platforms, such as x86, arm, risc-v, mips, Loongson, and Shenwei.
+        details: 支持多种指令集平台，如x86、arm、risc-v、mips、龙芯和申威.
         link: 
 
-      - title: Ultra-Fast Startup and Low Latency
+      - title: 极速启动和低延迟
         icon: truck-fast
-        details: Provides ultra-fast startup, extremely low latency (within 500 milliseconds, and can be as low as 100 milliseconds), and excellent user experience.
+        details: 提供极速启动,极低延迟(在500毫秒以内,甚至可以低至100毫秒),提供优异的用户体验.
         link: 
 
-      - title: C API for Integration
+      - title: 用于集成的C API
         icon: code
-        details: Provides a comprehensive standard C API that can be used as an SDK or called by other languages.
+        details: 提供全面的标准C API,可用作SDK或被其他语言调用.
         link: 
 
-      - title: Complete MediaServer Solution
+      - title: 完整的媒体服务器解决方案
         icon: server
-        details: Provides a complete MediaServer server, which can be deployed directly as a commercial server without additional development.
+        details: 提供完整的媒体服务器,可直接部署为商用服务器,无需额外开发.
         link: 
 
-      - title: RESTful API and Web Hook
+      - title: RESTful API和Web Hook
         icon: file-code
-        details: Provides a complete restful api and web hook, supporting rich business logic.
+        details: 提供完整的RESTful API和Web Hook,支持丰富的业务逻辑.
         link: 
 
-      - title: Bridging Video Surveillance
+      - title: 视频监控桥接
         icon: video
-        details: Bridges the video surveillance protocol stack and the live streaming protocol stack, and provides comprehensive support for RTSP/RTMP.
+        details: 打通了视频监控协议栈与直播协议栈,对RTSP/RTMP支持都很完善.
         link: 
 
-      - title: Full Support for Codecs
+      - title: 完善的编解码器支持
         icon: box-open
-        details: Fully supports H265/H264/AAC/G711/OPUS.
+        details: 全面支持H265/H264/AAC/G711/OPUS.
         link: 
 
-      - title: Advanced Functionality
+      - title: 高级功能
         icon: toolbox
-        details: Provides complete functions, including clustering, on-demand protocol conversion, on-demand push/pull streams, playback before publishing, and continuous publishing after disconnection.
+        details: 功能完善,支持集群、按需转协议、按需推拉流、先播后推、断连续推等功能.
         link: 
 
-      - title: Ultimate Performance and Scalability
+      - title: 极致性能和可扩展性
         icon: chart-pie
-        details: Provides ultimate performance, supporting 10W-level players on a single machine and 100Gb/s-level IO bandwidth capability.
+        details: 极致性能,支持单台机器上的10W级播放器和100Gb/s级IO带宽能力.
         link: 
 
-      - title: Exclusive Features
+      - title: 独家功能
         icon: user-secret
-        details: Fully supports IPv6 networks and provides ultimate user experience with exclusive features.
+        details: 全面支持IPv6网络，并通过独家功能提供终极用户体验.
         link: 
 
 

@@ -1,52 +1,56 @@
 ---
-title: Starting and Stopping the Server
+title: 服务器的启动与关闭
 icon: circle-info
 ---
 
-## Program Path
-After compiling ZLMediaKit, the MediaServer main program is generated. The relative path of the program is `release/${platform}/${build_type}/MediaServer`.
+## 程序所在路径
+在编译zlmediakit后，会生成MediaServer主程序，该程序相对路径为`release/${platform}/${build_type}/MediaServer`。
 
-`${platform}` depends on your operating system, which may be `windows/linux/mac`, and `${build_type}` depends on the compile type you specified when using cmake, which could be `Debug/Release`.
+`${platform}`根据您的操作系统，可能为`windows/linux/mac`,`${build_type}`根据您cmake时指定的编译类型，可能为`Debug/Release`.
 
-## Start-up and Parameters
+## 启动与参数
 
-- First, please refer to the help for startup parameters:
+- 先参考启动参数帮助：
 ```bash
 xzl-mac-pro:Debug xzl$ ./MediaServer -h
-  -h  --help     no argument  default:null                                          optional  print this information
-  -d  --daemon   no argument  default:null                                          optional  start in Daemon mode or not
-  -l  --level    argument     default:0                                             optional  log level, LTrace~LError(0~4)
-  -m  --max_day  argument     default:7                                             optional  maximum days to keep the logs
-  -c  --config   argument     default:/Users/xzl/git/ZLMediaKit/release/mac/Debug/config.ini  optional  configuration file path
-  -s  --ssl      argument     default:/Users/xzl/git/ZLMediaKit/release/mac/Debug/ssl.p12     optional  path of the SSL certificate file or directory, supports p12/pem types
-  -t  --threads  argument     default:8                                             optional  number of threads to launch for event triggering
+  -h  --help     无参  默认:null                                                    选填  打印此信息
+  -d  --daemon   无参  默认:null                                                    选填  是否以Daemon方式启动
+  -l  --level    有参  默认:0                                                       选填  日志等级,LTrace~LError(0~4)
+  -m  --max_day  有参  默认:7                                                       选填  日志最多保存天数
+  -c  --config   有参  默认:/Users/xzl/git/ZLMediaKit/release/mac/Debug/config.ini  选填  配置文件路径
+  -s  --ssl      有参  默认:/Users/xzl/git/ZLMediaKit/release/mac/Debug/ssl.p12     选填  ssl证书文件或文件夹,支持p12/pem类型
+  -t  --threads  有参  默认:8                                                       选填  启动事件触发线程数
 ```
-- Explanation:
-  - -d(--daemon): Whether to start as a daemon. The daemon does only one thing: monitor whether the child process (the actual working process) has exited, and attempts to restart the child process if it has exited.
-  - -l(--level): Specifies the log print level, with values ranging from 0 to 4. The higher the level, the fewer logs are printed.
-  - -m(--max_day): The number of days the log files are kept. Logs created during the current run of the program will be deleted if they exceed this number of days.
-  - -c(--config): Specifies the configuration file path. The configuration file is in ini format, please refer to the default configuration file of ZLMediaKit.
-  - -s(--ssl): Specifies the SSL certificate path. The certificate format supports p12 and pem types, which must include both public and private keys, and the private key must not be password encrypted. If a directory is specified, all certificates under the directory will be loaded.
-  - -t(--threads): Specifies the number of event-driven threads (performing major tasks) and background working threads (performing blocking tasks).
+- 说明：
+  - -d(--daemon): 是否以守护进程的方式启动，守护进程只做一件事，就是判断子进程(这个才是干活的进程)是否已经退出，退出后会不断尝试重启子进程。
+  - -l(--level): 指定日志打印等级，赋值范围为0~4，等级越高，日志越少。
+  - -m(--max_day): 日志文件保存天数，程序本次运行期间的日志如果超过这个天数，就会被删除。
+  - -c(--config): 指定配置文件路径，配置文件为ini格式，请参考ZLMediaKit的默认配置文件。
+  - -s(--ssl): 指定ssl证书路径，证书格式支持p12和pem类型，里面必须包含公钥和私钥，私钥不能有加密密码。如果指定文件夹，会加载文件夹下所有证书。
+  - -t(--threads): 指定事件驱动线程(干重活)和后台工作线程(干阻塞的活)个数。
 
-- Startup command:
+- 启动命令:
 
-![Image](https://user-images.githubusercontent.com/11495632/93867961-579bae00-fcfc-11ea-843a-dcb473957fb7.png)
+![图片](https://user-images.githubusercontent.com/11495632/93867961-579bae00-fcfc-11ea-843a-dcb473957fb7.png)
 
-- Notes:
-  - 1. If you need to close the shell after starting MediaServer, you need to enter `exit` to exit the shell, otherwise closing the shell will also close the MediaServer.
-  - 2. If you are going to use FFmpeg related functions, you should start the program like this: `nohup ./MediaServer -d &`. Otherwise, the fork FFmpeg process may cause the MediaServer process to hang.
 
-## Hot Loading of Configuration Files
-After modifying and saving the configuration file, enter `killall -1 MediaServer` in the shell to make ZLMediaKit hot load the configuration file. If successful, it will print the following style of logs:
-![Image](https://user-images.githubusercontent.com/11495632/93873207-e791
+- 注意事项：
+  - 1、如果你启动MediaServer后需要关闭shell，那么好需要输入 `exit`退出shell,否则关闭shell会导致MediaServer一起被关闭。
+  - 2、如果你会使用到FFmpeg相关功能，你应该这样启动程序`nohup ./MediaServer -d &`，否则在fork FFmpeg进程时会导致MediaServer进程挂起。
 
-2600-fd03-11ea-83f7-00132f917540.png)
 
-## Stopping the Server
-- If you started the server in the background, please enter `killall -2 MediaServer` in the shell to gracefully shut down the server (the program will automatically release resources and exit after receiving the SIGINT signal).
-- Otherwise, you can press `Ctr + C` to exit the program.
-- The logs when MediaServer exits are as follows:
+## 配置文件的热加载
+修改并保存配置文件后，在shell里面输入`killall -1 MediaServer`就能使ZLMediaKit热加载配置文件，如果生效，会打印下面样式的日志：
+![图片](https://user-images.githubusercontent.com/11495632/93873207-e7912600-fd03-11ea-83f7-00132f917540.png)
 
-![Image](https://user-images.githubusercontent.com/11495632/93867941-51a5cd00-fcfc-11ea-8ab7-be5914929c90.png)
+
+## 关闭服务器
+- 如果你是后台启动方式，请在shell中输入`killall -2 MediaServer`以便优雅关闭服务器(程序收到SIGINT信号后会自动释放资源并退出)。
+- 否则你可以同时按下`Ctr + C`退出程序。
+- MediaServer退出时日志如下：
+
+![图片](https://user-images.githubusercontent.com/11495632/93867941-51a5cd00-fcfc-11ea-8ab7-be5914929c90.png)
+
+
+
 

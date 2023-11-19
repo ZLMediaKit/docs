@@ -5,30 +5,20 @@ export const zhNavbar = navbar([
     "/zh/guide/",
     "/zh/tutorial/",
     {
-        text: "Reference",
+        text: "参考",
         icon: "lightbulb",
         prefix: "/zh/reference/",
-        children: [
-            {
-                text: "Testing",
-                icon: "lightbulb",
-                prefix: "test/",
-                children: ["performance_testing", 'delay_test', 'online_test', "how_to_test_delay"],
-            },
-            {
-                text: "Resources",
-                icon: "lightbulb",
-                prefix: "resources/",
-                children: ["dependency",],
-            },
+        children: ["test",
+            "resources",
+            "documents"
         ],
     },
     {
-        text: "More",
-        icon: "lightbulb",
+        text: "了解更多",
+        icon: "laptop-code",
         prefix: "/zh/more/",
         children: [
-            "collaborative_projects", 'license', 'thanks', "contact",
+            "collaborative_projects", 'license', 'thanks', "contact", "use_cases"
         ],
     },
 ]);

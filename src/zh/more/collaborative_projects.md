@@ -1,30 +1,34 @@
 ---
-title: Collaborative Projects
+title: 合作项目
 icon: circle-info
 ---
 
-- Visual management website
-   - [The latest web project with front-end and back-end separation, supporting webrtc playback](https://github.com/langmansh/AKStreamNVR)
-   - [Management web site based on ZLMediaKit master branch](https://gitee.com/kkkkk5G/MediaServerUI) 
-   - [Management web site based on ZLMediaKit branch](https://github.com/chenxiaolei/ZLMediaKit_NVR_UI)
-   - [A very beautiful visual background management system](https://github.com/MingZhuLiu/ZLMediaServerManagent)
-    
-- Media management platform
-  - [GB28181 complete solution with web management website, supporting webrtc and h265 playback](https://github.com/648540858/wvp-GB28181-pro)
-  - [Powerful media control and management interface platform, supporting GB28181](https://github.com/chatop2020/AKStream)
-  - [GB28181 server implemented in C++](https://github.com/any12345com/BXC_SipServer)
-  - [GB28181 server implemented in Go](https://github.com/panjjo/gosip)
-  - [Node-js version of GB28181 platform](https://gitee.com/hfwudao/GB28181_Node_Http)
-  - [Hikvision ehome server implemented in Go](https://github.com/tsingeye/FreeEhome)
+ - 视频管理平台
+   - [wvp-GB28181-pro](https://github.com/648540858/wvp-GB28181-pro) java实现的开箱即用的GB28181协议视频平台
+   - [AKStream](https://github.com/chatop2020/AKStream) c#实现的全功能的软NVR接口/GB28181平台
+   - [BXC_SipServer](https://github.com/any12345com/BXC_SipServer) c++实现的国标GB28181流媒体信令服务器
+   - [gosip](https://github.com/panjjo/gosip) golang实现的GB28181服务器
+   - [FreeEhome](https://github.com/tsingeye/FreeEhome) golang实现的海康ehome服务器
+  
+ - 播放器
+   - [h265web.js](https://github.com/numberwolf/h265web.js) 基于wasm支持H265的播放器，支持本项目多种专属协议
+   - [jessibuca](https://github.com/langhuihui/jessibuca) 基于wasm支持H265的播放器
+   - [wsPlayer](https://github.com/v354412101/wsPlayer) 基于MSE的websocket-fmp4播放器
+   - [BXC_gb28181Player](https://github.com/any12345com/BXC_gb28181Player) C++开发的支持国标GB28181协议的视频流播放器
 
-- Client
-  - [Complete C# wrapper library for c sdk](https://github.com/malegend/ZLMediaKit.Autogen) 
-  - [Push client implemented based on C SDK](https://github.com/hctym1995/ZLM_ApiDemo)
-  - [Http API and Hook in C#](https://github.com/chengxiaosheng/ZLMediaKit.HttpApi)
-  - [RESTful client in DotNetCore](https://github.com/MingZhuLiu/ZLMediaKit.DotNetCore.Sdk)
+- WEB管理网站
+   - [zlm_webassist](https://github.com/1002victor/zlm_webassist) 本项目配套的前后端分离web管理项目
+   - [AKStreamNVR](https://github.com/langmansh/AKStreamNVR) 前后端分离web项目,支持webrtc播放
    
-- Player
-  - [Player supporting H265 based on wasm](https://github.com/numberwolf/h265web.js)
-  - [WebSocket-fmp4 player based on MSE](https://github.com/v354412101/wsPlayer) 
-  - [Domestic webrtc sdk(metaRTC)](https://github.com/metartc/metaRTC)
-  - [GB28181 player implemented in C++](https://github.com/any12345com/BXC_gb28181Player)
+ - SDK
+   - [c# sdk](https://github.com/malegend/ZLMediaKit.Autogen) 本项目c sdk完整c#包装库
+   - [metaRTC](https://github.com/metartc/metaRTC) 全国产纯c webrtc sdk
+   
+ - 其他项目(已停止更新)
+   - [NodeJS实现的GB28181平台](https://gitee.com/hfwudao/GB28181_Node_Http)
+   - [基于ZLMediaKit主线的管理WEB网站 ](https://gitee.com/kkkkk5G/MediaServerUI)
+   - [基于ZLMediaKit分支的管理WEB网站](https://github.com/chenxiaolei/ZLMediaKit_NVR_UI)
+   - [一个非常漂亮的可视化后台管理系统](https://github.com/MingZhuLiu/ZLMediaServerManagent)
+   - [基于C SDK实现的推流客户端](https://github.com/hctym1995/ZLM_ApiDemo)
+   - [C#版本的Http API与Hook](https://github.com/chengxiaosheng/ZLMediaKit.HttpApi)
+   - [DotNetCore的RESTful客户端](https://github.com/MingZhuLiu/ZLMediaKit.DotNetCore.Sdk)

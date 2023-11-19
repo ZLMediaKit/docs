@@ -2,8 +2,7 @@
 title: Media Server
 icon: gears
 index: false
-dir:
-  order: 3
+order: 3
 category:
   - GUIDE
 tag:
