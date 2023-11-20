@@ -727,42 +727,42 @@ You can also refer to this [issue](https://github.com/zlmediakit/ZLMediaKit/issu
     
     {
         "regist" : true,
-        "aliveSecond": 0, #存活时间，单位秒
-        "app": "live", # 应用名
-        "bytesSpeed": 0, #数据产生速度，单位byte/s
-        "createStamp": 1617956908,  #GMT unix系统时间戳，单位秒
-        "mediaServerId": "your_server_id", # 服务器id
+        "aliveSecond": 0, # The time the stream remains alive, in seconds
+        "app": "live", # Application name
+        "bytesSpeed": 0, #  Data generation speed in bytes/s
+        "createStamp": 1617956908,  # GMT Unix system timestamp in seconds
+        "mediaServerId": "your_server_id", # Server ID
         "originSock": {
             "identifier": "000001C257D35E40",
-            "local_ip": "172.26.20.112", # 本机ip
-            "local_port": 50166, # 本机端口
-            "peer_ip": "172.26.20.112", # 对端ip
-            "peer_port": 50155 # 对端port
+            "local_ip": "172.26.20.112", # Local ip
+            "local_port": 50166, # Local Port
+            "peer_ip": "172.26.20.112", # Peer ip
+            "peer_port": 50155 # Peer Port
         },
-        "originType": 8,  # 产生源类型，包括 unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7,rtc_push=8
+        "originType": 8,  # Source type: unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7,rtc_push=8
         "originTypeStr": "rtc_push",
-        "originUrl": "", #产生源的url
-        "readerCount": 0, # 本协议观看人数
-        "schema": "rtsp", # 协议
-        "stream": "test",  # 流id
-        "totalReaderCount": 0, # 观看总人数，包括hls/rtsp/rtmp/http-flv/ws-flv/rtc
+        "originUrl": "", # URL of the source
+        "readerCount": 0, # Number of viewers for this protocol
+        "schema": "rtsp", # protocol
+        "stream": "test",  # Stream ID
+        "totalReaderCount": 0, # Total number of viewers, including hls/rtsp/rtmp/http-flv/ws-flv
         "tracks": [{
-           "channels" : 1, # 音频通道数
+           "channels" : 1, # Number of audio channels
            "codec_id" : 2, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-           "codec_id_name" : "CodecAAC", # 编码类型名称 
+           "codec_id_name" : "CodecAAC", #  Codec type name  
            "codec_type" : 1, # Video = 0, Audio = 1
-           "ready" : true, # 轨道是否准备就绪
-           "sample_bit" : 16, # 音频采样位数
-           "sample_rate" : 8000 # 音频采样率
+           "ready" : true, # Whether the track is ready
+           "sample_bit" : 16, # Audio sample bit depth
+           "sample_rate" : 8000 # Audio sample rate
         },
         {
            "codec_id" : 0, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-           "codec_id_name" : "CodecH264", # 编码类型名称  
+           "codec_id_name" : "CodecH264", # Codec type name   
            "codec_type" : 0, # Video = 0, Audio = 1
-           "fps" : 59,  # 视频fps
-           "height" : 720, # 视频高
-           "ready" : true,  # 轨道是否准备就绪
-           "width" : 1280 # 视频宽
+           "fps" : 59,  # Video frames per second
+           "height" : 720, # video high
+           "ready" : true,  # Whether the track is ready
+           "width" : 1280 # video width
         }],
         "vhost": "__defaultVhost__"
     }
