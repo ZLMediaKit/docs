@@ -1,9 +1,9 @@
 ---
-title: Web Hook 接口
+title: Web Hook Interface
 ---
 
-## HOOK预览
-MediaServer可以把内部的一些事件通过http post 第三方http服务器的方式通知出去，以下是相关的默认配置：
+## Web Hook Preview
+MediaServer can notify certain internal events through HTTP POST to a third-party HTTP server. The following are the relevant default configurations:
 
 ```ini
 [hook]
@@ -27,36 +27,36 @@ on_server_keepalive=https://127.0.0.1/index/hook/on_server_keepalive
 on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 ```
 
-如果是鉴权事件，且访问IP是`127.0.0.1`或者鉴权url参数与`admin_params`一致，那么会直接鉴权成功(不会触发鉴权web hook)。
+If it is an authentication event and the access IP is `127.0.0.1`, or the authentication URL parameter matches `admin_params`, the authentication will be successful directly (without triggering the authentication web hook).
 
-大家也可以参考此[issue](https://github.com/zlmediakit/ZLMediaKit/issues/71) 
+You can also refer to this [issue](https://github.com/zlmediakit/ZLMediaKit/issues/71).
 
-## 详解
-### 1、enable :
+## Explanation
+### 1. enable :
 
-- 解释:
+- Explanation:
 
-  是否开启http hook，如果选择关闭，ZLMediaKit将采取默认动作(例如不鉴权等)
+  Whether to enable HTTP hook. If disabled, ZLMediaKit will take default actions (e.g., no authentication).
 
-### 2、timeoutSec：
+### 2. timeoutSec:
 
-- 解释:
+- Explanation:
 
-  事件触发http post超时时间。
+  Timeout for triggering the event and sending the HTTP POST.
 
-### 3、admin_params：
+### 3. admin_params:
 
-- 解释:
+- Explanation:
 
-   超级管理员的url参数，如果访问者url参数与此一致，那么rtsp/rtmp/hls/http-flv/ws-flv播放或推流将无需鉴权。该选项用于开发者调试用。
+   URL parameters for the super administrator. If the visitor's URL parameters match this, no authentication will be required for RTSP/RTMP/HLS/HTTP-FLV/WS-FLV playback or publishing. This option is for developer debugging.
 
-### 4、on_flow_report：
+### 4. on_flow_report:
 
-- 解释:
+- Explanation:
 
-  流量统计事件，播放器或推流器断开时并且耗用流量超过特定阈值时会触发此事件，阈值通过配置文件general.flowThreshold配置；此事件对回复不敏感。
+  Traffic statistics event. This event is triggered when a player or publisher disconnects and has consumed traffic exceeding a specific threshold defined in the configuration file `general.flowThreshold`. This event does not require a response.
 
-- 触发请求：
+- Request Trigger：
 
   ```http
   POST /index/hook/on_flow_report HTTP/1.1
@@ -84,26 +84,26 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
      "id" : "140259799100960"
   }
   ```
-- 请求参数详解：
+- Request Parameters：
 
-  |    参数名    | 参数类型 |                 参数解释                 |
-  | :----------: | :------: | :--------------------------------------: |
-  |    `app`     | `string` |                 流应用名                 |
-  |  `duration`  |  `int`   |         tcp链接维持时间，单位秒          |
-  |   `params`   | `string` |            推流或播放url参数             |
-  |   `player`   |  `bool`  |       true为播放器，false为推流器        |
-  |   `schema`   | `string` | 播放或推流的协议，可能是rtsp、rtmp、http |
-  |   `stream`   | `string` |                   流ID                   |
-  | `totalBytes` |  `int`   |       耗费上下行流量总和，单位字节       |
-  |   `vhost`    | `string` |                流虚拟主机                |
-  |     `ip`     | `string` |                 客户端ip                 |
-  |    `port`    |  `int`   |               客户端端口号               |
-  |     `id`     | `string` |              TCP链接唯一ID               |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name | Parameter Type |         Parameter Explanation         |
+  | :------------: | :------------: | :----------------------------------: |
+  |     `app`      |    `string`    |           Stream application          |
+  |  `duration`    |     `int`      |      Duration of TCP connection       |
+  |   `params`     |    `string`    |        URL parameters for stream      |
+  |   `player`     |    `bool`      |   `true` for player, `false` for publisher  |
+  |   `schema`     |    `string`    | Protocol of playback or publishing (e.g., rtsp, rtmp, http) |
+  |   `stream`     |    `string`    |               Stream ID               |
+  | `totalBytes`   |     `int`      | Total consumed upstream and downstream traffic in bytes |
+  |    `vhost`     |    `string`    |           Stream virtual host          |
+  |      `ip`      |    `string`    |            Client's IP address         |
+  |     `port`     |     `int`      |           Client's port number         |
+  |      `id`      |    `string`    |         Unique ID of TCP connection    |
+  | `mediaServerId`|    `string`    | Server ID set in the configuration file |
 
   
 
-- 默认回复：
+- Default Response：
 
   ```http
   HTTP/1.1 200 OK
@@ -123,13 +123,13 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 
 
 
-### 5、on_http_access：
+### 5. on_http_access：
 
-- 解释:
+- Explanation:
 
-   访问http文件服务器上hls之外的文件时触发。
+   Triggered when accessing files on the http file server other than HLS.
 
-- 触发请求：
+- Trigger request：
 
   ```http
   POST /index/hook/on_http_access HTTP/1.1
@@ -162,20 +162,20 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
 
-- 请求参数详解：
+- Request parameters：
 
-  |   参数名   |     参数类型     |          参数解释           |
-  | :--------: | :--------------: | :-------------------------: |
-  | `header.*` |     `string`     |    http客户端请求header     |
-  |    `id`    |     `string`     |        TCP链接唯一ID        |
-  |    `ip`    |     `string`     |        http客户端ip         |
-  |  `is_dir`  |      `bool`      | http 访问路径是文件还是目录 |
-  |  `params`  |     `string`     |        http url参数         |
-  |   `path`   |     `string`     |    请求访问的文件或目录     |
-  |   `port`   | `unsigned short` |      http客户端端口号       |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  |  Parameter Name  |   Parameter Type    |         Parameter Description          |
+  | :--------------: | :-----------------: | :------------------------------------: |
+  |   `header.*`     |      `string`       |      HTTP client request headers       |
+  |      `id`        |      `string`       |          Unique TCP connection ID       |
+  |      `ip`        |      `string`       |           HTTP client IP address        |
+  |    `is_dir`      |       `bool`        |   Indicates whether the path is a file or directory in the HTTP request |
+  |    `params`      |      `string`       |         HTTP URL parameters             |
+  |     `path`       |      `string`       |       Requested file or directory       |
+  |     `port`       | `unsigned short`    |       HTTP client port number           |
+  | `mediaServerId`  |      `string`       |    Server ID set through configuration file |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -195,28 +195,26 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
 
-- 回复参数详解：
+- Response parameter details：
 
-     |  参数名  | 参数类型 |                           参数解释                           |
-  | :------: | :------: | :----------------------------------------------------------: |
-  |  `code`  |  `int`   |                         请固定返回0                          |
-  |  `err`   | `string` |             不允许访问的错误提示，允许访问请置空             |
-  |  `path`  | `string` | 该客户端能访问或被禁止的顶端目录，如果为空字符串，则表述为当前目录 |
-  | `second` |  `int`   |                 本次授权结果的有效期，单位秒                 |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+   |  Parameter Name  |   Parameter Type    |                Parameter Description                |
+  | :--------------: | :-----------------: | :-------------------------------------------------: |
+  |     `code`       |      `int`          |                  Always return 0                    |
+  |      `err`       |      `string`       |    Error message for disallowed access, leave empty for allowed access |
+  |     `path`       |      `string`       |       The top-level directory that the client can access or is forbidden to access. If it's an empty string, it represents the current directory |
+  |    `second`      |      `int`          |         Validity period of the authorization result for this request, in seconds |
+  | `mediaServerId`  |      `string`       |    Server ID set through configuration file |
   
 
 
 
-### 6、on_play：
+### 6. on_play：
 
-- 解释:
+- Explanation:
 
-  播放器鉴权事件，rtsp/rtmp/http-flv/ws-flv/hls的播放都将触发此鉴权事件；
-  如果流不存在，那么先触发on_play事件然后触发on_stream_not_found事件。 
-  播放rtsp流时，如果该流启动了rtsp专属鉴权(on_rtsp_realm)那么将不再触发on_play事件。
+  Player authentication event triggered for rtsp/rtmp/http-flv/ws-flv/hls playback. This event is triggered for playback of streams. If the stream does not exist, the on_play event is triggered first, followed by the on_stream_not_found event. When playing an rtsp stream, if the stream has started rtsp-specific authentication (on_rtsp_realm), the on_play event will not be triggered.
   
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_play HTTP/1.1
@@ -243,21 +241,21 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  |     参数类型     |              参数解释              |
-  | :------: | :--------------: | :--------------------------------: |
-  |  `app`   |     `string`     |              流应用名              |
-  |   `id`   |     `string`     |           TCP链接唯一ID            |
-  |   `ip`   |     `string`     |              播放器ip              |
-  | `params` |     `string`     |            播放url参数             |
-  |  `port`  | `unsigned short` |            播放器端口号            |
-  | `schema` |     `string`     | 播放的协议，可能是rtsp、rtmp、http |
-  | `stream` |     `string`     |                流ID                |
-  | `vhost`  |     `string`     |             流虚拟主机             |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  |  Parameter Name  |   Parameter Type    |                 Parameter Description                 |
+  | :--------------: | :-----------------: | :---------------------------------------------------: |
+  |      `app`       |      `string`       |                  Stream application name               |
+  |      `id`        |      `string`       |              Unique TCP connection ID                  |
+  |      `ip`        |      `string`       |                  Player IP address                     |
+  |    `params`      |      `string`       |                Playback URL parameters                 |
+  |     `port`       | `unsigned short`    |                Player port number                      |
+  |    `schema`      |      `string`       | Playback protocol, which can be rtsp, rtmp, or http    |
+  |    `stream`      |      `string`       |                      Stream ID                         |
+  |    `vhost`       |      `string`       |                   Stream virtual host                  |
+  | `mediaServerId`  |      `string`       |    Server ID set through configuration file |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -275,22 +273,22 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-     | 参数名 | 参数类型 |        参数解释         |
-  | :----: | :------: | :---------------------: |
-  | `code` |  `int`   | 错误代码，0代表允许播放 |
-  | `msg`  | `string` | 不允许播放时的错误提示  |
+  |  Parameter Name  |   Parameter Type    |                Parameter Description                |
+  | :--------------: | :-----------------: | :-------------------------------------------------: |
+  |     `code`       |      `int`          |          Error code, 0 means playback allowed         |
+  |      `msg`       |      `string`       |            Error message when playback is not allowed            |
   
 
 
 
-### 7、on_publish：
+### 7. on_publish：
 
-- 解释:
+- Explanation:
 
-   rtsp/rtmp/rtp推流鉴权事件。
-- 触发请求：
+   RTSP/RTMP/RTP streaming authentication event.
+- Trigger request:
 
   ```http
   POST /index/hook/on_publish HTTP/1.1
@@ -317,21 +315,21 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  |     参数类型     |           参数解释           |
-  | :------: | :--------------: | :--------------------------: |
-  |  `app`   |     `string`     |           流应用名           |
-  |   `id`   |     `string`     |        TCP链接唯一ID         |
-  |   `ip`   |     `string`     |           推流器ip           |
-  | `params` |     `string`     |         推流url参数          |
-  |  `port`  | `unsigned short` |         推流器端口号         |
-  | `schema` |     `string`     | 推流的协议，可能是rtsp、rtmp |
-  | `stream` |     `string`     |             流ID             |
-  | `vhost`  |     `string`     |          流虚拟主机          |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name |   Parameter Type   |               Parameter Description                |
+  | :------------: | :----------------: | :-----------------------------------------------: |
+  |     `app`      |      `string`      |              Name of the streaming app              |
+  |      `id`      |      `string`      |               Unique ID for TCP connection               |
+  |      `ip`      |      `string`      |               IP address of the streaming device               |
+  |    `params`    |      `string`      |             Parameters for the streaming URL             |
+  |     `port`     | `unsigned short` |             Port number of the streaming device             |
+  |    `schema`    |      `string`      |      Protocol for streaming, possibly RTSP or RTMP      |
+  |    `stream`    |      `string`      |                       Stream ID                       |
+  |    `vhost`     |      `string`      |                    Stream virtual host                    |
+  | `mediaServerId` |      `string`      | Server ID set through configuration file |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -365,42 +363,41 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-    |       参数名       | 参数类型 |                           参数解释                           | 必须参数 |
-    | :----------------: | :------: | :----------------------------------------------------------: | :------: |
-    |       `code`       |  `int`   |                   错误代码，0代表允许推流                    |    Y     |
-    |       `msg`        | `string` |                    不允许推流时的错误提示                    |    Y     |
-    |    `enable_hls`    |  `bool`  |                   是否转换成hls-mpegts协议                   |    N     |
-    | `enable_hls_fmp4`  |  `bool`  |                    是否转换成hls-fmp4协议                    |    N     |
-    |    `enable_mp4`    |  `bool`  |                       是否允许mp4录制                        |    N     |
-    |   `enable_rtsp`    |  `bool`  |                        是否转rtsp协议                        |    N     |
-    |   `enable_rtmp`    |  `bool`  |                      是否转rtmp/flv协议                      |    N     |
-    |    `enable_ts`     |  `bool`  |                   是否转http-ts/ws-ts协议                    |    N     |
-    |   `enable_fmp4`    |  `bool`  |                 是否转http-fmp4/ws-fmp4协议                  |    N     |
-    |    `hls_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `rtsp_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `rtmp_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |    `ts_demand`     |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `fmp4_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `enable_audio`   |  `bool`  |                     转协议时是否开启音频                     |    N     |
-    |  `add_mute_audio`  |  `bool`  |             转协议时，无音频是否添加静音aac音频              |    N     |
-    |  `mp4_save_path`   | `string` |             mp4录制文件保存根目录，置空使用默认              |    N     |
-    |  `mp4_max_second`  |  `int`   |                   mp4录制切片大小，单位秒                    |    N     |
-    |  `mp4_as_player`   |  `bool`  |            MP4录制是否当作观看者参与播放人数计数             |    N     |
-    |  `hls_save_path`   | `string` |             hls文件保存保存根目录，置空使用默认              |    N     |
-    |   `modify_stamp`   |  `int`   | 该流是否开启时间戳覆盖(0:绝对时间戳/1:系统时间戳/2:相对时间戳) |    N     |
-    | `continue_push_ms` | `uint32` |        断连续推延时，单位毫秒，置空使用配置文件默认值        |    N     |
-    |    `auto_close`    |  `bool`  |          无人观看是否自动关闭流(不触发无人观看hook)          |    N     |
-    |  `stream_replace`  | `string` |     是否修改流id, 通过此参数可以自定义流id(譬如替换ssrc)     |    N     |
-
+   |  Parameter Name   | Parameter Type |                     Parameter Description                      | Required |
+  | :---------------: | :------------: | :----------------------------------------------------------: | :------: |
+  |     `code`        |    `int`     |                  Error code, 0 means allowed to stream                  |    Y     |
+  |     `msg`         |   `string`   |               Error message when streaming is not allowed               |    Y     |
+  |  `enable_hls`     |    `bool`    |              Whether to convert to HLS-MPEGTS protocol              |    N     |
+  | `enable_hls_fmp4` |    `bool`    |               Whether to convert to HLS-FMP4 protocol               |    N     |
+  |   `enable_mp4`    |    `bool`    |                       Whether to allow MP4 recording                        |    N     |
+  |   `enable_rtsp`   |    `bool`    |                        Whether to convert to RTSP protocol                        |    N     |
+  |   `enable_rtmp`   |    `bool`    |                      Whether to convert to RTMP/FLV protocol                      |    N     |
+  |    `enable_ts`    |    `bool`    |                   Whether to convert to HTTP-TS/WS-TS protocol                   |    N     |
+  |   `enable_fmp4`   |    `bool`    |                 Whether to convert to HTTP-FMP4/WS-FMP4 protocol                  |    N     |
+  |   `hls_demand`    |    `bool`    |                Whether the protocol generates only when someone is watching                |    N     |
+  |   `rtsp_demand`   |    `bool`    |                Whether the protocol generates only when someone is watching                |    N     |
+  |   `rtmp_demand`   |    `bool`    |                Whether the protocol generates only when someone is watching                |    N     |
+  |    `ts_demand`    |    `bool`    |                Whether the protocol generates only when someone is watching                |    N     |
+  |   `fmp4_demand`   |    `bool`    |                Whether the protocol generates only when someone is watching                |    N     |
+  |  `enable_audio`   |    `bool`    |                 Whether to enable audio when converting protocols                 |    N     |
+  | `add_mute_audio`  |    `bool`    |            Whether to add silent AAC audio when converting protocols             |    N     |
+  |  `mp4_save_path`  |   `string`   |            Root directory for saving MP4 recording files, use default if empty             |    N     |
+  | `mp4_max_second`  |    `int`     |                 MP4 recording segment size in seconds                  |    N     |
+  |  `mp4_as_player`  |    `bool`    |            Whether to count MP4 recording as viewers in playback count             |    N     |
+  |  `hls_save_path`  |   `string`   |            Root directory for saving HLS files, use default if empty             |    N     |
+  |  `modify_stamp`   |    `int`     |    Whether the stream enables timestamp overlay (0: absolute timestamp / 1: system timestamp / 2: relative timestamp)     |    N     |
+  | `continue_push_ms` |   `uint32`   |   Delay in milliseconds for continuous reconnection, use default value from configuration file if empty   |    N     |
+  |   `auto_close`    |    `bool`    |        Whether to automatically close the stream when no one is watching (without triggering the no-viewer hook)         |    N     |
+  | `stream_replace`  |   `string`   |    Whether to modify the stream ID, customizing thestream ID through this parameter (e.g., replacing SSRC)    |    N     |
 ### 8、on_record_mp4:
 
-- 解释:
+- Explanation:
 
-  录制mp4完成后通知事件；此事件对回复不敏感。
+  Notify event after completing the recording of the mp4 file; this event is not sensitive to replies.
 
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_record_mp4 HTTP/1.1
@@ -428,23 +425,23 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |    参数名    | 参数类型 |           参数解释            |
-  | :----------: | :------: | :---------------------------: |
-  |    `app`     | `string` |        录制的流应用名         |
-  | `file_name`  | `string` |            文件名             |
-  | `file_path`  | `string` |         文件绝对路径          |
-  | `file_size`  |  `int`   |      文件大小，单位字节       |
-  |   `folder`   | `string` |       文件所在目录路径        |
-  | `start_time` | `int` |        开始录制时间戳         |
-  |   `stream`   | `string` |          录制的流ID           |
-  |  `time_len`  |  `float`   |       录制时长，单位秒        |
-  |    `url`     | `string` | http/rtsp/rtmp点播相对url路径 |
-  |   `vhost`    | `string` |          流虚拟主机           |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name | Parameter Type |      Parameter Description      |
+  | :------------: | :------------: | :----------------------------: |
+  |     `app`      |    `string`    |        Name of the recorded stream application        |
+  |  `file_name`   |    `string`    |               File name               |
+  |  `file_path`   |    `string`    |           Absolute file path           |
+  |  `file_size`   |     `int`      |         File size in bytes          |
+  |    `folder`    |    `string`    |        Directory path of the file         |
+  | `start_time`   |     `int`      |         Start time of the recording (timestamp)         |
+  |    `stream`    |    `string`    |             Recorded stream ID              |
+  |  `time_len`    |    `float`     |        Recording duration in seconds         |
+  |     `url`      |    `string`    |   Relative URL path for http/rtsp/rtmp playback    |
+  |    `vhost`     |    `string`    |             Stream virtual host              |
+  | `mediaServerId`|    `string`    |   Server ID set through the configuration file   |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -466,13 +463,11 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 
 ### 9、on_rtsp_realm：
 
-- 解释:
+- Explanation:
 
-  该rtsp流是否开启rtsp专用方式的鉴权事件，开启后才会触发on_rtsp_auth事件。
+  Whether the RTSP stream enables authentication using the RTSP-specific method, and only triggers the `on_rtsp_auth` event when enabled. It should be noted that RTSP also supports URL parameter authentication, which supports two authentication methods.
 
-  需要指出的是rtsp也支持url参数鉴权，它支持两种方式鉴权。
-
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_rtsp_realm HTTP/1.1
@@ -498,21 +493,21 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  |     参数类型     |     参数解释     |
-  | :------: | :--------------: | :--------------: |
-  |  `app`   |     `string`     |     流应用名     |
-  |   `id`   |     `string`     |  TCP链接唯一ID   |
-  |   `ip`   |     `string`     |   rtsp播放器ip   |
-  | `params` |     `string`     | 播放rtsp url参数 |
-  |  `port`  | `unsigned short` | rtsp播放器端口号 |
-  | `schema` |     `string`     |   rtsp或rtsps    |
-  | `stream` |     `string`     |       流ID       |
-  | `vhost`  |     `string`     |    流虚拟主机    |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name |  Parameter Type  |     Parameter Description     |
+  | :------------: | :--------------: | :---------------------------: |
+  |     `app`      |    `string`      |         Stream application name         |
+  |      `id`      |    `string`      |        Unique ID of the TCP connection       |
+  |      `ip`      |    `string`      |        RTSP player IP address        |
+  |    `params`    |    `string`      |         Parameters of the RTSP URL          |
+  |     `port`     | `unsigned short` |       RTSP player port number       |
+  |    `schema`    |    `string`      |          RTSP or RTSPS          |
+  |    `stream`    |    `string`      |              Stream ID               |
+  |    `vhost`     |    `string`      |           Stream virtual host            |
+  | `mediaServerId`|    `string`      |   Server ID set through the configuration file   |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -530,23 +525,23 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-     | 参数名  | 参数类型 |                       参数解释                       |
-  | :-----: | :------: | :--------------------------------------------------: |
-  | `code`  |  `int`   |                     请固定返回0                      |
-  | `realm` | `string` | 该rtsp流是否需要rtsp专有鉴权，空字符串代码不需要鉴权 |
+  | Parameter Name | Parameter Type |                  Parameter Description                  |
+  | :------------: | :------------: | :----------------------------------------------------: |
+  |    `code`      |     `int`      |                   Please return 0                   |
+  |    `realm`     |    `string`    | Whether the RTSP stream requires RTSP-specific authentication, an empty string means no authentication is needed |
   
 
 
 
 ### 10、on_rtsp_auth：
 
-- 解释:
+- Explanation:
 
-  rtsp专用的鉴权事件，先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件。
+  The authentication events specific to RTSP are triggered in the following sequence: first, the `on_rtsp_realm` event is triggered, followed by the `on_rtsp_auth` event.
 
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_rtsp_auth HTTP/1.1
@@ -576,24 +571,24 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |      参数名       |     参数类型     |                     参数解释                     |
-  | :---------------: | :--------------: | :----------------------------------------------: |
-  |       `app`       |     `string`     |                     流应用名                     |
-  |       `id`        |     `string`     |                  TCP链接唯一ID                   |
-  |       `ip`        |     `string`     |                   rtsp播放器ip                   |
-  | `must_no_encrypt` |      `bool`      | 请求的密码是否必须为明文(base64鉴权需要明文密码) |
-  |     `params`      |     `string`     |                   rtsp url参数                   |
-  |      `port`       | `unsigned short` |                 rtsp播放器端口号                 |
-  |      `realm`      |     `string`     |              rtsp播放鉴权加密realm               |
-  |     `schema`      |     `string`     |                   rtsp或rtsps                    |
-  |     `stream`      |     `string`     |                       流ID                       |
-  |    `user_name`    |     `string`     |                    播放用户名                    |
-  |      `vhost`      |     `string`     |                    流虚拟主机                    |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  |   Parameter Name   |  Parameter Type  |                  Parameter Explanation                  |
+  | :----------------: | :--------------: | :-----------------------------------------------------: |
+  |       `app`        |     `string`     |                    Application name                     |
+  |        `id`        |     `string`     |                  Unique ID for TCP connection           |
+  |        `ip`        |     `string`     |                IP address of the RTSP player             |
+  | `must_no_encrypt`  |      `bool`      |     Indicates whether the requested password must be plaintext (Base64 authentication requires plaintext password) |
+  |      `params`      |     `string`     |                  RTSP URL parameters                     |
+  |       `port`       | `unsigned short` |               Port number of the RTSP player             |
+  |      `realm`       |     `string`     |              RTSP authentication encryption realm        |
+  |      `schema`      |     `string`     |                   RTSP or RTSPS                          |
+  |      `stream`      |     `string`     |                       Stream ID                          |
+  |    `user_name`     |     `string`     |                   Playback username                      |
+  |      `vhost`       |     `string`     |                   Stream virtual host                    |
+  |  `mediaServerId`   |     `string`     |        Server ID, set through the configuration file      |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -612,26 +607,24 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-     |   参数名    | 参数类型 |         参数解释         |
-  | :---------: | :------: | :----------------------: |
-  |   `code`    |  `int`   | 错误代码，0代表允许播放  |
-  |    `msg`    | `string` | 播放鉴权失败时的错误提示 |
-  | `encrypted` |  `bool`  |    用户密码是明文还是摘要    |
-  |  `passwd`   | `string` | 用户密码明文或摘要(md5(username:realm:password)) |
+  |  Parameter Name  | Parameter Type |             Parameter Explanation             |
+  | :-------------: | :------------: | :------------------------------------------: |
+  |     `code`      |     `int`      |       Error code, 0 means allowed to play      |
+  |     `msg`       |    `string`    |    Error message when playback authentication fails   |
+  |   `encrypted`   |     `bool`     |         Indicates whether the user password is plaintext or digest     |
+  |    `passwd`     |    `string`    | User password plaintext or digest (md5(username:realm:password)) |
   
   
 
 ### 11、on_shell_login：
 
-- 解释:
+- Explanation:
 
-    shell登录鉴权，ZLMediaKit提供简单的telnet调试方式
-    
-    使用`telnet 127.0.0.1 9000`能进入MediaServer进程的shell界面。
+    Shell login authentication, ZLMediaKit provides a simple telnet debugging method. Use `telnet 127.0.0.1 9000` to access the shell interface of the MediaServer process.
 
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_shell_login HTTP/1.1
@@ -654,18 +647,18 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |   参数名    |     参数类型     |        参数解释         |
-  | :---------: | :--------------: | :---------------------: |
-  |    `id`     |     `string`     |      TCP链接唯一ID      |
-  |    `ip`     |     `string`     |      telnet 终端ip      |
-  |  `passwd`   |      `bool`      | telnet 终端登录用户密码 |
-  |   `port`    | `unsigned short` |    telnet 终端端口号    |
-  | `user_name` |     `string`     |  telnet 终端登录用户名  |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  |  Parameter Name  |  Parameter Type  |     Parameter Explanation      |
+  | :-------------: | :--------------: | :----------------------------: |
+  |      `id`       |     `string`     |       Unique ID for TCP connection        |
+  |      `ip`       |     `string`     |         Telnet terminal IP          |
+  |    `passwd`     |      `bool`      |    Telnet terminal login password   |
+  |     `port`      | `unsigned short` |      Telnet terminal port number        |
+  |  `user_name`    |     `string`     |    Telnet terminal login username  |
+  |  `mediaServerId` |     `string` |  Server ID, set through the configuration file  |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -682,24 +675,24 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-     | 参数名 | 参数类型 |           参数解释            |
-  | :----: | :------: | :---------------------------: |
-  | `code` |  `int`   | 错误代码，0代表允许登录telnet |
-  | `msg`  | `string` | 不允许登录telnet时的错误提示  |
+  | Parameter Name | Parameter Type |           Parameter Explanation           |
+  | :-----------: | :------------: | :---------------------------------------: |
+  |    `code`     |     `int`      |      Error code, 0 means allowed to login telnet      |
+  |    `msg`      |    `string`    | Error message when login telnet is not allowed |
   
 
 
 
 ### 12、on_stream_changed:
 
-- 解释:
+- Explanation:
 
-   rtsp/rtmp流注册或注销时触发此事件；此事件对回复不敏感。
+   This event is triggered when an RTSP/RTMP stream is registered or unregistered. This event does not require a response.
 
-- 触发请求：
-  - 注销时:
+- Trigger request:
+  - When unregistering:
   ```http
   POST /index/hook/on_stream_changed HTTP/1.1
   Accept: */*
@@ -720,7 +713,7 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
      "vhost" : "__defaultVhost__"
   }
   ```
-  - 注册时：
+  - When registering：
     ```http
     POST /index/hook/on_stream_changed HTTP/1.1
     Accept: */*
@@ -775,18 +768,18 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
     }
     ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  | 参数类型 |   参数解释   |
-  | :------: | :------: | :----------: |
-  |  `app`   | `string` |   流应用名   |
-  | `regist` |  `bool`  | 流注册或注销 |
-  | `schema` | `string` |  rtsp或rtmp  |
-  | `stream` | `string` |     流ID     |
-  | `vhost`  | `string` |  流虚拟主机  |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  |  Parameter Name  | Parameter Type |     Parameter Explanation      |
+  | :-------------: | :------------: | :----------------------------: |
+  |     `app`      |    `string`    |        Application name         |
+  |   `regist`     |     `bool`     |      Stream registration or unregistration    |
+  |   `schema`     |    `string`    |          RTSP or RTMP           |
+  |   `stream`     |    `string`    |            Stream ID            |
+  |    `vhost`     |    `string`    |         Stream virtual host      |
+  |  `mediaServerId` |     `string` |  Server ID, set through the configuration file  |
   
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -808,14 +801,18 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 
 ### 13、on_stream_none_reader：
 
-- 解释:
+- Explanation:
 
-   流无人观看时事件，用户可以通过此事件选择是否关闭无人看的流。
-   一个直播流注册上线了，如果一直没人观看也会触发一次无人观看事件，触发时的协议schema是随机的，看哪种协议最晚注册(一般为hls)。
-   后续从有人观看转为无人观看，触发协议schema为最后一名观看者使用何种协议。
-   目前mp4/hls录制不当做观看人数(mp4录制可以通过配置文件mp4_as_player控制，但是rtsp/rtmp/rtp转推算观看人数，也会触发该事件。
+  When there is no audience watching the stream, users can choose to close the stream without viewership through this event. 
 
-- 触发请求：
+  If a live stream comes online and no one watches it, it will trigger an event of no viewership. The protocol schema triggered during this event is random and based on the latest registered protocol (usually HLS). 
+
+  When transitioning from viewership to no viewership, the protocol schema triggered will be the one used by the last viewer.
+
+  Currently, MP4/HLS recordings are not considered as viewership. The MP4 recording can be controlled through the 
+ configuration file parameter "mp4_as_player," but RTSP/RTMP/RTP forwarding is counted as viewership and will also trigger this event.
+
+- Trigger request:
 
   ```http
   POST /index/hook/on_stream_none_reader HTTP/1.1
@@ -837,17 +834,17 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-|  参数名  | 参数类型 |  参数解释  |
-| :------: | :------: | :--------: |
-|  `app`   | `string` |  流应用名  |
-| `schema` | `string` | rtsp或rtmp |
-| `stream` | `string` |    流ID    |
-| `vhost`  | `string` | 流虚拟主机 |
-| `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name | Parameter Type | Parameter Explanation |
+  | :------------: | :------------: | :-------------------: |
+  |     `app`      |    `string`    |     Stream App Name   |
+  |   `schema`     |    `string`    |   RTSP or RTMP        |
+  |   `stream`     |    `string`    |        Stream ID      |
+  |    `vhost`     |    `string`    |     Stream Virtual Host  |
+  | `mediaServerId` |    `string`    |  Server ID, set through the configuration file |
 
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -864,23 +861,23 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 回复参数详解：
+- Response parameter details:
 
-     | 参数名  | 参数类型 |      参数解释      |
-  | :-----: | :------: | :----------------: |
-  | `code`  |  `int`   |    请固定返回0     |
-  | `close` |  `bool`  | 是否关闭推流或拉流 |
+  | Parameter Name | Parameter Type | Parameter Explanation |
+  | :------------: | :------------: | :-------------------: |
+  |    `code`      |     `int`      |     Please return 0   |
+  |   `close`      |    `bool`      |  Whether to close the stream or not  |
   
 
 
 
 ### 14、on_stream_not_found：
 
-- 解释:
+- Explanation:
 
-    流未找到事件，用户可以在此事件触发时，立即去拉流，这样可以实现按需拉流；此事件对回复不敏感。
+    When a stream is not found, users can immediately pull the stream when this event is triggered, allowing Pulling Streams on Demand. This event is not sensitive to replies.
 
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_stream_not_found HTTP/1.1
@@ -906,21 +903,21 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  |     参数类型     |           参数解释           |
-  | :------: | :--------------: | :--------------------------: |
-  |  `app`   |     `string`     |           流应用名           |
-  |   `id`   |     `string`     |        TCP链接唯一ID         |
-  |   `ip`   |     `string`     |           播放器ip           |
-  | `params` |     `string`     |         播放url参数          |
-  |  `port`  | `unsigned short` |         播放器端口号         |
-  | `schema` |     `string`     | 播放的协议，可能是rtsp、rtmp |
-  | `stream` |     `string`     |             流ID             |
-  | `vhost`  |     `string`     |          流虚拟主机          |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name | Parameter Type |      Parameter Explanation      |
+  | :------------: | :------------: | :-----------------------------: |
+  |     `app`      |    `string`    |          Stream App Name         |
+  |      `id`      |    `string`    |       Unique TCP Connection ID   |
+  |      `ip`      |    `string`    |          Player IP Address       |
+  |    `params`    |    `string`    |       Player URL Parameters      |
+  |     `port`     | `unsigned short` |         Player Port Number       |
+  |    `schema`    |    `string`    |   Protocol for playback, possibly RTSP or RTMP  |
+  |    `stream`    |    `string`    |             Stream ID            |
+  |    `vhost`     |    `string`    |          Stream Virtual Host     |
+  | `mediaServerId`|    `string`    |  Server ID, set through the configuration file |
 
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -941,11 +938,11 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 
 
 ### 15、on_server_started
-- 解释:
+- Explanation:
 
-    服务器启动事件，可以用于监听服务器崩溃重启；此事件对回复不敏感。
+    Server startup event, can be used to monitor server crashes and restarts. This event is not sensitive to replies.
 
-- 触发请求：
+- Trigger request:
 
   ```http
   POST /index/hook/on_server_started HTTP/1.1
@@ -1035,10 +1032,10 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
   }
   ```
   
-- 请求参数详解：
-  配置文件json对象
+- Request parameters:
+  json object of configuration file
 
-- 默认回复:
+- Default response:
 
   ```http
   HTTP/1.1 200 OK
@@ -1057,11 +1054,11 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
 
 ### 16、on_server_keepalive
 
-- 解释:
+- Explanation:
 
-    服务器定时上报时间，上报间隔可配置，默认10s上报一次
+    The server periodically reports time, which can be configured. The default interval is 10 seconds.
 
-- 触发请求
+- Trigger request:
 
     ```http
     POST /index/hook/on_server_keepalive HTTP/1.1
@@ -1098,9 +1095,9 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
     ```
 ### 17、on_rtp_server_timeout
 
-- 解释:
+- Explanation:
 
-    调用openRtpServer 接口，rtp server 长时间未收到数据,执行此web hook,对回复不敏感
+    When calling the `openRtpServer` interface, if the RTP server does not receive data for a long time, this webhook will be executed. It is not sensitive to replies.
 
 - 触发请求
 
@@ -1123,13 +1120,13 @@ on_rtp_server_timeout=https://127.0.0.1/index/hook/on_rtp_server_timeout
        "tcp_mode" : 0,
        "mediaServerId" : "192.168.255.10"
     }
-- 请求参数详解：
+- Request parameters:
 
-  |  参数名  |     参数类型     |           参数解释           |
-  | :------: | :--------------: | :--------------------------: |
-  |  `local_port`   |     `int`     |           openRtpServer 输入的参数         |
-  |   `re_use_port`   |     `bool`     |        openRtpServer 输入的参数         |
-  |   `ssrc`   |     `uint32`     |           openRtpServer 输入的参数           |
-  | `stream_id` |     `string`     |         openRtpServer 输入的参数          |
-  | `tcp_mode` |     `int`     |          openRtpServer 输入的参数        |
-  | `mediaServerId` | `string` |  服务器id,通过配置文件设置   |
+  | Parameter Name | Parameter Type |      Parameter Explanation      |
+  | :------------: | :------------: | :-----------------------------: |
+  | `local_port`   |      `int`     |   Parameter input for `openRtpServer` |
+  | `re_use_port`  |     `bool`     |   Parameter input for `openRtpServer` |
+  |     `ssrc`     |    `uint32`    |   Parameter input for `openRtpServer` |
+  |  `stream_id`   |    `string`    |   Parameter input for `openRtpServer` |
+  |   `tcp_mode`   |      `int`     |   Parameter input for `openRtpServer` |
+  | `mediaServerId`|    `string`    |  Server ID, set through the configuration file |

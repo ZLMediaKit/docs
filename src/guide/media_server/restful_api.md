@@ -97,15 +97,15 @@ typedef enum {
 
 ## API Details
 
-### 0、`/index/api/getApiList`
+### 0. `/index/api/getApiList`
 
 - Function: Get the list of APIs.
 
-- Example：[http://127.0.0.1/index/api/getApiList](http://127.0.0.1/index/api/getApiList)
+- Example:[http://127.0.0.1/index/api/getApiList](http://127.0.0.1/index/api/getApiList)
 
-- Parameters：None
+- Parameters:None
 
-- Response：
+- Response:
 
     ```json
     {
@@ -168,11 +168,11 @@ typedef enum {
 
     
 
-### 1、`/index/api/getThreadsLoad`
+### 1. `/index/api/getThreadsLoad`
 
   - Function: Get the load and delay of each epoll (or select) thread.
 
-  - Example：[http://127.0.0.1/index/api/getThreadsLoad](http://127.0.0.1/index/api/getThreadsLoad)
+  - Example:[http://127.0.0.1/index/api/getThreadsLoad](http://127.0.0.1/index/api/getThreadsLoad)
 
   - Parameters: None
 
@@ -196,11 +196,11 @@ typedef enum {
 
     
 
-### 2、`/index/api/getWorkThreadsLoad`
+### 2. `/index/api/getWorkThreadsLoad`
 
   - Function: Get the load and delay of each background epoll (or select) thread.
 
-  - Example：[http://127.0.0.1/index/api/getWorkThreadsLoad](http://127.0.0.1/index/api/getWorkThreadsLoad)
+  - Example:[http://127.0.0.1/index/api/getWorkThreadsLoad](http://127.0.0.1/index/api/getWorkThreadsLoad)
 
   - Parameters: None
 
@@ -224,19 +224,19 @@ typedef enum {
 
     
 
-### 3、`/index/api/getServerConfig`
+### 3. `/index/api/getServerConfig`
 
   - Function: Get server configuration.
 
-  - Example：[http://127.0.0.1/index/api/getServerConfig](http://127.0.0.1/index/api/getServerConfig)
+  - Example:[http://127.0.0.1/index/api/getServerConfig](http://127.0.0.1/index/api/getServerConfig)
 
-  - Parameters：
+  - Parameters:
 
     | Parameter | Required |                 Description                  |
     | :-------: | :------: | :-----------------------------------------: |
     |  secret   |    Y     | API operation key (configured in the file) |
 
-  - Response：
+  - Response:
 
     ```json
     {
@@ -310,19 +310,19 @@ typedef enum {
 
     
 
-### 4、`/index/api/setServerConfig`
+### 4. `/index/api/setServerConfig`
 
   - Function: Set server configuration.
 
-  - Example：[http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0(例如关闭http api调试)](http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0)
+  - Example:[http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0(例如关闭http api调试)](http://127.0.0.1/index/api/setServerConfig?api.apiDebug=0)
 
-  - Parameters：
+  - Parameters:
 
      | Parameter | Required |                 Description                  |
     | :-------: | :------: | :-----------------------------------------: |
     |  secret   |    Y     | API operation key (configured in the file) |
 
-  - Response：
+  - Response:
 
     ```json
     {
@@ -333,19 +333,19 @@ typedef enum {
 
 
 
-### 5、`/index/api/restartServer`
+### 5. `/index/api/restartServer`
 
-  - Function：Restart the server. Only possible in Daemon mode, otherwise it will be shut down directly!
+  - Function:Restart the server. Only possible in Daemon mode, otherwise it will be shut down directly!
 
-  - Example：[http://127.0.0.1/index/api/restartServer](http://127.0.0.1/index/api/restartServer)
+  - Example:[http://127.0.0.1/index/api/restartServer](http://127.0.0.1/index/api/restartServer)
 
-  - Parameters：
+  - Parameters:
 
       | Parameter | Required |                     Description                      |
     | :-------: | :------: | :--------------------------------------------------: |
     |  secret   |    Y     |     API operation key (configured in the file)      |
 
-  - Response：
+  - Response:
 
     ```json
     {
@@ -357,15 +357,15 @@ typedef enum {
 
 
 
-### 6、`/index/api/getMediaList`
+### 6. `/index/api/getMediaList`
 
-  - Function：Get the list of streams, with optional filtering parameters.
+  - Function:Get the list of streams, with optional filtering parameters.
 
-  - Example：[http://127.0.0.1/index/api/getMediaList](http://127.0.0.1/index/api/getMediaList)
+  - Example:[http://127.0.0.1/index/api/getMediaList](http://127.0.0.1/index/api/getMediaList)
 
-  - Parameters：
+  - Parameters:
 
-   | Parameter | Required |                     Description                      |
+    | Parameter | Required |                     Description                      |
     | :-------: | :------: | :--------------------------------------------------: |
     |  secret   |    Y     |     API operation key (configured in the file)      |
     |  schema   |    N     |               Filter by protocol, e.g., rtsp or rtmp              |
@@ -373,7 +373,7 @@ typedef enum {
     |    app    |    N     |               Filter by application name, e.g., live                     |
     |  stream   |    N     |               Filter by stream ID, e.g., test                     |
 
-  - Response：
+  - Response:
 
     ```json
     {
@@ -431,11 +431,11 @@ typedef enum {
 
     
 
-### 7、`/index/api/close_stream`(Deprecated, please use the `close_streams` API instead)
+### 7. `/index/api/close_stream`(Deprecated, please use the `close_streams` API instead)
 
   - Function: Close a stream (supports closing streams of all types).
 
-  - Example：[http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
+  - Example:[http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_stream?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
 
   - Parameters:
 
@@ -458,13 +458,13 @@ typedef enum {
     }
     ```
 
-### 8、`/index/api/close_streams`
+### 8. `/index/api/close_streams`
 
   - Function: Close a stream (supports closing streams of all types).
 
-  - Example：[http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
+  - Example:[http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=`__defaultVhost__`&app=live&stream=0&force=1](http://127.0.0.1/index/api/close_streams?schema=rtmp&vhost=__defaultVhost__&app=live&stream=0&force=1)
 
-  - Parameters：
+  - Parameters:
 
     | Parameter | Required |                           Description                            |
     | :-------: | :------: | :-------------------------------------------------------------: |
@@ -485,13 +485,13 @@ typedef enum {
     }
     ```
 
-### 9、`/index/api/getAllSession`
+### 9. `/index/api/getAllSession`
 
   - Function: Get a list of all TcpSessions (retrieve information about all TCP clients).
 
-  - Example：[http://127.0.0.1/index/api/getAllSession](http://127.0.0.1/index/api/getAllSession)
+  - Example:[http://127.0.0.1/index/api/getAllSession](http://127.0.0.1/index/api/getAllSession)
 
-  - Parameters：
+  - Parameters:
 
     |   Parameter   | Required |                           Description                            |
     | :-----------: | :------: | :-------------------------------------------------------------: |
@@ -535,20 +535,21 @@ typedef enum {
 
     
 
-### 10、`/index/api/kick_session`
+### 10. `/index/api/kick_session`
 
-  - 功能：断开tcp连接，比如说可以断开rtsp、rtmp播放器等
+  - Function: Disconnects a TCP connection, such as an RTSP or RTMP player.
 
-  - 范例：[http://127.0.0.1/index/api/kick_session?id=140614440178720](http://127.0.0.1/index/api/kick_session?id=140614440178720)
+  - Example:[http://127.0.0.1/index/api/kick_session?id=140614440178720](http://127.0.0.1/index/api/kick_session?id=140614440178720)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |   Id   |    Y     |         客户端唯一id，可以通过getAllSession接口获取          |
+  | Parameter | Required |                        Description                        |
+  | :-------: | :------: | :-------------------------------------------------------: |
+  |  secret   |    Y     |     API operation key (configured in the configuration file)     |
+  |    Id     |    Y     |    Unique client ID, which can be obtained through the `getAllSession` interface    |
 
-  - 响应：
+
+  - Response:
 
     ```json
     {
@@ -559,104 +560,104 @@ typedef enum {
 
     
 
-### 11、`/index/api/kick_sessions`
+### 11. `/index/api/kick_sessions`
 
-  - 功能：断开tcp连接，比如说可以断开rtsp、rtmp播放器等
+  - Function: Disconnects TCP connections, such as RTSP or RTMP players.
 
-  - 范例：[http://127.0.0.1/index/api/kick_sessions?local_port=554](http://127.0.0.1/index/api/kick_sessions?local_port=554)
+  - Example:[http://127.0.0.1/index/api/kick_sessions?local_port=554](http://127.0.0.1/index/api/kick_sessions?local_port=554)
 
-  - 参数：
+  - Parameters:
 
-    |    参数    | 是否必选 |                             释意                             |
-    | :--------: | :------: | :----------------------------------------------------------: |
-    |   secret   |    Y     | api操作密钥(配置文件配置) |
-    | local_port |    N     |             筛选本机端口，例如筛选rtsp链接：554              |
-    |  peer_ip   |    N     |                         筛选客户端ip                         |
+ |   Parameter   | Required |                        Description                        |
+  | :-----------: | :------: | :-------------------------------------------------------: |
+  |    secret     |    Y     |     API operation key (configured in the configuration file)     |
+  |  local_port   |    N     |           Filters local ports, for example, filtering RTSP connections: 554          |
+  |   peer_ip     |    N     |                      Filters client IP                      |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "count_hit" : 1,# 筛选命中客户端个数
+       "count_hit" : 1,# Number of matched clients
        "msg" : "success"
     }
     ```
 
 
 
-### 12、`/index/api/addStreamProxy`
+### 12. `/index/api/addStreamProxy`
 
-  - 功能：动态添加rtsp/rtmp/hls/http-ts/http-flv拉流代理(只支持H264/H265/aac/G711/opus负载)
+  Function: Dynamically add RTSP/RTMP/HLS/HTTP-TS/HTTP-FLV pull streaming proxies (only supports H264/H265/AAC/G711/Opus payloads).
 
-  - 范例：[http://127.0.0.1/index/api/addStreamProxy?vhost=`__defaultVhost__`&app=proxy&stream=0&url=rtmp://live.hkstv.hk.lxdns.com/live/hks2](http://127.0.0.1/index/api/addStreamProxy?vhost=__defaultVhost__&app=proxy&stream=0&url=rtmp://live.hkstv.hk.lxdns.com/live/hks2)
+  - Example:[http://127.0.0.1/index/api/addStreamProxy?vhost=`__defaultVhost__`&app=proxy&stream=0&url=rtmp://live.hkstv.hk.lxdns.com/live/hks2](http://127.0.0.1/index/api/addStreamProxy?vhost=__defaultVhost__&app=proxy&stream=0&url=rtmp://live.hkstv.hk.lxdns.com/live/hks2)
 
-  - 参数：
+  - Parameters:
 
-    |       参数        | 参数类型  |                             释意                              | 是否必选  |
-    | :--------------: | :------: | :----------------------------------------------------------: | :------: |
-    |      secret      | `string` | api操作密钥(配置文件配置) |    Y     |
-    |      vhost       | `string` |          添加的流的虚拟主机，例如`__defaultVhost__`          |    Y     |
-    |       app        | `string` |                  添加的流的应用名，例如live                  |    Y     |
-    |      stream      | `string` |                   添加的流的id名，例如test                   |    Y     |
-    |       url        | `string` |    拉流地址，例如rtmp://live.hkstv.hk.lxdns.com/live/hks2    |    Y     |
-    |  retry_count     | `int`    |         拉流重试次数，默认为-1无限重试                        |    N     |
-    |     rtp_type     |  `int`   |        rtsp拉流时，拉流方式，0：tcp，1：udp，2：组播         |    N     |
-    |   timeout_sec    |  `int`   |               拉流超时时间，单位秒，float类型                |    N     |
-    |    `enable_hls`    |  `bool`  |                   是否转换成hls-mpegts协议                   |    N     |
-    | `enable_hls_fmp4`  |  `bool`  |                    是否转换成hls-fmp4协议                    |    N     |
-    |    `enable_mp4`    |  `bool`  |                       是否允许mp4录制                        |    N     |
-    |   `enable_rtsp`    |  `bool`  |                        是否转rtsp协议                        |    N     |
-    |   `enable_rtmp`    |  `bool`  |                      是否转rtmp/flv协议                      |    N     |
-    |    `enable_ts`     |  `bool`  |                   是否转http-ts/ws-ts协议                    |    N     |
-    |   `enable_fmp4`    |  `bool`  |                 是否转http-fmp4/ws-fmp4协议                  |    N     |
-    |    `hls_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `rtsp_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `rtmp_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |    `ts_demand`     |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `fmp4_demand`    |  `bool`  |                   该协议是否有人观看才生成                   |    N     |
-    |   `enable_audio`   |  `bool`  |                     转协议时是否开启音频                     |    N     |
-    |  `add_mute_audio`  |  `bool`  |             转协议时，无音频是否添加静音aac音频              |    N     |
-    |  `mp4_save_path`   | `string` |             mp4录制文件保存根目录，置空使用默认              |    N     |
-    |  `mp4_max_second`  |  `int`   |                   mp4录制切片大小，单位秒                    |    N     |
-    |  `mp4_as_player`   |  `bool`  |            MP4录制是否当作观看者参与播放人数计数             |    N     |
-    |  `hls_save_path`   | `string` |             hls文件保存保存根目录，置空使用默认              |    N     |
-    |   `modify_stamp`   |  `int`   | 该流是否开启时间戳覆盖(0:绝对时间戳/1:系统时间戳/2:相对时间戳) |    N     |
-    |    `auto_close`    |  `bool`  |          无人观看是否自动关闭流(不触发无人观看hook)          |    N     |
+    |       Parameter        | Type  |                             Description                              | Required  |
+    | :---------------: | :------: | :----------------------------------------------------------: | :------: |
+    |      secret       | `string` |                 API operation key (configured)                |    Y     |
+    |       vhost       | `string` |          Virtual host of the added stream (e.g., `__defaultVhost__`)          |    Y     |
+    |        app        | `string` |              Application name of the added stream (e.g., live)              |    Y     |
+    |      stream       | `string` |                 ID of the added stream (e.g., test)                 |    Y     |
+    |        url        | `string` |     Stream URL for pulling (e.g., rtmp://live.hkstv.hk.lxdns.com/live/hks2)     |    Y     |
+    |   retry_count     |   `int`  |         Number of pull retry attempts, default is -1 for unlimited retries        |    N     |
+    |     rtp_type      |   `int`  |          RTP pulling type for RTSP streams: 0: TCP, 1: UDP, 2: Multicast         |    N     |
+    |   timeout_sec     |   `int`  |             Pulling timeout in seconds, float type             |    N     |
+    |    `enable_hls`    |  `bool`  |                  Whether to convert to HLS-MPEGTS protocol                  |    N     |
+    |  `enable_hls_fmp4` |  `bool`  |                   Whether to convert to HLS-FMP4 protocol                   |    N     |
+    |    `enable_mp4`    |  `bool`  |                      Whether to enable MP4 recording                      |    N     |
+    |   `enable_rtsp`   |  `bool`  |                        Whether to convert to RTSP protocol                        |    N     |
+    |   `enable_rtmp`   |  `bool`  |                    Whether to convert to RTMP/FLV protocol                    |    N     |
+    |    `enable_ts`    |  `bool`  |                  Whether to convert to HTTP-TS/WS-TS protocol                  |    N     |
+    |   `enable_fmp4`   |  `bool`  |                Whether to convert to HTTP-FMP4/WS-FMP4 protocol                |    N     |
+    |    `hls_demand`   |  `bool`  |                  Whether the protocol generates only if someone is watching                  |    N     |
+    |   `rtsp_demand`   |  `bool`  |                  Whether the protocol generates only if someone is watching                  |    N     |
+    |   `rtmp_demand`   |  `bool`  |                  Whether the protocol generates only if someone is watching                  |    N     |
+    |    `ts_demand`    |  `bool`  |                  Whether the protocol generates only if someone is watching                  |    N     |
+    |   `fmp4_demand`   |  `bool`  |                  Whether the protocol generates only if someone is watching                  |    N     |
+    |   `enable_audio`  |  `bool`  |                       Whether to enable audio when converting                       |    N     |
+    | `add_mute_audio`  |  `bool`  |             Whether to add silent AAC audio when there is no audio             |    N     |
+    |  `mp4_save_path`  | `string` |             Root directory for saving MP4 recording files, use default if empty             |    N     |
+    | `mp4_max_second`  |   `int`  |                Maximum duration of MP4 recording slices in seconds                |    N     |
+    |  `mp4_as_player`  |  `bool`  |     Whether MP4 recording counts as a viewer for counting the number of viewers      |    N     |
+    |  `hls_save_path`   | `string` |             The root directory where the hls file is saved, leave it blank and use the default              |    N     |
+    |   `modify_stamp`   |  `int`   | Whether this stream enables timestamp coverage (0: absolute timestamp/1: system timestamp/2: relative timestamp) |    N     |
+    |    `auto_close`    |  `bool`  |          Whether to automatically close the stream if no one is watching it (without triggering the unwatched hook)         |    N     |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "key" : "__defaultVhost__/proxy/0"  # 流的唯一标识
+          "key" : "__defaultVhost__/proxy/0"  # The unique identifier of the stream
        }
     }
     ```
 
 
 
-### 13、`/index/api/delStreamProxy(流注册成功后，也可以使用close_streams接口替代)`
+### 13. `/index/api/delStreamProxy (Can also be replaced with the close_streams interface after successful stream registration)`
 
-  - 功能：关闭拉流代理
+  - Function: Close pull streaming proxy.
 
-  - 范例：[http://127.0.0.1/index/api/delStreamProxy?key=`__defaultVhost__`/proxy/0](http://127.0.0.1/index/api/delStreamProxy?key=__defaultVhost__/proxy/0)
+  - Example:[http://127.0.0.1/index/api/delStreamProxy?key=`__defaultVhost__`/proxy/0](http://127.0.0.1/index/api/delStreamProxy?key=__defaultVhost__/proxy/0)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |  key   |    Y     |                 addStreamProxy接口返回的key                  |
+    | Parameter | Required |                         Description                          |
+    | :-------: | :------: | :----------------------------------------------------------: |
+    |  secret   |    Y     |                 API operation secret key (configured in the configuration file)                 |
+    |    key    |    Y     |                The key returned by the addStreamProxy interface                 |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "flag" : true # 成功与否
+          "flag" : true # Success or failure
        }
     }
     ```
@@ -664,191 +665,191 @@ typedef enum {
 
 
 
-### 14、`/index/api/addFFmpegSource`
+### 14. `/index/api/addFFmpegSource`
 
-  - 功能：通过fork FFmpeg进程的方式拉流代理，支持任意协议
+  - Function: Pull stream proxy by forking FFmpeg process, supports any protocol.
 
-  - 范例：[http://127.0.0.1/index/api/addFFmpegSource?src_url=http://live.hkstv.hk.lxdns.com/live/hks2/playlist.m3u8&dst_url=rtmp://127.0.0.1/live/hks2&timeout_ms=10000&ffmpeg_cmd_key=ffmpeg.cmd](http://127.0.0.1/index/api/addFFmpegSource?src_url=http://live.hkstv.hk.lxdns.com/live/hks2/playlist.m3u8&dst_url=rtmp://127.0.0.1/live/hks2&timeout_ms=10000&ffmpeg_cmd_key=ffmpeg.cmd)
+  - Example:[http://127.0.0.1/index/api/addFFmpegSource?src_url=http://live.hkstv.hk.lxdns.com/live/hks2/playlist.m3u8&dst_url=rtmp://127.0.0.1/live/hks2&timeout_ms=10000&ffmpeg_cmd_key=ffmpeg.cmd](http://127.0.0.1/index/api/addFFmpegSource?src_url=http://live.hkstv.hk.lxdns.com/live/hks2/playlist.m3u8&dst_url=rtmp://127.0.0.1/live/hks2&timeout_ms=10000&ffmpeg_cmd_key=ffmpeg.cmd)
 
-  - 参数：
+  - Parameters:
 
-    |    参数    | 是否必选 |                             释意                             |
-    | :--------: | :------: | :----------------------------------------------------------: |
-    |   secret   |    Y     | api操作密钥(配置文件配置) |
-    |  src_url   |    Y     |    FFmpeg拉流地址,支持任意协议或格式(只要FFmpeg支持即可)     |
-    |  dst_url   |    Y     | FFmpeg rtmp推流地址，一般都是推给自己，例如rtmp://127.0.0.1/live/stream_form_ffmpeg |
-    | timeout_ms |    Y     |                    FFmpeg推流成功超时时间                    |
-    | enable_hls |    Y     | 是否开启hls录制 |
-    | enable_mp4 |    Y     |                    是否开启mp4录制                   |
-    | ffmpeg_cmd_key |  N   |   配置文件中FFmpeg命令参数模板key(非内容)，置空则采用默认模板:`ffmpeg.cmd`                  |
+    |    Parameter    | Required |                         Description                          |
+    | :-------------: | :------: | :----------------------------------------------------------: |
+    |     secret      |    Y     |                 API operation secret key (configured in the configuration file)                 |
+    |    src_url      |    Y     | FFmpeg pulling stream address, supports any protocol or format (as long as FFmpeg supports it) |
+    |    dst_url      |    Y     | FFmpeg rtmp push stream address, usually push to oneself, for example, rtmp://127.0.0.1/live/stream_from_ffmpeg |
+    |  timeout_ms     |    Y     |              Timeout for successful FFmpeg stream pushing              |
+    |  enable_hls     |    Y     |               Whether to enable HLS recording               |
+    |  enable_mp4     |    Y     |               Whether to enable MP4 recording               |
+    | ffmpeg_cmd_key  |    N     |     Key for FFmpeg command parameter template in the configuration file (not content), if left empty, the default template `ffmpeg.cmd` will be used     |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "key" : "5f748d2ef9712e4b2f6f970c1d44d93a"  # 唯一key
+          "key" : "5f748d2ef9712e4b2f6f970c1d44d93a"  # Unique key
        }
     }
     ```
 
 
 
-### 15、`/index/api/delFFmpegSource(流注册成功后，也可以使用close_streams接口替代)`
+### 15. `/index/api/delFFmpegSource (Can also be replaced with the close_streams interface after successful stream registration)`
 
-  - 功能：关闭ffmpeg拉流代理
+  - Function: Close FFmpeg stream proxy.
 
-  - 范例：[http://127.0.0.1/index/api/delFFmpegSource?key=5f748d2ef9712e4b2f6f970c1d44d93a](http://127.0.0.1/index/api/delFFmpegSource?key=5f748d2ef9712e4b2f6f970c1d44d93a)
+  - Example: [http://127.0.0.1/index/api/delFFmpegSource?key=5f748d2ef9712e4b2f6f970c1d44d93a](http://127.0.0.1/index/api/delFFmpegSource?key=5f748d2ef9712e4b2f6f970c1d44d93a)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |  key   |    Y     |                 addFFmpegSource接口返回的key                 |
+    | Parameter | Required |                         Description                          |
+    | :-------: | :------: | :----------------------------------------------------------: |
+    |  secret   |    Y     |                 API operation secret key (configured in the configuration file)                 |
+    |    key    |    Y     |                The key returned by the addFFmpegSource interface                |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "flag" : true # 成功与否
+          "flag" : true # Success or failure
        }
     }
     ```
 
     
 
-### 16、`/index/api/isMediaOnline(已过期，请使用getMediaList接口替代)`
+### 16. `/index/api/isMediaOnline (Deprecated, please use getMediaList API instead)`
 
-  - 功能：判断直播流是否在线
+- Function: Check if the media stream is online.
 
-  - 范例：[http://127.0.0.1/index/api/isMediaOnline?schema=rtsp&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/isMediaOnline?schema=rtsp&vhost=__defaultVhost__&app=live&stream=obs)
+- Example:[http://127.0.0.1/index/api/isMediaOnline?schema=rtsp&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/isMediaOnline?schema=rtsp&vhost=__defaultVhost__&app=live&stream=obs)
 
-  - 参数：
+- Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    Y     |                    协议，例如 rtsp或rtmp                     |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                        流id，例如 obs                        |
+  | Parameter | Required |                    Description                     |
+  | :-------: | :------: | :------------------------------------------------: |
+  |  secret   |    Y     |        API operation secret key (configured)        |
+  |  schema   |    Y     |          Protocol, e.g., rtsp or rtmp              |
+  |   vhost   |    Y     |          Virtual host, e.g., __defaultVhost__       |
+  |    app    |    Y     |              Application name, e.g., live           |
+  |  stream   |    Y     |              Stream ID, e.g., obs                   |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "online" : true # 是否在线
+       "online" : true # Whether it's online
     }
     ```
 
     
 
-### 17、`/index/api/getMediaInfo(已过期，请使用getMediaList接口替代)`
+### 17. `/index/api/getMediaInfo (Deprecated, please use getMediaList API instead)`
 
-  - 功能：获取流相关信息
+- Function: Get information about the stream.
 
-  - 范例：[http://127.0.0.1/index/api/getMediaInfo?schema=rtsp&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/getMediaInfo?schema=rtsp&vhost=__defaultVhost__&app=live&stream=obs)
+- Example:[http://127.0.0.1/index/api/getMediaInfo?schema=rtsp&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/getMediaInfo?schema=rtsp&vhost=__defaultVhost__&app=live&stream=obs)
 
-  - 参数：
+- Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    Y     |                    协议，例如 rtsp或rtmp                     |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                        流id，例如 obs                        |
+  | Parameter | Required |                    Description                     |
+  | :-------: | :------: | :------------------------------------------------: |
+  |  secret   |    Y     |        API operation secret key (configured)        |
+  |  schema   |    Y     |          Protocol, e.g., rtsp or rtmp              |
+  |   vhost   |    Y     |          Virtual host, e.g., __defaultVhost__       |
+  |    app    |    Y     |              Application name, e.g., live           |
+  |  stream   |    Y     |              Stream ID, e.g., obs                   |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
       "code" : 0,
-      "online" : true, # 是否在线
-      "readerCount" : 0, # 本协议观看人数
-      "totalReaderCount" : 0, # 观看总人数，包括hls/rtsp/rtmp/http-flv/ws-flv
-      "tracks" : [ # 轨道列表
+      "online" : true, # Whether it's online
+      "readerCount" : 0, # Number of viewers for this protocol
+      "totalReaderCount" : 0, # Total number of viewers, including hls/rtsp/rtmp/http-flv/ws-flv
+      "tracks" : [ # Track list
             {
-               "channels" : 1, # 音频通道数
+               "channels" : 1, # Number of audio channels
                "codec_id" : 2, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-               "codec_id_name" : "CodecAAC", # 编码类型名称 
+               "codec_id_name" : "CodecAAC", # Codec type name 
                "codec_type" : 1, # Video = 0, Audio = 1
-               "ready" : true, # 轨道是否准备就绪
-               "sample_bit" : 16, # 音频采样位数
-               "sample_rate" : 8000 # 音频采样率
+               "ready" : true, # Whether the track is ready
+               "sample_bit" : 16, # Audio sample bit depth
+               "sample_rate" : 8000 # Audio sample rate
             },
             {
                "codec_id" : 0, # H264 = 0, H265 = 1, AAC = 2, G711A = 3, G711U = 4
-               "codec_id_name" : "CodecH264", # 编码类型名称  
+               "codec_id_name" : "CodecH264", #  Codec type name  
                "codec_type" : 0, # Video = 0, Audio = 1
-               "fps" : 59,  # 视频fps
-               "height" : 720, # 视频高
-               "ready" : true,  # 轨道是否准备就绪
-               "width" : 1280 # 视频宽
+               "fps" : 59,  # Video fps
+               "height" : 720, #  Video height
+               "ready" : true,  # Whether the track is ready
+               "width" : 1280 # Video width
             }
       ]
     }
     ```
 
-### 18、`/index/api/getRtpInfo`
+### 18. `/index/api/getRtpInfo`
 
-  - 功能：获取rtp代理时的某路ssrc rtp信息
+  - Function: Get the RTP information of a specific SSRC when proxying RTP.
 
-  - 范例：[http://127.0.0.1/index/api/getRtpInfo?stream_id=1A2B3C4D](http://127.0.0.1/index/api/getRtpInfo?ssrc=1A2B3C4D)
+  - Example:[http://127.0.0.1/index/api/getRtpInfo?stream_id=1A2B3C4D](http://127.0.0.1/index/api/getRtpInfo?ssrc=1A2B3C4D)
 
-  - 参数：
+  - Parameters:
 
-    |   参数    | 是否必选 |                             释意                             |
-    | :-------: | :------: | :----------------------------------------------------------: |
-    |  secret   |    Y     | api操作密钥(配置文件配置) |
-    | stream_id |    Y     |  RTP的ssrc，16进制字符串或者是流的id(openRtpServer接口指定)  |
+    | Parameter  | Required |                        Description                         |
+    | :--------: | :------: | :--------------------------------------------------------: |
+    |  secret   |    Y     |               API operation secret key (configured in the file)                |
+    | stream_id |    Y     |        The SSRC of RTP, in hexadecimal string or the ID of the stream (specified in the openRtpServer interface)        |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "exist" : true, # 是否存在
-       "peer_ip" : "192.168.0.23", # 推流客户端ip
-       "peer_port" : 54000 # 客户端端口号
-       "local_ip" : "0.0.0.0", #本地监听的网卡ip
+       "exist" : true, # Whether it exists
+       "peer_ip" : "192.168.0.23", #  Client IP address for streaming
+       "peer_port" : 54000 # Client port
+       "local_ip" : "0.0.0.0", # Local listening network card IP
        "local_port" : 10000
     }
     ```
 
     
 
-### 19、`/index/api/getMp4RecordFile`
+### 19. `/index/api/getMp4RecordFile`
 
-  - 功能：搜索文件系统，获取流对应的录像文件列表或日期文件夹列表
+  - Function: Search the file system to get the list of recorded files or date folders corresponding to a stream.
 
-  - 范例：[http://127.0.0.1/index/api/getMp4RecordFile?vhost=`__defaultVhost__`&app=live&stream=ss&period=2020-01](http://127.0.0.1/index/api/getMp4RecordFile?vhost=__defaultVhost__&app=live&stream=ss&period=2020-01)
+  - Example:[http://127.0.0.1/index/api/getMp4RecordFile?vhost=`__defaultVhost__`&app=live&stream=ss&period=2020-01](http://127.0.0.1/index/api/getMp4RecordFile?vhost=__defaultVhost__&app=live&stream=ss&period=2020-01)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | vhost  |    Y     |                        流的虚拟主机名                        |
-    |  app   |    Y     |                          流的应用名                          |
-    | stream |    Y     |                            流的ID                            |
-    | period |    Y     | 流的录像日期，格式为2020-02-01,如果不是完整的日期，那么是搜索录像文件夹列表，否则搜索对应日期下的mp4文件列表 |
-    | customized_path|    N     | 自定义搜索路径，与startRecord方法中的customized_path一样，默认为配置文件的路径 |
+    | Parameter | Required |                        Description                         |
+    | :-------: | :------: | :--------------------------------------------------------: |
+    |  secret  |    Y     |               API operation secret key (configured in the file)                |
+    |  vhost   |    Y     |                     Virtual host name of the stream                     |
+    |   app    |    Y     |                          Application name of the stream                          |
+    |  stream  |    Y     |                            ID of the stream                            |
+    |  period  |    Y     | Recording date of the stream in the format "2020-02-01". If it's not a complete date, it searches for the list of recording folders. Otherwise, it searches for the list of MP4 files for the specified date. |
+    | customized_path |    N     | Customized search path, same as the `customized_path` in the `startRecord` method. Defaults to the path in the configuration file. |
 
 
-  - 响应：
+  - Response:
 
     ```json
-    # 搜索文件夹列表(按照前缀匹配规则)：period = 2020-01
+    # Search folder list (matching by prefix rule): period = 2020-01
     {
        "code" : 0,
        "data" : {
@@ -857,7 +858,7 @@ typedef enum {
        }
     }
     
-    # 搜索mp4文件列表：period = 2020-01-24
+    # Search MP4 file list: period = 2020-01-24
     {
        "code" : 0,
        "data" : {
@@ -878,298 +879,295 @@ typedef enum {
 
     
 
-### 20、`/index/api/startRecord`
+### 20. `/index/api/startRecord`
 
-  - 功能：开始录制hls或MP4
+  - Function: Start recording in HLS or MP4 format.
 
-  - 范例：[http://127.0.0.1/index/api/startRecord?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/startRecord?type=1&vhost=__defaultVhost__&app=live&stream=obs)
+  - Example:[http://127.0.0.1/index/api/startRecord?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/startRecord?type=1&vhost=__defaultVhost__&app=live&stream=obs)
 
-  - 参数：
+  - Parameters:
 
-    |      参数       | 是否必选 |                             释意                             | 类型   |
-    | :-------------: | :------: | :----------------------------------------------------------: | ------ |
-    |     secret      |    Y     | api操作密钥(配置文件配置) | string |
-    |      type       |    Y     |                        0为hls，1为mp4                        | 0/1    |
-    |      vhost      |    Y     |               虚拟主机，例如`__defaultVhost__`               | string |
-    |       app       |    Y     |                      应用名，例如 live                       | string |
-    |     stream      |    Y     |                        流id，例如 obs                        | string |
-    | customized_path |    N     |                         录像保存目录                         | string |
-    | max_second      |    N     |                    mp4录像切片时间大小,单位秒，置0则采用配置项      | int |
+  |   Parameter    | Required |                     Description                      |  Type  |
+  | :------------: | :------: | :--------------------------------------------------: | :----: |
+  |    secret      |    Y     |          API access key (configured in file)          | string |
+  |      type      |    Y     |              0 for HLS, 1 for MP4 format              |  0/1   |
+  |     vhost      |    Y     |           Virtual host, e.g., "__defaultVhost__"       | string |
+  |      app       |    Y     |              Application name, e.g., "live"           | string |
+  |    stream      |    Y     |               Stream ID, e.g., "obs"                 | string |
+  | customized_path |    N     |           Directory for storing the recordings        | string |
+  |  max_second    |    N     | Maximum duration of MP4 recording segments in seconds. Set to 0 to use the configured value. |  int   |
 
 
-
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "result" : true # 成功与否
+       "result" : true # success or failure
     }
     ```
 
     
 
-### 21、`/index/api/stopRecord`
+### 21. `/index/api/stopRecord`
 
-  - 功能：停止录制流
+  - Function: Stop recording the stream.
 
-  - 范例：[http://127.0.0.1/index/api/stopRecord?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/stopRecord?type=1&vhost=__defaultVhost__&app=live&stream=obs)
+  - Example:[http://127.0.0.1/index/api/stopRecord?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/stopRecord?type=1&vhost=__defaultVhost__&app=live&stream=obs)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |  type  |    Y     |                        0为hls，1为mp4                        |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                        流id，例如 obs                        |
+  |  Parameter  | Required |                   Description                    |
+  | :---------: | :------: | :----------------------------------------------: |
+  |   secret    |    Y     |          API access key (configured in file)      |
+  |    type     |    Y     |              0 for HLS, 1 for MP4 format          |
+  |    vhost    |    Y     |           Virtual host, e.g., "__defaultVhost__"   |
+  |     app     |    Y     |              Application name, e.g., "live"       |
+  |   stream    |    Y     |               Stream ID, e.g., "obs"             |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "result" : true # 成功与否
+       "result" : true # success or failure
     }
     ```
 
     
 
-### 22、`/index/api/isRecording`
+### 22. `/index/api/isRecording`
 
-  - 功能：获取流录制状态
+  - Function: Get the recording status of the stream.
 
-  - 范例：[http://127.0.0.1/index/api/isRecording?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/isRecording?type=1&vhost=__defaultVhost__&app=live&stream=obs)
+  - Example:[http://127.0.0.1/index/api/isRecording?type=1&vhost=`__defaultVhost__`&app=live&stream=obs](http://127.0.0.1/index/api/isRecording?type=1&vhost=__defaultVhost__&app=live&stream=obs)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |  type  |    Y     |                        0为hls，1为mp4                        |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                        流id，例如 obs                        |
-
-
-  - 响应：
-
-    ```json
-    {
-       "code" : 0,
-       "status" : true # false:未录制,true:正在录制
-    }
-    ```
+  |  Parameter  | Required |                   Description                    |
+  | :---------: | :------: | :----------------------------------------------: |
+  |   secret    |    Y     |          API access key (configured in file)      |
+  |    type     |    Y     |              0 for HLS, 1 for MP4 format          |
+  |    vhost    |    Y     |           Virtual host, e.g., "__defaultVhost__"   |
+  |     app     |    Y     |              Application name, e.g., "live"       |
+  |   stream    |    Y     |               Stream ID, e.g., "obs"             |
 
 
-### 23、`/index/api/getSnap`
-
-  - 功能：获取截图或生成实时截图并返回
-
-  - 范例：[http://127.0.0.1/index/api/getSnap?url=rtmp://127.0.0.1/record/robot.mp4&timeout_sec=10&expire_sec=30](http://127.0.0.1/index/api/getSnap?url=rtmp://127.0.0.1/record/robot.mp4&timeout_sec=10&expire_sec=30)
-
-  - 参数：
-
-    |    参数     | 是否必选 |                             释意                             |
-    | :---------: | :------: | :----------------------------------------------------------: |
-    |   secret    |    Y     | api操作密钥(配置文件配置) |
-    |     url     |    Y     |       需要截图的url，可以是本机的，也可以是远程主机的        |
-    | timeout_sec |    Y     |           截图失败超时时间，防止FFmpeg一直等待截图           |
-    | expire_sec  |    Y     |      截图的过期时间，该时间内产生的截图都会作为缓存返回      |
-
-
-  - 响应：
-
-    ```json
-    jpeg格式的图片，可以在浏览器直接打开
-    ```
-
-
-
-### 24、`/index/api/openRtpServer`
-
-  - 功能：创建GB28181 RTP接收端口，如果该端口接收数据超时，则会自动被回收(不用调用closeRtpServer接口)
-
-  - 范例：[http://127.0.0.1/index/api/openRtpServer?port=0&tcp_mode=1&stream_id=test](http://127.0.0.1/index/api/openRtpServer?port=0&tcp_mode=1&stream_id=test)
-
-  - 参数：
-
-    |    参数    | 是否必选 |                             释意                             |
-    | :--------: | :------: | :----------------------------------------------------------: |
-    |   secret   |    Y     | api操作密钥(配置文件配置) |
-    |    port    |    Y     |                   接收端口，0则为随机端口                    |
-    | tcp_mode   |    Y     |              0 udp 模式，1 tcp 被动模式, 2 tcp 主动模式。 (兼容enable_tcp 为0/1)      |
-    | stream_id  |    Y     | 该端口绑定的流ID，该端口只能创建这一个流(而不是根据ssrc创建多个) |
-
-
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
-       "port" : 55463 #接收端口，方便获取随机端口号
+       "status" : true # false: not recording, true: currently recording
     }
     ```
 
 
+### 23. `/index/api/getSnap`
 
-### 25、`/index/api/closeRtpServer`
+  - Function: Get a screenshot or generate a real-time screenshot and return it.
 
-  - 功能：关闭GB28181 RTP接收端口
+  - Example:[http://127.0.0.1/index/api/getSnap?url=rtmp://127.0.0.1/record/robot.mp4&timeout_sec=10&expire_sec=30](http://127.0.0.1/index/api/getSnap?url=rtmp://127.0.0.1/record/robot.mp4&timeout_sec=10&expire_sec=30)
 
-  - 范例：[http://127.0.0.1/index/api/closeRtpServer?stream_id=test](http://127.0.0.1/index/api/closeRtpServer?stream_id=test)
+  - Parameters:
 
-  - 参数：
+    | Parameter   | Required |                  Description                   |
+    | :---------: | :------: | :--------------------------------------------: |
+    |   secret    |    Y     |    API operation secret key (configured file)   |
+    |     url     |    Y     |    The URL of the image to capture, which can be local or remote.   |
+    | timeout_sec |    Y     |   Timeout for capturing the image to prevent FFmpeg from waiting indefinitely.  |
+    | expire_sec  |    Y     |   Expiration time for the captured image cache. All images generated within this time will be returned as cache.   |
 
-    |   参数    | 是否必选 |                             释意                             |
-    | :-------: | :------: | :----------------------------------------------------------: |
-    |  secret   |    Y     | api操作密钥(配置文件配置) |
-    | stream_id |    Y     |              调用openRtpServer接口时提供的流ID               |
+
+  - Response:
+
+    ```json
+    The image in JPEG format, can be directly opened in a browser.
+    ```
 
 
-  - 响应：
+
+### 24. `/index/api/openRtpServer`
+
+  - Function: Create a GB28181 RTP receiving port. If the port times out receiving data, it will be automatically released (no need to call the closeRtpServer interface).
+
+  - Example:[http://127.0.0.1/index/api/openRtpServer?port=0&tcp_mode=1&stream_id=test](http://127.0.0.1/index/api/openRtpServer?port=0&tcp_mode=1&stream_id=test)
+
+  - Parameters:
+
+    | Parameter   | Required |                  Description                   |
+    | :--------:  | :------: | :--------------------------------------------: |
+    |   secret    |    Y     |    API operation secret key (configured file)   |
+    |    port     |    Y     |    Receiving port. If set to 0, a random port will be used.   |
+    | tcp_mode    |    Y     |    0 for UDP mode, 1 for TCP passive mode, 2 for TCP active mode (compatible with enable_tcp: 0/1). |
+    | stream_id   |    Y     |    The stream ID bound to this port. Only this stream can be created on this port (not multiple streams based on SSRC).   |
+
+
+  - Response:
+
+    ```json
+    {
+       "code" : 0,
+       "port" : 55463 # Receiving port for easy reference to the random port number.
+    ```
+
+
+
+### 25. `/index/api/closeRtpServer`
+
+  - Function: Close the GB28181 RTP receiving port.
+
+  - Example:[http://127.0.0.1/index/api/closeRtpServer?stream_id=test](http://127.0.0.1/index/api/closeRtpServer?stream_id=test)
+
+  - Parameters:
+
+    | Parameter   | Required |                  Description                   |
+    | :-------:   | :------: | :--------------------------------------------: |
+    |  secret     |    Y     |    API operation secret key (configured file)   |
+    | stream_id   |    Y     |    Stream ID provided when calling the openRtpServer interface.   |
+
+
+  - Response:
 
     ```json
     {
        "code": 0,
-       "hit": 1 #是否找到记录并关闭
+       "hit": 1 # Whether the record was found and closed.
     }
     ```
 
-### 26、`/index/api/listRtpServer`
+### 26. `/index/api/listRtpServer`
 
-  - 功能：获取openRtpServer接口创建的所有RTP服务器
+  - Function: Get all RTP servers created by the openRtpServer interface.
 
-  - 范例：[http://127.0.0.1/index/api/listRtpServer](http://127.0.0.1/index/api/listRtpServer)
+  - Example:[http://127.0.0.1/index/api/listRtpServer](http://127.0.0.1/index/api/listRtpServer)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
+    | Parameter | Required |                 Description                  |
+    | :-------: | :------: | :------------------------------------------: |
+    |  secret   |    Y     |     API operation key (configured in file)    |
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : [
           {
-             "port" : 52183, #绑定的端口号
-             "stream_id" : "test" #绑定的流ID
+             "port" : 52183, # Bound port number
+             "stream_id" : "test" # Bound stream ID
           }
        ]
     }
     ```
 
 
-### 27、`/index/api/startSendRtp`
+### 27. `/index/api/startSendRtp`
 
-  - 功能：作为GB28181客户端，启动ps-rtp推流，支持rtp/udp方式；该接口支持rtsp/rtmp等协议转ps-rtp推流。第一次推流失败会直接返回错误，成功一次后，后续失败也将无限重试。
-  - 范例：[http://127.0.0.1/index/api/startSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=`__defaultVhost__`&app=live&stream=test&ssrc=1&dst_url=127.0.0.1&dst_port=10000&is_udp=0](http://127.0.0.1/index/api/startSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&ssrc=1&dst_url=127.0.0.1&dst_port=10000&is_udp=0)
+  - Function: Start ps-rtp streaming as a GB28181 client, supporting rtp/udp mode. This interface supports converting protocols such as rtsp/rtmp to ps-rtp streaming. The first streaming attempt failure will return an error directly. After a successful attempt, subsequent failures will be retried indefinitely.
+  - Example:[http://127.0.0.1/index/api/startSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=`__defaultVhost__`&app=live&stream=test&ssrc=1&dst_url=127.0.0.1&dst_port=10000&is_udp=0](http://127.0.0.1/index/api/startSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&ssrc=1&dst_url=127.0.0.1&dst_port=10000&is_udp=0)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | vhost |    Y     | 虚拟主机，例如__defaultVhost__ |
-    | app |    Y     | 应用名，例如 live |
-    | stream |    Y     | 流id，例如 test |
-    | ssrc |    Y     | 推流的rtp的ssrc,指定不同的ssrc可以同时推流到多个服务器 |
-    | dst_url |    Y     | 目标ip或域名 |
-    | dst_port |    Y     | 目标端口 |
-    | is_udp |    Y     | 是否为udp模式,否则为tcp模式 |
-    | src_port |    N     | 使用的本机端口，为0或不传时默认为随机端口 |
-    | pt |    N     | 发送时，rtp的pt（uint8_t）,不传时默认为96 |
-    | use_ps |    N     | 发送时，rtp的负载类型。为1时，负载为ps；为0时，为es；不传时默认为1 |
-    | only_audio |    N     | 当use_ps 为0时，有效。为1时，发送音频；为0时，发送视频；不传时默认为0 |
+    |  Parameter  | Required |                         Description                          |
+    | :---------: | :------: | :---------------------------------------------------------: |
+    |   secret    |    Y     |            API operation key (configured in file)            |
+    |    vhost    |    Y     |            Virtual host, for example __defaultVhost__        |
+    |     app     |    Y     |                  Application name, for example live          |
+    |   stream    |    Y     |                      Stream ID, for example test            |
+    |    ssrc     |    Y     |  SSRC of the RTP stream. Specifying different SSRCs can stream to multiple servers simultaneously |
+    |   dst_url   |    Y     |                   Destination IP or domain                   |
+    |  dst_port   |    Y     |                    Destination port number                   |
+    |   is_udp    |    Y     |       Whether it is UDP mode, otherwise it is TCP mode        |
+    |  src_port   |    N     |     Local port used, default to a random port if set to 0 or not provided     |
+    |     pt      |    N     | RTP payload type (uint8_t) when sending, default to 96 if not provided |
+    |   use_ps    |    N     | RTP payload type when sending. Set to 1 for PS payload, 0 for ES payload. Default to 1 if not provided |
+    | only_audio  |    N     |            Effective when use_ps is 0. Set to 1 to send audio, 0 to send video. Default to 0 if not provided |
+    
+
+
+  - Response:
+
+    ```json
+    {
+       "code": 0, # Success
+       "local_port": 57152 # Local port number used
+    }
+    ```
+
+#### 27.1. `/index/api/startSendRtpPassive`
+
+  - Function: Acts as a GB28181 Passive TCP server. This interface supports the conversion of protocols such as RTSP/RTMP to PS-RTP for passive streaming. When calling this interface, zlm will start a TCP server and wait for connection requests. After the connection is established, zlm will close the TCP server and continuously stream to the client. If the first streaming attempt fails, an error will be returned directly. Once successful, subsequent failures will be retried indefinitely (continuously establishing TCP listening and closing after timeout).
+  - Example: [http://127.0.0.1/index/api/startSendRtpPassive?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&ssrc=1](http://127.0.0.1/index/api/startSendRtpPassive?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&ssrc=1)
+
+  - Parameters:
+
+    | Parameters | Required |                            Description                             |
+    | :--------: | :------: | :---------------------------------------------------------------: |
+    |   secret   |    Y     |                   API operation secret key (configured in the file)                   |
+    |   vhost    |    Y     |                  Virtual host, for example, __defaultVhost__                   |
+    |    app     |    Y     |                      Application name, for example, live                       |
+    |   stream   |    Y     |                          Stream ID, for example, test                           |
+    |    ssrc    |    Y     |     SSRC of the RTP stream, specifying different SSRCs allows streaming to multiple servers simultaneously     |
+    | src_port |    N     | Local port used; defaults to a random port if 0 or not specified |
+    |    pt    |    N     | PT (uint8_t) for RTP when sending; defaults to 96 if not specified |
+    |  use_ps  |    N     | Payload type for RTP when sending. If 1, payload is PS; if 0, payload is ES; defaults to 1 if not specified |
+    | only_audio |    N     | Valid when use_ps is 0. If 1, audio is sent; if 0, video is sent; defaults to 0 if not specified |
 
     
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
-       "code": 0, #成功
-       "local_port": 57152 #使用的本地端口号 
+       "code": 0, # Success
+       "local_port": 57152 # Local port number used 
     }
     ```
 
-#### 27.1 、`/index/api/startSendRtpPassive`
 
-  - 功能：作为GB28181 Passive TCP服务器；该接口支持rtsp/rtmp等协议转ps-rtp被动推流。调用该接口，zlm会启动tcp服务器等待连接请求，连接建立后，zlm会关闭tcp服务器，然后源源不断的往客户端推流。第一次推流失败会直接返回错误，成功一次后，后续失败也将无限重试(不停地建立tcp监听，超时后再关闭)。
-  - 范例：[http://127.0.0.1/index/api/startSendRtpPassive?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=`__defaultVhost__`&app=live&stream=test&ssrc=1](http://127.0.0.1/index/api/startSendRtpPassive?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&ssrc=1)
+### 28. `/index/api/stopSendRtp`
 
-  - 参数：
+  - Function: Stops GB28181 PS-RTP push streaming.
+  - Example: [http://127.0.0.1/index/api/stopSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test](http://127.0.0.1/index/api/stopSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test)
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | vhost |    Y     | 虚拟主机，例如__defaultVhost__ |
-    | app |    Y     | 应用名，例如 live |
-    | stream |    Y     | 流id，例如 test |
-    | ssrc |    Y     | 推流的rtp的ssrc,指定不同的ssrc可以同时推流到多个服务器 |
-    | src_port |    N     | 使用的本机端口，为0或不传时默认为随机端口 |
-    | pt |    N     | 发送时，rtp的pt（uint8_t）,不传时默认为96 |
-    | use_ps |    N     | 发送时，rtp的负载类型。为1时，负载为ps；为0时，为es；不传时默认为1 |
-    | only_audio |    N     | 当use_ps 为0时，有效。为1时，发送音频；为0时，发送视频；不传时默认为0 |
+  - Parameters:
 
+    | Parameters | Required |                            Description                             |
+    | :--------: | :------: | :---------------------------------------------------------------: |
+    |   secret   |    Y     |                   API operation secret key (configured in the file)                   |
+    |   vhost    |    Y     |                  Virtual host, for example, __defaultVhost__                   |
+    |    app     |    Y     |                      Application name, for example, live                       |
+    |   stream   |    Y     |                          Stream ID, for example, test                           |
+    |    ssrc    |    N     |    Stop RTP streaming for a specific SSRC, or close all streams if empty    |
     
 
 
-  - 响应：
+  - Response:
 
     ```json
     {
-       "code": 0, #成功
-       "local_port": 57152 #使用的本地端口号 
+       "code": 0 # Success
     }
     ```
 
+### 29. `/index/api/getStatistic`
 
-### 28、`/index/api/stopSendRtp`
+ - Function: Get statistics on the number of main objects, mainly used for analyzing memory performance.
+ - Example:[http://127.0.0.1/index/api/getStatistic?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc](http://127.0.0.1/index/api/getStatistic?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc)
 
-  - 功能：停止GB28181 ps-rtp推流
-  - 范例：[http://127.0.0.1/index/api/stopSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=`__defaultVhost__`&app=live&stream=test](http://127.0.0.1/index/api/stopSendRtp?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test)
+ - Parameters:
 
-  - 参数：
-
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | vhost |    Y     | 虚拟主机，例如__defaultVhost__ |
-    | app |    Y     | 应用名，例如 live |
-    | stream |    Y     | 流id，例如 test |
-    | ssrc |    N     | 根据ssrc关停某路rtp推流，置空时关闭所有流 |
-    
+  | Parameter | Required |                   Description                   |
+  | :-------: | :------: | :---------------------------------------------: |
+  |  secret   |    Y     | API operation key (configured in the file) |
 
 
-  - 响应：
-
-    ```json
-    {
-       "code": 0 #成功
-    }
-    ```
-
-### 29、`/index/api/getStatistic`
-
-  - 功能：获取主要对象个数统计，主要用于分析内存性能
-  - 范例：[http://127.0.0.1/index/api/getStatistic?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc](http://127.0.0.1/index/api/getStatistic?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc)
-
-  - 参数：
-
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-
-
-  - 响应：
+  - Response:
 
     ```json
     {
@@ -1191,75 +1189,75 @@ typedef enum {
     }
     ```
 
-### 30、`/index/api/addStreamPusherProxy`
+### 30. `/index/api/addStreamPusherProxy`
 
-  - 功能：添加rtsp/rtmp主动推流(把本服务器的直播流推送到其他服务器去)
+  - Function: Add active RTSP/RTMP stream pusher (push the live stream from this server to another server).
 
-  - 范例：[http://127.0.0.1/index/api/addStreamPusherProxy?vhost=`__defaultVhost__`&app=proxy&stream=test&dst_url=rtmp://127.0.0.1/live/test2](http://127.0.0.1/index/api/addStreamProxy?vhost=`__defaultVhost__`&app=proxy&stream=test&dst_url=rtmp://127.0.0.1/live/test2)
+  - Example:[http://127.0.0.1/index/api/addStreamPusherProxy?vhost=`__defaultVhost__`&app=proxy&stream=test&dst_url=rtmp://127.0.0.1/live/test2](http://127.0.0.1/index/api/addStreamProxy?vhost=`__defaultVhost__`&app=proxy&stream=test&dst_url=rtmp://127.0.0.1/live/test2)
 
-  - 参数：
+  - Parameters:
 
-    |    参数     | 是否必选 |                             释意                             |
-    | :---------: | :------: | :----------------------------------------------------------: |
-    |   secret    |    Y     | api操作密钥(配置文件配置) |
-    |    vhost    |    Y     |          添加的流的虚拟主机，例如`__defaultVhost__`          |
-    |   schema    |    Y     |                    协议，例如 rtsp或rtmp                     |
-    |     app     |    Y     |                  添加的流的应用名，例如live                  |
-    |   stream    |    Y     |                        需要转推的流id                        |
-    |   dst_url   |    Y     |              目标转推url，带参数需要自行url转义              |
-    | retry_count |    N     |                转推失败重试次数，默认无限重试                |
-    |  rtp_type   |    N     |        rtsp推流时，推流方式，0：tcp，1：udp                 |
-    | timeout_sec |    N     |               推流超时时间，单位秒，float类型                |
+  |   Parameter   | Required |                   Description                   |
+  | :-----------: | :------: | :---------------------------------------------: |
+  |    secret     |    Y     | API operation key (configured in the file) |
+  |     vhost     |    Y     |      Virtual host of the added stream, for example, `__defaultVhost__` |
+  |    schema     |    Y     |                Protocol, e.g., rtsp or rtmp                |
+  |     app       |    Y     |         Application name of the added stream, e.g., live         |
+  |    stream     |    Y     |                 Stream ID to be pushed                 |
+  |    dst_url    |    Y     |   Destination push URL, if it contains parameters, they need to be URL-encoded   |
+  | retry_count   |    N     |       Retry count for failed push, unlimited by default       |
+  |   rtp_type    |    N     |   Pushing method for RTSP stream, 0: TCP, 1: UDP   |
+  | timeout_sec   |    N     |         Push timeout in seconds, float type         |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "key" : "rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12"  # 流的唯一标识
+          "key" : "rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12"  # Unique identifier of the stream
        }
     }
     ```
 
 
 
-### 31、`/index/api/delStreamPusherProxy(可以使用close_streams接口关闭源直播流也可以停止推流)`
+### 31. `/index/api/delStreamPusherProxy(可以使用close_streams接口关闭源直播流也可以停止推流)`
 
-  - 功能：关闭推流
+  - Function: Close the stream pushing.
 
-  - 范例：[http://127.0.0.1/index/api/delStreamPusherProxy?key=rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12](http://127.0.0.1/index/api/delStreamPusherProxy?key=rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12)
+  - Example:[http://127.0.0.1/index/api/delStreamPusherProxy?key=rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12](http://127.0.0.1/index/api/delStreamPusherProxy?key=rtmp/__defaultVhost__/proxy/test/4AB43C9EABEB76AB443BB8260C8B2D12)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    |  key   |    Y     |              addStreamPusherProxy接口返回的key               |
+    | Parameter | Required |                  Explanation                   |
+    | :-------: | :------: | :--------------------------------------------: |
+    |  secret   |    Y     |        API operation key (configured)          |
+    |    key    |    Y     | Key returned by the 'addStreamPusherProxy' interface |
 
-  - 响应：
+  - Response:
 
     ```json
     {
        "code" : 0,
        "data" : {
-          "flag" : true # 成功与否
+          "flag" : true # Success or failure
        }
     }
     ```
-### 32、`/index/api/version(获取版本信息)`
+### 32. `/index/api/version(获取版本信息)`
 
-  - 功能：获取版本信息，如分支，commit id, 编译时间
+  - Function: Get version information, such as branch, commit ID, and build time.
 
-  - 范例：[http://127.0.0.1/index/api/version](http://127.0.0.1/index/api/version)
+  - Example:[http://127.0.0.1/index/api/version](http://127.0.0.1/index/api/version)
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
+    | Parameter | Required |                  Explanation                   |
+    | :-------: | :------: | :--------------------------------------------: |
+    |  secret   |    Y     |        API operation key (configured)          |
 
-  - 响应：
+  - Response:
 
     ```json
     {
@@ -1272,23 +1270,23 @@ typedef enum {
     }
     ```
 
-### 33、`/index/api/getMediaPlayerList`
+### 33. `/index/api/getMediaPlayerList`
 
-  - 功能：获取某个流观看者列表
+  - Function: Get the list of viewers for a specific stream.
 
-  - 范例：[http://127.0.0.1:8080/index/api/getMediaPlayerList?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&schema=rtsp&vhost=__defaultVhost__&app=live&stream=test'](http://127.0.0.1:8080/index/api/getMediaPlayerList?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&schema=rtsp&vhost=__defaultVhost__&app=live&stream=test')
+  - Example:[http://127.0.0.1:8080/index/api/getMediaPlayerList?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&schema=rtsp&vhost=__defaultVhost__&app=live&stream=test'](http://127.0.0.1:8080/index/api/getMediaPlayerList?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&schema=rtsp&vhost=__defaultVhost__&app=live&stream=test')
 
-  - 参数：
+  - Parameters:
 
-    |  参数  | 是否必选 |                             释意                             |
-    | :----: | :------: | :----------------------------------------------------------: |
-    | secret |    Y     | api操作密钥(配置文件配置) |
-    | schema |    Y     |                    协议，例如 rtsp或rtmp                     |
-    | vhost  |    Y     |               虚拟主机，例如`__defaultVhost__`               |
-    |  app   |    Y     |                      应用名，例如 live                       |
-    | stream |    Y     |                        流id，例如 obs                        |
+    | Parameter | Required |                  Explanation                   |
+    | :-------: | :------: | :--------------------------------------------: |
+    |  secret   |    Y     |        API operation key (configured)          |
+    |  schema   |    Y     |              Protocol, e.g., rtsp or rtmp              |
+    |  vhost    |    Y     |              Virtual host, e.g., '__defaultVhost__'              |
+    |   app     |    Y     |                   Application name, e.g., live                   |
+    |  stream   |    Y     |                     Stream ID, e.g., obs                      |
   
-  - 响应：
+  - Response:
 
   ```json
   {
