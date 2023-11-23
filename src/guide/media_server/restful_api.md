@@ -1,5 +1,5 @@
 ---
-title: RESTful interface
+title: RESTful API
 ---
 
 ## Download postman configuration file (to test RESTful API)

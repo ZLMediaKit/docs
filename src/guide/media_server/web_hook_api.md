@@ -1,5 +1,5 @@
 ---
-title: Web Hook Interface
+title: Web Hook
 ---
 
 ## Web Hook Preview
