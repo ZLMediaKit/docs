@@ -1,8 +1,10 @@
 ---
 title: webrtc信令交互格式
 ---
+
 ## 前言
-zlmediakit webrtc信令格式新增支持whip/whep标准，测试地址如下：
+
+zlmediakit webrtc 信令格式新增支持 whip/whep 标准，测试地址如下：
 
 推流：https://zlmediakit.com/index/api/whip?app=live&stream=test
 
@@ -10,29 +12,33 @@ zlmediakit webrtc信令格式新增支持whip/whep标准，测试地址如下：
 
 本文后续篇幅为私有信令格式。
 
-## 一、webrtc sdp交换请求基本格式
+## 一、webrtc sdp 交换请求基本格式
 
 - 请求地址: /index/api/webrtc?app=live&stream=test&type=[push/play/echo]
 - 请求方式: http post
-- 请求body: webrtc offer sdp
-- 回复body: 
+- 请求 body: webrtc offer sdp
+- 回复 body:
+
 ```json
 {
-   "code" : 0,
-   "id" : "zlm_1",
-   "sdp" : "v=0\r\no=mozilla...THIS_IS_SDPARTA-99.0 6880954646154322397 0 IN IP4 172.18.190.185\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0 1\r\na=msid-semantic: WMS *\r\na=ice-lite\r\nm=audio 8000 UDP/TLS/RTP/SAVPF 0\r\nc=IN IP4 172.18.190.185\r\na=rtcp:8000 IN IP4 172.18.190.185\r\na=ice-ufrag:rBK+uR9AAAA=_2\r\na=ice-pwd:H4rtFC1xhef0ynU2lk8z22ha\r\na=fingerprint:sha-256 6E:EF:E7:75:56:2A:66:DF:6C:9D:72:B6:A5:21:35:73:19:66:D8:00:F4:BC:36:59:61:1B:5D:35:13:99:14:AE\r\na=setup:passive\r\na=mid:0\r\na=ice-lite\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2/sendonly urn:ietf:params:rtp-hdrext:csrc-audio-level\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:0 PCMU/8000/1\r\na=candidate:udpcandidate 1 udp 120 172.18.190.185 8000 typ host\r\nm=video 8000 UDP/TLS/RTP/SAVPF 126 127\r\nc=IN IP4 172.18.190.185\r\na=rtcp:8000 IN IP4 172.18.190.185\r\na=ice-ufrag:rBK+uR9AAAA=_2\r\na=ice-pwd:H4rtFC1xhef0ynU2lk8z22ha\r\na=fingerprint:sha-256 6E:EF:E7:75:56:2A:66:DF:6C:9D:72:B6:A5:21:35:73:19:66:D8:00:F4:BC:36:59:61:1B:5D:35:13:99:14:AE\r\na=setup:passive\r\na=mid:1\r\na=ice-lite\r\na=extmap:4 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:5 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:6/sendonly http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:126 H264/90000\r\na=rtcp-fb:126 ccm fir\r\na=rtcp-fb:126 goog-remb\r\na=rtcp-fb:126 nack\r\na=rtcp-fb:126 nack pli\r\na=rtcp-fb:126 transport-cc\r\na=fmtp:126 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f;x-google-max-bitrate=8000;x-google-min-bitrate=4000;x-google-start-bitrate=6000\r\na=rtpmap:127 rtx/90000\r\na=fmtp:127 apt=126\r\na=candidate:udpcandidate 1 udp 120 172.18.190.185 8000 typ host\r\n",
-   "type" : "answer"
+  "code": 0,
+  "id": "zlm_1",
+  "sdp": "v=0\r\no=mozilla...THIS_IS_SDPARTA-99.0 6880954646154322397 0 IN IP4 172.18.190.185\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0 1\r\na=msid-semantic: WMS *\r\na=ice-lite\r\nm=audio 8000 UDP/TLS/RTP/SAVPF 0\r\nc=IN IP4 172.18.190.185\r\na=rtcp:8000 IN IP4 172.18.190.185\r\na=ice-ufrag:rBK+uR9AAAA=_2\r\na=ice-pwd:H4rtFC1xhef0ynU2lk8z22ha\r\na=fingerprint:sha-256 6E:EF:E7:75:56:2A:66:DF:6C:9D:72:B6:A5:21:35:73:19:66:D8:00:F4:BC:36:59:61:1B:5D:35:13:99:14:AE\r\na=setup:passive\r\na=mid:0\r\na=ice-lite\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2/sendonly urn:ietf:params:rtp-hdrext:csrc-audio-level\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:0 PCMU/8000/1\r\na=candidate:udpcandidate 1 udp 120 172.18.190.185 8000 typ host\r\nm=video 8000 UDP/TLS/RTP/SAVPF 126 127\r\nc=IN IP4 172.18.190.185\r\na=rtcp:8000 IN IP4 172.18.190.185\r\na=ice-ufrag:rBK+uR9AAAA=_2\r\na=ice-pwd:H4rtFC1xhef0ynU2lk8z22ha\r\na=fingerprint:sha-256 6E:EF:E7:75:56:2A:66:DF:6C:9D:72:B6:A5:21:35:73:19:66:D8:00:F4:BC:36:59:61:1B:5D:35:13:99:14:AE\r\na=setup:passive\r\na=mid:1\r\na=ice-lite\r\na=extmap:4 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:5 urn:ietf:params:rtp-hdrext:toffset\r\na=extmap:6/sendonly http://www.webrtc.org/experiments/rtp-hdrext/playout-delay\r\na=extmap:7 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:126 H264/90000\r\na=rtcp-fb:126 ccm fir\r\na=rtcp-fb:126 goog-remb\r\na=rtcp-fb:126 nack\r\na=rtcp-fb:126 nack pli\r\na=rtcp-fb:126 transport-cc\r\na=fmtp:126 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f;x-google-max-bitrate=8000;x-google-min-bitrate=4000;x-google-start-bitrate=6000\r\na=rtpmap:127 rtx/90000\r\na=fmtp:127 apt=126\r\na=candidate:udpcandidate 1 udp 120 172.18.190.185 8000 typ host\r\n",
+  "type": "answer"
 }
 ```
 
-## 二、支持的type类型
-- push: webrtc推流
-- play: webrtc播放
-- echo: webrtc镜像回显(仅用于webrtc双向测试)
+## 二、支持的 type 类型
+
+- push: webrtc 推流
+- play: webrtc 播放
+- echo: webrtc 镜像回显(仅用于 webrtc 双向测试)
 - 用户可以二次开发注册更多类型插件。
 
 ## 三、范例
+
 - 请求：
+
 ```http
 POST /index/api/webrtc?app=live&stream=test&type=push HTTP/1.1
 Host: 127.0.0.1:8080
@@ -135,6 +141,7 @@ a=ssrc-group:FID 3676200744 3937745592
 ```
 
 - 响应：
+
 ```http
 HTTP/1.1 200 OK
 Access-Control-Allow-Credentials: true
@@ -154,6 +161,3 @@ Server: ZLMediaKit(git hash:500d2c6a/2023-03-14T17:33:46+08:00,branch:master,bui
 }
 
 ```
-
-
-

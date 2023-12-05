@@ -2,6 +2,7 @@
 title: Acknowledgments
 icon: circle-info
 ---
+
 ## Special Thanks
 
 This project uses the [media-server](https://github.com/ireader/media-server) library developed by [Lao Chen](https://github.com/ireader). The reuse and de-multiplexing of ts/fmp4/mp4/ps container formats in this project depend on the media-server library. Lao Chen has provided invaluable help and support multiple times in implementing many functions of this project, and we would like to express our sincere gratitude to him!
@@ -21,7 +22,7 @@ Thanks to all those who have supported this project in various ways, including b
 [DroidChow](https://github.com/DroidChow)
 [阿塞](https://github.com/HuoQiShuai)
 [火宣](https://github.com/ChinaCCF)
-[γ瑞γミ](https://github.com/JerryLinGd)
+[γ 瑞 γ ミ](https://github.com/JerryLinGd)
 [linkingvision](https://www.linkingvision.com/)
 [茄子](https://github.com/taotaobujue2008)
 [好心情](mailto:409257224@qq.com)

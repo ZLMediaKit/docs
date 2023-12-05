@@ -1,6 +1,7 @@
 ---
 title: Exclusive Features of ZLMediakit
 ---
+
 ## 1. Play before Publishing
 
 - Pain point: Unable to play before successful publishing.
@@ -20,7 +21,6 @@ title: Exclusive Features of ZLMediakit
   ```
 
   > Note: This feature also applies to pulling streams, allowing on-demand publishing and pulling of streams.
-
 
 ## 2. No Viewer Event
 
@@ -60,7 +60,6 @@ title: Exclusive Features of ZLMediakit
 
   > Note: Introduction to hooks can be found [here](../../guide/media_server/web_hook_api.md#14on_stream_not_found).
 
-
 ## 4. Reconnect after disconnection and continue pushing stream
 
 - Pain point: When the pushing stream is disconnected and the pushing stream device reconnects, all the players are disconnected as well.
@@ -81,13 +80,12 @@ title: Exclusive Features of ZLMediakit
   continue_push_ms=15000
   ```
 
-  
 - Implementation code snippet:
 
-  ```c++
+  ```cpp
   void RtmpSession::onError(const SockException& err) {
       // Omit irrelevant code
-  
+
       GET_CONFIG(uint32_t, continue_push_ms, General::kContinuePushMS);
       if (_push_src && continue_push_ms) {
           // Release ownership of the pushing stream object
@@ -97,11 +95,11 @@ title: Exclusive Features of ZLMediakit
           getPoller()->doDelayTask(continue_push_ms, [push_src]() { return 0; });
       }
   }
-  
+
   void RtmpSession::onCmd_publish(AMFDecoder &dec) {
     // Omit a large amount of irrelevant code
     auto src = MediaSource::find(RTMP_SCHEMA, _media_info._vhost, _media_info._app, _media_info._streamid);
-  
+
     while (src) {
       // Attempt to continue pushing stream after disconnection
       auto rtmp_src = dynamic_pointer_cast<RtmpMediaSourceImp>(src);
@@ -125,7 +123,6 @@ title: Exclusive Features of ZLMediakit
   ```
 
   > Note: Continuous disconnection and reconnection feature supports RTSP/RTMP/WebRTC pushing stream.
-
 
 ## 5. Cluster Deployment
 
@@ -152,7 +149,7 @@ title: Exclusive Features of ZLMediakit
   ```
 
   ZLMediakit supports multiple ways of pulling streams, including rtsp/rtmp/hls/http-ts/http-flv. The methods are diverse and rich, and the origin servers are not divided into primary and backup. Load balancing of the origin servers is achieved using the round-robin method. It should be noted that since ZLMediakit has long supported on-demand streaming for HLS, its edge stations also support the HLS protocol (in fact, they support any protocol supported by ZLMediakit), which is not available in SRS.
-    
+
   Furthermore, it should be noted that ZLMediakit supports both RTSP and WebRTC, both of which are based on RTP. Internally in ZLMediakit, they can be interconnected without the need for protocol conversion and complex multiplexing/demultiplexing logic. This makes it possible to use ZLMediakit for large-scale, low-latency WebRTC live streaming. Compared to traditional CDN based on RTMP, RTSP is more suitable as the underlying transport protocol for WebRTC. Developers do not need to deal with cumbersome multiplexing/demultiplexing logic and can smoothly achieve the interconversion between RTSP and WebRTC.
 
 ## 6. WebRTC Single Port, Multi-threading, and Connection Migration Support
@@ -184,5 +181,3 @@ ZLMediakit achieves long connection for HLS playback through cookie tracking tec
 - On-demandI'm sorry, but I couldn't find any information about a specific ZLMediakit feature called "pull stream URL of the origin server." ZLMediakit is an open-source streaming media server that provides various features for streaming protocols like RTSP, RTMP, HLS, and WebRTC.
 
 If you have any specific questions about ZLMediakit or need information on a different feature, please let me know, and I'll do my best to assist you.
-
-

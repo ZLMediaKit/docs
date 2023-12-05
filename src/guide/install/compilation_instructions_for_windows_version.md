@@ -20,27 +20,32 @@ The following steps are for installing the dependency tools `cmake` and `ninja` 
 For detailed instructions, please refer to the official scoop documentation. Below are the summarized steps:
 
 1. Set the environment variable `SCOOP` to configure the download and installation directory for `scoop` (including the managed software packages). Run the following command:
-   ```
+
+   ```sh
    $env:SCOOP = 'C:\work\develop\scoop'
    ```
 
 2. Allow the execution of PowerShell scripts for the current user by running the following command:
-   ```
+
+   ```sh
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    ```
 
 3. Install `scoop` by running the following command:
-   ```
+
+   ```sh
    iwr -useb get.scoop.sh | iex
    ```
 
 4. Add the `extras` software repository to `scoop` by running the following command:
-   ```
+
+   ```sh
    scoop bucket add extras
    ```
 
 5. Install `cmake` and `ninja` by running the following command:
-   ```
+
+   ```sh
    scoop install cmake ninja
    ```
 
@@ -53,22 +58,26 @@ The following steps are for installing the required library dependencies, includ
 For detailed usage of `vcpkg`, please refer to the [official documentation](https://github.com/microsoft/vcpkg).
 
 1. Download `vcpkg`, which includes various configuration scripts and build scripts for open-source libraries. Assume the download path is `C:\work\develop`. Run the following command:
-   ```
+
+   ```sh
    git clone https://github.com/microsoft/vcpkg
    ```
 
 2. Download the precompiled `vcpkg` package manager by running the following command:
-   ```
+
+   ```sh
    .\vcpkg\bootstrap-vcpkg.bat -disableMetrics
    ```
 
 3. Build `openssl` by running the following command:
-   ```
+
+   ```sh
    .\vcpkg\vcpkg.exe install --triplet=x64-windows-static openssl
    ```
 
 4. Build `libsrtp` with `ENABLE_OPENSSL` enabled. Edit `C:\work\develop\vcpkg\ports\libsrtp\portfile.cmake` and modify `vcpkg_configure_cmake` as follows:
-   ```
+
+   ```cmake
    vcpkg_configure_cmake(
      SOURCE_PATH ${SOURCE_PATH}
      PREFER_NINJA
@@ -78,7 +87,8 @@ For detailed usage of `vcpkg`, please refer to the [official documentation](http
    ```
 
    Then, build `libsrtp` by running the following command:
-   ```
+
+   ```sh
    .\vcpkg\vcpkg.exe install --triplet=x64-windows-static libsrtp
    ```
 

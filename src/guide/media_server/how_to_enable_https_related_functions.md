@@ -3,7 +3,9 @@ title: How to Enable HTTPS Related Functions
 ---
 
 ### I. Enable OpenSSL Feature during Compilation
+
 The HTTPS feature of zlmediakit (including rtmps/rtsps/webrtc/wss) relies on the OpenSSL library. Before compiling zlmediakit, you should first install the OpenSSL library in the default system environment. On Ubuntu, you can install it using the following command:
+
 ```bash
 sudo apt-get install libssl-dev
 ```
@@ -19,9 +21,10 @@ make -j$(nproc)
 ```
 
 ## II. Create Certificates
+
 - If you haven't purchased a domain name yet, you can use a [self-signed certificate](./generate_ssl_self-signed_certificate_and_test.md) or the default certificate `default.pem` provided by zlmediakit for testing.
 
-- If you have already purchased a domain name, using Alibaba Cloud as an example, you can choose to apply for a free certificate for your domain:**
+- If you have already purchased a domain name, using Alibaba Cloud as an example, you can choose to apply for a free certificate for your domain:\*\*
 
 ![图片](/images/how_to_enable_https_related_functions_zh_1.png)
 
@@ -34,6 +37,7 @@ make -j$(nproc)
 ![图片](/images/how_to_enable_https_related_functions_zh_3.png)
 
 ## III. Download and Merge Certificates into the Supported Format by zlmediakit:
+
 - **Download the certificates:**
 
 ![图片](/images/how_to_enable_https_related_functions_zh_4.png)
@@ -44,8 +48,7 @@ make -j$(nproc)
 
 - **After extracting the downloaded compressed file, the files are as follows**：
 
-<img width="760" alt="图片" src="https://user-images.githubusercontent.com/11495632/191884186-3c09f0ed-0042-417c-a8dc-ad87c4c0c1ed.png">
-
+![图片](https://user-images.githubusercontent.com/11495632/191884186-3c09f0ed-0042-417c-a8dc-ad87c4c0c1ed.png =760x)
 
 - The files with the ".key" extension are private keys, and the files with the ".pem" extension are public keys. Both can be opened with a text editor. They are base64-encoded strings. After concatenating the two strings together, you will get the certificate file format supported by zlmediakit:
 
@@ -71,8 +74,6 @@ cp ~/Downloads/8516590_test.zlmediakit.com_nginx/default.pem ./
 
 ![图片](/images/how_to_enable_https_related_functions_zh_6.png)
 
-
-
 ## V. Testing
 
 - If the IP address of your development machine does not map to the IP address bound to the certificate domain, you can modify the host file to perform the test. Here is an example for Linux/Mac：
@@ -93,7 +94,6 @@ sudo vi /etc/hosts
 
 ![图片](/images/how_to_enable_https_related_functions_zh_8.png)
 
-
 ## VI. Deploying in a Production Environment
 
 - After completing all the previous steps and passing the verification, you can proceed to deploy the application in a production environment. To do this, you need to bind the certificate domain name to the real public IP address of your cloud host:
@@ -101,10 +101,3 @@ sudo vi /etc/hosts
 ![图片](/images/how_to_enable_https_related_functions_zh_9.png)
 
 ![图片](/images/how_to_enable_https_related_functions_zh_10.png)
-
-
-
-
-
-
-

@@ -14,6 +14,3 @@ tag:
 - [Playing URL Rules](play_url_rules.md)
 
 - [Starting and Stopping the Server](start_server.md)
-
-
-

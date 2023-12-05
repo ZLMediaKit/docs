@@ -2,12 +2,12 @@
 title: 致谢
 icon: circle-info
 ---
+
 ## 特别感谢
 
 本项目采用了[老陈](https://github.com/ireader) 的 [media-server](https://github.com/ireader/media-server) 库，
-本项目的 ts/fmp4/mp4/ps 容器格式的复用解复用都依赖media-server库。在实现本项目诸多功能时，老陈多次给予了无私热情关键的帮助，
+本项目的 ts/fmp4/mp4/ps 容器格式的复用解复用都依赖 media-server 库。在实现本项目诸多功能时，老陈多次给予了无私热情关键的帮助，
 特此对他表示诚挚的感谢！
-
 
 ## 致谢
 
@@ -24,7 +24,7 @@ icon: circle-info
 [DroidChow](https://github.com/DroidChow)
 [阿塞](https://github.com/HuoQiShuai)
 [火宣](https://github.com/ChinaCCF)
-[γ瑞γミ](https://github.com/JerryLinGd)
+[γ 瑞 γ ミ](https://github.com/JerryLinGd)
 [linkingvision](https://www.linkingvision.com/)
 [茄子](https://github.com/taotaobujue2008)
 [好心情](mailto:409257224@qq.com)
@@ -112,7 +112,6 @@ icon: circle-info
 [leibnewton](https://github.com/leibnewton)
 [1002victor](https://github.com/1002victor)
 
-同时感谢JetBrains对开源项目的支持，本项目使用CLion开发与调试：
+同时感谢 JetBrains 对开源项目的支持，本项目使用 CLion 开发与调试：
 
 [![JetBrains](https://resources.jetbrains.com/storage/products/company/brand/logos/CLion.svg)](https://jb.gg/OpenSourceSupport)
-

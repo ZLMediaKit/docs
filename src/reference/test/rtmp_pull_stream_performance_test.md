@@ -1,7 +1,9 @@
 ---
 title: rtmp pull stream performance test
 ---
-# 一、测试环境
+
+## 一、测试环境
+
 - 测试日期：2022/5/18
 - 代码版本：git hash: c7d7999f
 - cpu： Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz
@@ -10,9 +12,10 @@ title: rtmp pull stream performance test
 - 网卡：127.0.0.1
 - 测试码流: [200kbps.768x320.flv](https://raw.githubusercontent.com/ossrs/srs/develop/trunk/doc/source.200kbps.768x320.flv)
 - 编译器：gcc (GCC) 8.2.0
-- zlmediakit编译类型：Release
-- malloc库：ptmalloc(未开启jemalloc)
-- config.ini配置文件修改(主要开启合并写、按需转协议)：
+- zlmediakit 编译类型：Release
+- malloc 库：ptmalloc(未开启 jemalloc)
+- config.ini 配置文件修改(主要开启合并写、按需转协议)：
+
 ```patch
 diff --git a/conf/config.ini b/conf/config.ini
 index c2d4613f..99ce5c84 100644
@@ -52,14 +55,17 @@ index c2d4613f..99ce5c84 100644
 -fmp4_demand=0
 +fmp4_demand=1
 ```
+
 - 推流命令:
+
 ```bash
 ffmpeg -stream_loop -1 -re -i ~/Downloads/source.200kbps.768x320.flv -acodec copy -vcodec copy -f flv  rtmp://ip:port/live/test
 ```
 
-# 二、rtmp拉流性能测试(1万路)
+## 二、rtmp 拉流性能测试(1 万路)
 
 - 拉流命令：
+
 ```bash
 #加大文件描述符个数
 ulimit -n 102400
@@ -67,23 +73,22 @@ ulimit -n 102400
 ./test_bench_pull -c 10000 -i rtmp://127.0.0.1/live/test
 ```
 
-- top信息：
+- top 信息：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169045558-bcf711b8-b27c-4372-a1d2-ccb0e1a33d65.png)
 
-
-- perf top信息：
+- perf top 信息：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169045971-ebf7da67-00f1-4c63-8c17-3c27937a5016.png)
 
-- nload信息(平均2.34Gb/s)：
+- nload 信息(平均 2.34Gb/s)：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169046147-39376f04-471b-4de2-a345-0e41982a612b.png)
 
-
-# 三、rtmp拉流性能测试(3万路)
+## 三、rtmp 拉流性能测试(3 万路)
 
 - 拉流命令：
+
 ```bash
 #加大文件描述符个数
 ulimit -n 102400
@@ -91,20 +96,14 @@ ulimit -n 102400
 ./test_bench_pull -c 30000 -i rtmp://127.0.0.1/live/test
 ```
 
-- top信息：
+- top 信息：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169049433-97174931-5f6b-45db-a320-0c4257b37fad.png)
 
-
-- perf top信息：
+- perf top 信息：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169049184-951a7108-c3e6-451f-97c9-164abf439ed2.png)
 
-
-- nload信息(平均7.09Gb/s)：
+- nload 信息(平均 7.09Gb/s)：
 
 ![图片](https://user-images.githubusercontent.com/11495632/169049082-cf6c665f-b876-4e7d-91d6-391b10ec2b52.png)
-
-
-
-

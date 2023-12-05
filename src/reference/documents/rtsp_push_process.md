@@ -1,10 +1,12 @@
 ---
 title: RTSP push streaming process
 ---
+
 # 1. The client sends an ANNOUNCE command.
+
 This step primarily involves transmitting the SDP. Generally, before this command, an OPTIONS command is sent to probe the server's support for the streaming protocol. However, to reduce the number of interactions, the ANNOUNCE command can be directly sent. If not supported, the server naturally responds with an error code.
 
-```
+```http
 ANNOUNCE rtsp://10.0.9.130:554/live/2.sdp RTSP/1.0
 CSeq: 1
 User-Agent: EasyPusher v1.2.16.1105
@@ -33,8 +35,10 @@ a=control:streamid=1
 ```
 
 # 2. The server responds to the ANNOUNCE command.
+
 If the server successfully parses the SDP, it will return a 200 code to indicate success.
-```
+
+```http
 RTSP/1.0 200 OK
 CSeq: 1
 Date: Tue, Mar 26 2019 09:10:10 GMT
@@ -43,10 +47,10 @@ Session: KPUZ49ejotyD
 ```
 
 # 3. The client sends a SETUP command.
+
 This command is used to negotiate the RTP transmission mode, which can be either TCP or UDP. For simplicity, it is recommended to use TCP for streaming. It should be noted that if the SDP contains multiple tracks (e.g., both audio and video), there will be multiple interactions for the SETUP command.
 
-
-```
+```http
 SETUP rtsp://10.0.9.130:554/live/2.sdp/streamid=0 RTSP/1.0
 Transport: RTP/AVP/TCP;unicast;mode=record;interleaved=0-1
 CSeq: 2
@@ -54,8 +58,10 @@ User-Agent: EasyPusher v1.2.16.1105
 ```
 
 # 4. The server responds to the SETUP command.
+
 The server returns the negotiated interleaved value and other details.
-```
+
+```http
 RTSP/1.0 200 OK
 CSeq: 2
 Date: Tue, Mar 26 2019 09:10:10 GMT
@@ -67,9 +73,10 @@ x-Transport-Options: late-tolerance=1.400000
 ```
 
 # 5. The client sends a RECORD command.
+
 This command is equivalent to the play command during playback. It is a synchronous command to prepare the server. Please note that, for the sake of brevity, one SETUP interaction is omitted before this command.
 
-```
+```http
 RECORD rtsp://10.0.9.130:554/live/2.sdp RTSP/1.0
 Range: npt=0.000-
 CSeq: 4
@@ -78,8 +85,10 @@ Session: KPUZ49ejotyD
 ```
 
 # 6. The server responds to the RECORD command, and streaming can begin!
+
 After the server responds to the RECORD command, the streaming client can continuously send RTP packets.
-```
+
+```http
 RTSP/1.0 200 OK
 CSeq: 4
 Date: Tue, Mar 26 2019 09:10:10 GMT
@@ -87,9 +96,3 @@ RTP-Info: url=rtsp://10.0.9.130:554/live/2.sdp/streamid=0,url=rtsp://10.0.9.130:
 Server: ZLMediaKit-4.0(build in Mar 26 2019 17:01:17)
 Session: KPUZ49ejotyD
 ```
-
-
-
-
-
-

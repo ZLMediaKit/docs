@@ -1,6 +1,7 @@
 ---
 title: Configuration File Explanation
 ---
+
 ```ini
 #!!!! This configuration file is an example configuration file intended to inform the reader about the specific meanings and functions of each configuration item.
 #!!!! When executing cmake, this configuration file will be copied to the release/${operating_system_type}/${build_type} (e.g., release/linux/Debug) folder.
@@ -388,5 +389,5 @@ maxReqSize=1024
 # Telnet server listening port in debug mode
 port=0
 ```
-You can also refer to [HTTP-HOOK-API](web_hook_api.md) Supported by MediaServer for configuration related to hooks.
 
+You can also refer to [HTTP-HOOK-API](web_hook_api.md) Supported by MediaServer for configuration related to hooks.

@@ -1,6 +1,7 @@
 ---
 title: The Essence of Live Streaming Delay
 ---
+
 1. Live streaming is the representation of ongoing events, generating data as time passes.
 
 2. So why is there a delay in live streaming? The essence lies in the fact that, in order to enhance the user experience, live streaming caches a portion of historical data (such as using GOP caching to improve video loading speed).

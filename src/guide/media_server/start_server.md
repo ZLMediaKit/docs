@@ -4,6 +4,7 @@ icon: circle-info
 ---
 
 ## Program Path
+
 After compiling ZLMediaKit, the MediaServer main program is generated. The relative path of the program is `release/${platform}/${build_type}/MediaServer`.
 
 `${platform}` depends on your operating system, which may be `windows/linux/mac`, and `${build_type}` depends on the compile type you specified when using cmake, which could be `Debug/Release`.
@@ -11,6 +12,7 @@ After compiling ZLMediaKit, the MediaServer main program is generated. The relat
 ## Start-up and Parameters
 
 - First, please refer to the help for startup parameters:
+
 ```bash
 xzl-mac-pro:Debug xzl$ ./MediaServer -h
   -h  --help     no argument  default:null                                          optional  print this information
@@ -21,7 +23,9 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
   -s  --ssl      argument     default:/Users/xzl/git/ZLMediaKit/release/mac/Debug/ssl.p12     optional  path of the SSL certificate file or directory, supports p12/pem types
   -t  --threads  argument     default:8                                             optional  number of threads to launch for event triggering
 ```
+
 - Explanation:
+
   - -d(--daemon): Whether to start as a daemon. The daemon does only one thing: monitor whether the child process (the actual working process) has exited, and attempts to restart the child process if it has exited.
   - -l(--level): Specifies the log print level, with values ranging from 0 to 4. The higher the level, the fewer logs are printed.
   - -m(--max_day): The number of days the log files are kept. Logs created during the current run of the program will be deleted if they exceed this number of days.
@@ -38,13 +42,15 @@ xzl-mac-pro:Debug xzl$ ./MediaServer -h
   - 2. If you are going to use FFmpeg related functions, you should start the program like this: `nohup ./MediaServer -d &`. Otherwise, the fork FFmpeg process may cause the MediaServer process to hang.
 
 ## Hot Loading of Configuration Files
+
 After modifying and saving the configuration file, enter `killall -1 MediaServer` in the shell to make ZLMediaKit hot load the configuration file. If successful, it will print the following style of logs:
+
 ![Image](/images/start_server_2.png)
 
 ## Stopping the Server
+
 - If you started the server in the background, please enter `killall -2 MediaServer` in the shell to gracefully shut down the server (the program will automatically release resources and exit after receiving the SIGINT signal).
 - Otherwise, you can press `Ctr + C` to exit the program.
 - The logs when MediaServer exits are as follows:
 
 ![Image](/images/start_server_3.png)
-
