@@ -6,12 +6,12 @@ title: Sequence diagram
 ---
 title: On-Demand Pulling Stream Process
 ---
-sequenceDiagram 
+sequenceDiagram
     participant Player
     participant ZLMediaKit
     participant Camera
     participant Your Business Server
-    
+
     Player ->> ZLMediaKit: Player requests rtsp/rtmp/http-flv/ws-flv playback
     ZLMediaKit ->> ZLMediaKit: Check if the stream exists
     ZLMediaKit ->> Your Business Server: Stream does not exist, trigger web hook (stream_not_found) event
@@ -37,7 +37,7 @@ sequenceDiagram
     participant ZLMediaKit
     participant Streaming Camera
     participant Your Business Server
-    
+
     Player ->> ZLMediaKit: Player requests rtsp/rtmp/http-flv/ws-flv playback
     ZLMediaKit ->> ZLMediaKit: Check if the stream exists
     ZLMediaKit ->> Your Business Server: Stream does not exist, trigger web hook (stream_not_found) event
@@ -61,7 +61,7 @@ sequenceDiagram
     participant Player
     participant ZLMediaKit
     participant Your Business Server
-    
+
     Player ->> ZLMediaKit: Player requests rtsp/rtmp/http-flv/ws-flv/hls playback
     ZLMediaKit ->> Your Business Server: Check if the player has permission, trigger web hook (on_play)
     Your Business Server -->> ZLMediaKit: Parameters are valid, player has permission to play
@@ -76,7 +76,7 @@ sequenceDiagram
     participant Publisher
     participant ZLMediaKit
     participant Your Business Server
-    
+
     Publisher ->> ZLMediaKit: rtsp/rtmp stream publishing request
     ZLMediaKit ->> Your Business Server: Check if the publisher has permission, trigger web hook (on_publish)
     Your Business Server -->> ZLMediaKit: Parameters are valid, publisher has permission to publish

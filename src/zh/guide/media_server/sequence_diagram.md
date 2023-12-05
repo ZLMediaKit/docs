@@ -6,12 +6,12 @@ title: 时序图
 ---
 title: 按需拉流流程
 ---
-sequenceDiagram 
+sequenceDiagram
     participant 播放器
     participant ZLMediaKit
     participant 摄像头
     participant 你的业务服务器
-    
+
     播放器 ->> ZLMediaKit : rtsp/rtmp/http-flv/ws-flv播放器请求
     ZLMediaKit ->> ZLMediaKit:查找该流是否存在
     ZLMediaKit ->> 你的业务服务器: 流不存在，触发web hook(stream_not_found)事件
@@ -37,7 +37,7 @@ sequenceDiagram
     participant ZLMediaKit
     participant 推流摄像头
     participant 你的业务服务器
-    
+
     播放器 ->> ZLMediaKit : rtsp/rtmp/http-flv/ws-flv播放器请求
     ZLMediaKit ->> ZLMediaKit:查找该流是否存在
     ZLMediaKit ->> 你的业务服务器: 流不存在，触发web hook(stream_not_found)事件
@@ -50,7 +50,7 @@ sequenceDiagram
     播放器 ->> ZLMediaKit:播放结束
     ZLMediaKit ->> 你的业务服务器:无人观看流，触发web hook（stream_none_reader)事件
     你的业务服务器 -->>ZLMediaKit:可以关闭推流
-    ZLMediaKit ->> 推流摄像头:掐断推流  
+    ZLMediaKit ->> 推流摄像头:掐断推流
 ```
 
 ```mermaid
@@ -61,7 +61,7 @@ sequenceDiagram
     participant 播放器
     participant ZLMediaKit
     participant 你的业务服务器
-    
+
     播放器 ->> ZLMediaKit : rtsp/rtmp/http-flv/ws-flv/hls播放器请求
     ZLMediaKit ->> 你的业务服务器: 是否有权播放,触发web hook(on_play)
     你的业务服务器 -->> ZLMediaKit:参数合法，有权播放
@@ -76,7 +76,7 @@ sequenceDiagram
     participant 推流器
     participant ZLMediaKit
     participant 你的业务服务器
-    
+
     推流器 ->> ZLMediaKit : rtsp/rtmp推流请求
     ZLMediaKit ->> 你的业务服务器: 是否有权推流,触发web hook(on_publish)
     你的业务服务器 -->> ZLMediaKit:参数合法，有权推流

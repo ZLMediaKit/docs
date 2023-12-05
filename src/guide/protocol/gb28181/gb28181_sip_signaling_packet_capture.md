@@ -3,7 +3,9 @@ title: GB28181 SIP信令抓包
 ---
 
 ## 1、注册
+
 - 注册请求：
+
 ```http
 REGISTER sip:130909115229300920@10.64.49.44:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport;branch=z9hG4bK4162288924
@@ -18,7 +20,8 @@ Expires: 7200
 Content-Length: 0
 ```
 
-- 回复401：
+- 回复 401：
+
 ```http
 SIP/2.0 401 Unauthorized
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport=7100;branch=z9hG4bK4162288924
@@ -33,6 +36,7 @@ Content-Length: 0
 ```
 
 - 再次注册：
+
 ```http
 REGISTER sip:130909115229300920@10.64.49.44:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport;branch=z9hG4bK3997518011
@@ -47,7 +51,9 @@ User-Agent: Hikvision
 Expires: 7200
 Content-Length: 0
 ```
+
 - 注册成功：
+
 ```http
 SIP/2.0 200 OK
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport=7100;branch=z9hG4bK3997518011
@@ -61,9 +67,10 @@ Date: 2013-09-10T16:01:51
 Content-Length: 0
 ```
 
-
 ## 2、注销
+
 - 注销请求：
+
 ```http
 REGISTER sip:130909115229300920@10.64.49.44:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport;branch=z9hG4bK1670314216
@@ -78,7 +85,8 @@ Expires: 0
 Content-Length: 0
 ```
 
-- 回复401：
+- 回复 401：
+
 ```http
 SIP/2.0 401 Unauthorized
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport=7100;branch=z9hG4bK1670314216
@@ -93,6 +101,7 @@ Content-Length: 0
 ```
 
 - 再次注销:
+
 ```http
 REGISTER sip:130909115229300920@10.64.49.44:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport;branch=z9hG4bK317693249
@@ -109,6 +118,7 @@ Content-Length: 0
 ```
 
 - 注销成功：
+
 ```http
 SIP/2.0 200 OK
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport=7100;branch=z9hG4bK317693249
@@ -122,9 +132,10 @@ Date: 2013-09-10T14:04:41
 Content-Length: 0
 ```
 
-
 ## 3、心跳
+
 - 请求：
+
 ```http
 MESSAGE sip:130909115229300920@10.64.49.44:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport;branch=z9hG4bK2672759896
@@ -147,6 +158,7 @@ Content-Length:   150
 ```
 
 - 回复：
+
 ```http
 SIP/2.0 200 OK
 Via: SIP/2.0/UDP 10.64.49.218:7100;rport=7100;branch=z9hG4bK2672759896
@@ -158,9 +170,10 @@ User-Agent: Hikvision
 Content-Length: 0
 ```
 
-
 ## 4、目录检索
+
 - 请求：
+
 ```http
 MESSAGE sip:130909113319427420@10.64.49.218:7100 SIP/2.0
 Via: SIP/2.0/UDP 10.64.49.44:7100;rport;branch=z9hG4bK32925498
@@ -180,7 +193,9 @@ Content-Length:   124
 <DeviceID>130909113319427420</DeviceID>
 </Query>
 ```
+
 - 回复：
+
 ```http
 SIP/2.0 200 OK
 Via: SIP/2.0/UDP 10.64.49.44:7100;rport=7100;branch=z9hG4bK32925498

@@ -2,22 +2,22 @@
 title: Start
 order: 1
 ---
+
 ## 1. Obtain the Source Code
 
 **Please refrain from downloading the source code in zip package format directly from GitHub**. Instead, you should clone the ZLMediaKit code using git. This is due to ZLMediaKit's reliance on multiple third-party project codes which are not included in the zip package. Follow these steps to do this:
 
-  ```bash
-  # It's recommended for users in China to download from the synchronized mirror site, gitee 
-  git clone --depth 1 https://gitee.com/xia-chu/ZLMediaKit
-  cd ZLMediaKit
-  # Remember to execute this command
-  git submodule update --init
-  ```
+```bash
+# It's recommended for users in China to download from the synchronized mirror site, gitee
+git clone --depth 1 https://gitee.com/xia-chu/ZLMediaKit
+cd ZLMediaKit
+# Remember to execute this command
+git submodule update --init
+```
 
 ## 2. Strongly Recommended
 
-If you're a beginner, we highly recommend compiling ZLMediaKit using Ubuntu16 or later versions. macOS is the second recommended platform. The least recommended platforms are CentOS6.* and Windows.
-
+If you're a beginner, we highly recommend compiling ZLMediaKit using Ubuntu16 or later versions. macOS is the second recommended platform. The least recommended platforms are CentOS6.\* and Windows.
 
 zlmediakit has been launched on vcpkg, please refer to [install zlmediakit using vcpkg](install_zlmediakit_using_vcpkg.md) for convenient installation.
 
@@ -30,8 +30,6 @@ ZLMediaKit utilizes C++11 syntax and libraries, hence, it's required that your c
 - On Linux, gcc version >= 4.8 (4.7 should also be supported)
 - On macOS, clang >= ??? (it's uncertain, but most likely won't encounter any issues)
 - On Windows, Visual Studio >= 2015 (some versions of VS2013 can also compile, but for a smoother experience, VS2017 is recommended)
-
-
 
 ### 3.2. Installing the Compiler
 
@@ -48,7 +46,7 @@ ZLMediaKit utilizes C++11 syntax and libraries, hence, it's required that your c
   sudo yum -y install gcc-c++
   ```
 
-- If you're a CentOS6.* user, you can install the gcc compiler this way:
+- If you're a CentOS6.\* user, you can install the gcc compiler this way:
 
   ```bash
   sudo yum install centos-release-scl -y
@@ -60,8 +58,6 @@ ZLMediaKit utilizes C++11 syntax and libraries, hence, it's required that your c
 - If you're a macOS user, you can install Xcode directly.
 
 - If you're a Windows user, it's recommended to install VS2017 or later versions.
-
-
 
 ## 4. CMake
 
@@ -79,7 +75,7 @@ ZLMediaKit uses CMake to build the project. CMake is needed to generate Makefile
   sudo yum -y install cmake
   ```
 
-- If you're a CentOS6.* user, then you need to download the new version of cmake source code and then compile and install cmake:
+- If you're a CentOS6.\* user, then you need to download the new version of cmake source code and then compile and install cmake:
 
   ```bash
   wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3.tar.gz
@@ -89,8 +85,6 @@ ZLMediaKit uses CMake to build the project. CMake is needed to generate Makefile
   make -j4
   sudo make install
   ```
-
-
 
 - If you're a macOS user, here's how you can install cmake:
 
@@ -103,12 +97,11 @@ ZLMediaKit uses CMake to build the project. CMake is needed to generate Makefile
   ```bash
   # Install win64 version of cmake
   https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win64-x64.zip
-  
+
   # Install win32 version of cmake
   https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win32-x86.zip
   ```
 
-  
 ## 5. Dependencies
 
 ### 5.1 Dependency List
@@ -142,7 +135,7 @@ Most of the third-party libraries that ZLMediaKit depends on are optional. Durin
   sudo apt-get install ffmpeg
   ```
 
-- Users of centos6.* can refer to this [article](https://blog.51cto.com/mengix/2452395).
+- Users of centos6.\* can refer to this [article](https://blog.51cto.com/mengix/2452395).
 
 - To install dependencies on macOS/CentOS:
 
@@ -183,15 +176,15 @@ The activation of webrtc related features is complex and is not enabled for comp
 
     ```sh
     1 Enter the ZLMediaKit directory and execute git submodule update --init to download the code of ZLToolKit
-    
 
- 2 Use cmake-gui to open the project and generate the vs project file.
-     3 Locate the project file (ZLMediaKit.sln), double-click to open with vs2017.
-     4 Choose to compile the Release version.
-     5 Locate the target file and run the test case.
     ```
 
-  - Also, you can refer to [here](compilation_instructions_for_windows_version.md) for Windows compilation.
+2 Use cmake-gui to open the project and generate the vs project file.
+3 Locate the project file (ZLMediaKit.sln), double-click to open with vs2017.
+4 Choose to compile the Release version.
+5 Locate the target file and run the test case.
+
+- Also, you can refer to [here](compilation_instructions_for_windows_version.md) for Windows compilation.
 
 - If you want to compile the Android version, you can open the Android directory in Android Studio.
 
@@ -212,7 +205,7 @@ The ZLMediaKit project mainly generates three types of binary target files, whic
 - MediaServer Process
 
   This is the main process of ZLMediaKit as a server. This process can be used directly as a streaming media server for testing without any development. If you need more complex business logic, you can implement it through [Web HOOK](../media_server/web_hook_api.md) and [RESTful API](../media_server/restful_api.md). At the same time, you can control its parameters through the [configuration file](../media_server/config_file.md).
-  
+
   - Start on Linux:
 
     ```sh
@@ -226,7 +219,7 @@ The ZLMediaKit project mainly generates three types of binary target files, whic
   - Start on macOS:
 
     The target file directory is in ZLMediaKit/mac/Debug, and all other operations are the same.
-    
+
   - Start on Windows:
 
     ```sh
@@ -259,7 +252,7 @@ The ZLMediaKit project mainly generates three types of binary target files, whic
     ```
 
   The SDK header file has detailed comments, which are generally sufficient for secondary development.
-  
+
 - Test programs starting with `test_`
 
   The related code is in the `ZLMediaKit/tests` directory, and you can refer to the code to start the test process.

@@ -1,12 +1,13 @@
 ---
 title: Windows 版编译说明
 ---
+
 # 基于 scoop + vcpkg 的 Windows 版编译说明
 
 以下为基于 [scoop](https://github.com/lukesampson/scoop) + [vcpkg](https://github.com/microsoft/vcpkg) 编译 `ZLMediaKit` 的一种方式.
 
-* `scoop`: Windows 命令行下使用的软件包安装管理工具;
-* `vcpkg`: 微软发起的 C++ 库管理器, 其中有大量常用开源库;
+- `scoop`: Windows 命令行下使用的软件包安装管理工具;
+- `vcpkg`: 微软发起的 C++ 库管理器, 其中有大量常用开源库;
 
 由于可以在命令行下使用, 可以非常方便的进行自动化集成. 推荐大家试用.
 
@@ -23,23 +24,32 @@ title: Windows 版编译说明
 具体可参考其官网说明, 以下仅列出相关简要步骤.
 
 1. 设置环境变量 `SCOOP`, 用于配置 `scoop` 的下载安装目录(包括其管理的软件包):
-   ```
+
+   ```sh
    $env:SCOOP = 'C:\work\develop\scoop'
    ```
+
 1. 为当前用户设置允许执行 `powershell` 脚本:
-   ```
+
+   ```sh
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    ```
+
 1. 安装 `scoop`:
-   ```
+
+   ```sh
    iwr -useb get.scoop.sh | iex
    ```
+
 1. 为 `scoop` 添加 `extras` 软件仓库:
-   ```
+
+   ```sh
    scoop bucket add extras
    ```
+
 1. 安装 `cmake` 及 `ninja`:
-   ```
+
+   ```sh
    scoop install cmake ninja
    ```
 
@@ -52,19 +62,26 @@ title: Windows 版编译说明
 `vcpkg` 具体使用可参考[官方说明](https://github.com/microsoft/vcpkg), [官方说明中文版](https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md).
 
 1. 下载 `vcpkg`, 其中包括各种配置脚本以及开源库的编译脚本, 下载路径假设为: `C:\work\develop`, 执行:
-   ```
+
+   ```sh
    git clone https://github.com/microsoft/vcpkg
    ```
+
 1. 下载预编译的 `vcpkg` 包管理工具:
-   ```
+
+   ```sh
    .\vcpkg\bootstrap-vcpkg.bat -disableMetrics
    ```
+
 1. 编译 `openssl`:
-   ```
+
+   ```sh
    .\vcpkg\vcpkg.exe install --triplet=x64-windows-static openssl
    ```
+
 1. 编译 `libsrtp`, 需要 `ENABLE_OPENSSL`, 可编辑 `C:\work\develop\vcpkg\ports\libsrtp\portfile.cmake`, 修改 `vcpkg_configure_cmake` 为如下:
-   ```
+
+   ```cmake
    vcpkg_configure_cmake(
      SOURCE_PATH ${SOURCE_PATH}
      PREFER_NINJA
@@ -72,8 +89,10 @@ title: Windows 版编译说明
        -DENABLE_OPENSSL:BOOL=ON
    )
    ```
+
    然后进行编译:
-   ```
+
+   ```sh
    .\vcpkg\vcpkg.exe install --triplet=x64-windows-static libsrtp
    ```
 
@@ -82,6 +101,7 @@ title: Windows 版编译说明
 从开始菜单中打开 vs2015/2017/2019 的开发者命令行模式, 默认未找到基于 `powershell` 的 x64 位版本, 可先使用 `cmd` 版本, 然后执行 `powershell` 切换到 `powershell`.
 
 1. 编译 ZLMediaKit
+
    ```powershell
    mkdir build
    cd build
@@ -103,11 +123,13 @@ title: Windows 版编译说明
    ```
 
 编译 64 位程序在链接 `openssl` 时还需要链接 `Crypt32.lib` 和 `ws2_32.lib`, 正常在执行 `cmake .. @CMAKE_OPTIONS` 时有类似输出:
+
 ```
 found library:C:/work/develop/vcpkg/installed/x64-windows-static/lib/libssl.lib;C:/work/develop/vcpkg/installed/x64-windows-static/lib/libcrypto.lib;Crypt32.lib;ws2_32.lib,ENABLE_OPENSSL defined
 ```
 
 如果没有 `Crypt32.lib;ws2_32.lib`, 可手动修改 `CMakeLists.txt` 进行解决(可搜索 `OPENSSL_LIBRARIES` 找到对应位置).
+
 ```cmake
 list(APPEND LINK_LIB_LIST ${OPENSSL_LIBRARIES} Crypt32.lib ws2_32.lib)
 ```

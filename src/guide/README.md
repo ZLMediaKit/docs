@@ -1,26 +1,25 @@
 ---
 title: Guide
 icon: terminal
-
 ---
 
 # An high-performance, enterprise-level streaming media service framework based on C++11.
 
+[![badge](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ZLMediaKit/ZLMediaKit/blob/master/LICENSE)
+[![badge](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
+[![badge](https://img.shields.io/badge/platform-linux%20|%20macos%20|%20windows-blue.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
+[![badge](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/ZLMediaKit/ZLMediaKit/pulls)
 
-[![](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ZLMediaKit/ZLMediaKit/blob/master/LICENSE)
-[![](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
-[![](https://img.shields.io/badge/platform-linux%20|%20macos%20|%20windows-blue.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
-[![](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/ZLMediaKit/ZLMediaKit/pulls)
+[![badge](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/android.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
+[![badge](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/linux.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
+[![badge](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/macos.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
+[![badge](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/windows.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
 
-[![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/android.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
-[![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/linux.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
-[![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/macos.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
-[![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/windows.yml/badge.svg)](https://github.com/ZLMediaKit/ZLMediaKit)
-
-[![](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/docker.yml/badge.svg)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
-[![](https://img.shields.io/docker/pulls/zlmediakit/zlmediakit)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
+[![badge](https://github.com/ZLMediaKit/ZLMediaKit/actions/workflows/docker.yml/badge.svg)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
+[![badge](https://img.shields.io/docker/pulls/zlmediakit/zlmediakit)](https://hub.docker.com/r/zlmediakit/zlmediakit/tags)
 
 ## Project Features
+
 - Developed with C++11, avoiding the use of raw pointers, providing stable and reliable code with superior performance.
 - Supports multiple protocols (RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC), and protocol conversion.
 - Developed with multiplexing/multithreading/asynchronous network IO models, providing excellent concurrency performance and supporting massive client connections.
@@ -46,6 +45,7 @@ icon: terminal
 - Network programming secondary development SDK.
 
 ## Feature List
+
 ### Overview of Features
 
 ```mermaid
@@ -87,23 +87,25 @@ flowchart TD
     FMP4_LIVE-->WEBSOCKET_FMP4_P(WEBSOCKET-FMP4)
 ```
 
-- RTSP[S]
-  - RTSP[S] server, supports RTMP/MP4/HLS to RTSP[S] conversion, supports devices such as Amazon Echo Show
-  - RTSP[S] player, supports RTSP proxy, supports generating silent audio
-  - RTSP[S] push client and server
+- RTSP\[S\]
+
+  - RTSP\[S\] server, supports RTMP/MP4/HLS to RTSP\[S\] conversion, supports devices such as Amazon Echo Show
+  - RTSP\[S\] player, supports RTSP proxy, supports generating silent audio
+  - RTSP\[S\] push client and server
   - Supports four RTP transmission modes: `rtp over udp` `rtp over tcp` `rtp over http` `rtp multicast`
   - Server/client fully supports Basic/Digest authentication, asynchronous configurable authentication interface
   - Supports H265 encoding
   - The server supports RTSP pushing (including `rtp over udp` and `rtp over tcp`)
   - Supports H264/H265/AAC/G711/OPUS/MJPEG encoding. Other encodings can be forwarded but cannot be converted to protocol
 
-- RTMP[S]
-  - RTMP[S] playback server, supports RTSP/MP4/HLS to RTMP conversion
-  - RTMP[S] publishing server, supports recording and publishing streams
-  - RTMP[S] player, supports RTMP proxy, supports generating silent audio
-  - RTMP[S] push client
-  - Supports http[s]-flv live streaming server
-  - Supports http[s]-flv live streaming player
+- RTMP\[S\]
+
+  - RTMP\[S\] playback server, supports RTSP/MP4/HLS to RTMP conversion
+  - RTMP\[S\] publishing server, supports recording and publishing streams
+  - RTMP\[S\] player, supports RTMP proxy, supports generating silent audio
+  - RTMP\[S\] push client
+  - Supports http\[s\]-flv live streaming server
+  - Supports http\[s\]-flv live streaming player
   - Supports websocket-flv live streaming
   - Supports H264/H265/AAC/G711/OPUS encoding. Other encodings can be forwarded but cannot be converted to protocol
   - Supports [RTMP-H265](https://github.com/ksvc/FFmpeg/wiki)
@@ -111,22 +113,26 @@ flowchart TD
   - Supports [enhanced-rtmp(H265)](https://github.com/veovera/enhanced-rtmp)
 
 - HLS
+
   - Supports HLS file(mpegts/fmp4) generation and comes with an HTTP file server
   - Through cookie tracking technology, it can simulate HLS playback as a long connection, which can achieve HLS on-demand pulling, playback statistics, and other businesses
   - Supports HLS player and can pull HLS to rtsp/rtmp/mp4
   - Supports H264/H265/AAC/G711/OPUS encoding
 
 - TS
-  - Supports http[s]-ts live streaming
-  - Supports ws[s]-ts live streaming
+
+  - Supports http\[s\]-ts live streaming
+  - Supports ws\[s\]-ts live streaming
   - Supports H264/H265/AAC/G711/OPUS encoding
 
 - fMP4
-  - Supports http[s]-fmp4 live streaming
-  - Supports ws[s]-fmp4 live streaming
+
+  - Supports http\[s\]-fmp4 live streaming
+  - Supports ws\[s\]-fmp4 live streaming
   - Supports H264/H265/AAC/G711/OPUS/MJPEG encoding
 
-- HTTP[S] and WebSocket
+- http\[s\] and WebSocket
+
   - The server supports `directory index generation`, `file download`, `form submission requests`
   - The client provides `file downloader (supports resume breakpoint)`, `interface requestor`, `file uploader`
   - Complete HTTP API server, which can be used as a web backend development framework
@@ -134,8 +140,9 @@ flowchart TD
   - Supports http client/server cookie
   - Supports WebSocket server and client
   - Supports http file access authentication
- 
+
 - GB28181 and RTP Streaming
+
   - Supports UDP/TCP RTP (PS/TS/ES) streaming server, which can be converted to RTSP/RTMP/HLS and other protocols
   - Supports RTSP/RTMP/HLS and other protocol conversion to RTP streaming client, supports TCP/UDP mode, provides corresponding RESTful API, supports active and passive modes
   - Supports H264/H265/AAC/G711/OPUS encoding
@@ -145,6 +152,7 @@ flowchart TD
   - Supports two-way voice intercom
 
 - MP4 VOD and Recording
+
   - Supports recording as FLV/HLS/MP4
   - Supports MP4 file playback for RTSP/RTMP/HTTP-FLV/WS-FLV, supports seek
   - Supports H264/H265/AAC/G711/OPUS encoding
@@ -189,9 +197,9 @@ It is recommended to compile on Ubuntu or macOS. Compiling on Windows is cumbers
 
 You have three ways to use ZLMediaKit, namely:
 
-  - 1. Use c api as sdk, please refer to [here](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include).
-  - 2. Used as an independent streaming media server. If you don’t want to do c/c++ development, you can refer to [restful api](./media_server/restful_api.md) and [web hook](./media_server/web_hook_api.md).
-  - 3. If you want to do c/c++ development and add business logic to increase functions, you can refer to the [test program] here (https://github.com/ZLMediaKit/ZLMediaKit/tree/master/tests).
+- 1. Use c api as sdk, please refer to [here](https://github.com/ZLMediaKit/ZLMediaKit/tree/master/api/include).
+- 2. Used as an independent streaming media server. If you don’t want to do c/c++ development, you can refer to [restful api](./media_server/restful_api.md) and [web hook](./media_server/web_hook_api.md).
+- 3. If you want to do c/c++ development and add business logic to increase functions, you can refer to the [test program] here (https://github.com/ZLMediaKit/ZLMediaKit/tree/master/tests).
 
 ## Docker image
 

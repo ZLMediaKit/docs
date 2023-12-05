@@ -1,6 +1,7 @@
 ---
 title: Why is it not recommended to consult questions via QQ private chat?
 ---
+
 ## Why is private chat not recommended
 
 1. Private chat on QQ is difficult to trace and organize, making it hard to form documentation. There are often repetitive questions, which do not benefit the project.
