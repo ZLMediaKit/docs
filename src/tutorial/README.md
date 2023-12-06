@@ -141,7 +141,7 @@ ZLMediaKit depends on some optional third-party libraries. During the building o
 
   ZLMediaKit can support multiple protocols for pulling streams by forking ffmpeg as a subprocess. FFmpeg does not need to be installed during compilation.
 
-- sdl、avcodec、avutil
+- sdl, avcodec, avutil
 
   These three libraries are used by the test_player test program of ZLMediaKit. You usually do not need to install these three libraries.
 
