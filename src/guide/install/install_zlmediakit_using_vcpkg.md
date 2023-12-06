@@ -2,11 +2,13 @@
 title: Installing zlmediakit with vcpkg
 ---
 
-# Introduction
-vcpkg is a cross-platform SDK package management tool, similar to yum/apt on Linux and Homebrew on macOS. It supports multiple platforms such as Linux, macOS, and Windows, making it a powerful tool for C/C++ developers to manage dependencies. 
+## Introduction
+
+vcpkg is a cross-platform SDK package management tool, similar to yum/apt on Linux and Homebrew on macOS. It supports multiple platforms such as Linux, macOS, and Windows, making it a powerful tool for C/C++ developers to manage dependencies.
 Currently, zlmediakit has been added to vcpkg on August 8, 2023. Users can conveniently install zlmediakit C SDK and MediaServer executable program using vcpkg, resolving various compilation dependency-related issues. The inclusion of zlmediakit in vcpkg has received extensive support from [@JackBoosY](https://github.com/JackBoosY), and we express our sincere gratitude for that!
 
-# Installation Guide
+## Installation Guide
+
 ## 1. Install vcpkg
 
 Taking Linux platform as an example:
@@ -20,8 +22,6 @@ git clone https://github.com/microsoft/vcpkg
 
 > For specific instructions on different platforms, please refer to the [official documentation](https://github.com/microsoft/vcpkg/blob/master/README.md).
 
-
-
 ## 2. Install zlmediakit
 
 - Install dependencies first
@@ -30,8 +30,6 @@ git clone https://github.com/microsoft/vcpkg
   sudo apt-get install pkg-config
   ```
 
-
-
 - Install zlmediakit with default features
 
   ```bash
@@ -39,23 +37,17 @@ git clone https://github.com/microsoft/vcpkg
   ./vcpkg/vcpkg install zlmediakit
   ```
 
-
-
 - Install zlmediakit with all features (including webrtc datachannel)
 
   ```bash
   ./vcpkg/vcpkg install zlmediakit\[core,mp4,openssl,webrtc,sctp\]
   ```
 
-
-
 - Install zlmediakit with minimum features
 
   ```bash
   ./vcpkg/vcpkg install zlmediakit\[core\]
   ```
-
-
 
 - Uninstall zlmediakit
 
@@ -64,8 +56,8 @@ git clone https://github.com/microsoft/vcpkg
   ```
 
 - Installation path
-![](/images/install_zlmediakit_using_vcpkg_1.png)
-> The MediaServer process depends on config.ini, default.pem, www, and other related files, which can be copied from the source code.
+  ![](/images/install_zlmediakit_using_vcpkg_1.png)
+  > The MediaServer process depends on config.ini, default.pem, www, and other related files, which can be copied from the source code.
 
 ## 3. Install different versions
 
@@ -74,8 +66,6 @@ git clone https://github.com/microsoft/vcpkg
 ```bash
 ./vcpkg/vcpkg help triplet
 ```
-
-
 
 - Example for Linux
 
@@ -111,6 +101,5 @@ git clone https://github.com/microsoft/vcpkg
   # Then install the dynamic library version
   ./vcpkg/vcpkg install zlmediakit\[core,mp4,openssl,webrtc,sctp\]:x64-linux-dynamic
   ```
-![install_zlmediakit_using_vcpkg_2](/images/install_zlmediakit_using_vcpkg_2.png)
 
-
+  ![install_zlmediakit_using_vcpkg_2](/images/install_zlmediakit_using_vcpkg_2.png)

@@ -1,9 +1,10 @@
 .vp-hero-info-wrapper {
-  width:100vw;
+  width: 100vw;
   background: url(/assets/image/bg.svg) center/cover no-repeat;
 }
+
 @media (min-width: 768px) {
- .vp-hero-info-wrapper {
-  height:100vh
- }
+  .vp-hero-info-wrapper {
+    height: 100vh;
+  }
 }
