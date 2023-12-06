@@ -1,260 +1,339 @@
 ---
 title: Tutorial
 icon: lightbulb
-description: This tutorial will guide you through the process of compiling and running ZLMediaKit.
 ---
 
-## 1. Obtain the Source Code
+This tutorial will guide you compiling and running ZLMediaKit.
 
-**Please refrain from downloading the source code in zip package format directly from GitHub**. Instead, you should clone the ZLMediaKit code using git. This is due to ZLMediaKit's reliance on multiple third-party project codes which are not included in the zip package. Follow these steps to do this:
+<!-- more -->
 
-```bash
-# It's recommended for users in China to download from the synchronized mirror site, gitee
-git clone --depth 1 https://gitee.com/xia-chu/ZLMediaKit
-cd ZLMediaKit
-# Remember to execute this command
-git submodule update --init
-```
+## Build Environment
 
-## 2. Strongly Recommended
+::: tip Beginner Notice
 
-If you're a beginner, we highly recommend compiling ZLMediaKit using Ubuntu16 or later versions. macOS is the second recommended platform. The least recommended platforms are CentOS6.\* and Windows.
+If you're a beginner, we highly recommend compiling ZLMediaKit using Ubuntu16 or later versions. macOS is the second recommended platform. We don't recommend using CentOS6.x or Windows.
 
-zlmediakit has been launched on vcpkg, please refer to [install zlmediakit using vcpkg](../guide/install/install_zlmediakit_using_vcpkg.md) for convenient installation.
+:::
 
-## 3. Compiler
+::: info vcpkg
 
-### 3.1. Compiler Version Requirements
+ZLMediaKit has been launched on vcpkg, please refer to [install zlmediakit using vcpkg](../guide/install/install_zlmediakit_using_vcpkg.md) for convenient installation.
 
-ZLMediaKit utilizes C++11 syntax and libraries, hence, it's required that your compiler fully supports the C++11 standard. This means:
+:::
+
+### Compiler Supporting C++11
+
+ZLMediaKit uses C++11 syntax and libraries, hence, it's required that your compiler fully supports the C++11 standard. This means:
 
 - On Linux, gcc version >= 4.8 (4.7 should also be supported)
 - On macOS, clang >= ??? (it's uncertain, but most likely won't encounter any issues)
 - On Windows, Visual Studio >= 2015 (some versions of VS2013 can also compile, but for a smoother experience, VS2017 is recommended)
 
-### 3.2. Installing the Compiler
+::: tabs#env
 
-- If you're using a Debian-based operating system (including Ubuntu), the built-in gcc version is usually recent enough. Here's how to install the gcc compiler:
+@tab Debian-based (including Ubuntu)
 
-  ```bash
-  sudo apt-get install build-essential
-  ```
+```sh
+sudo apt install build-essential
+```
 
-- If you're a CentOS7 or above user, here's how to install the gcc compiler:
+@tab CentOS7+
 
-  ```cpp
-  sudo yum -y install gcc
-  sudo yum -y install gcc-c++
-  ```
+```sh
+sudo yum -y install gcc
+sudo yum -y install gcc-c++
+```
 
-- If you're a CentOS6.\* user, you can install the gcc compiler this way:
+@tab CentOS 6.x
 
-  ```bash
-  sudo yum install centos-release-scl -y
-  sudo yum install devtoolset-4-toolchain -y
-  # Switch to a higher version gcc
-  scl enable devtoolset-4 bash
-  ```
+You need to manually switch to a higher version of gcc.
 
-- If you're a macOS user, you can install Xcode directly.
+```bash
+sudo yum install centos-release-scl -y
+sudo yum install devtoolset-4-toolchain -y
+# Switch to a higher version gcc
+scl enable devtoolset-4 bash
+```
 
-- If you're a Windows user, it's recommended to install VS2017 or later versions.
+@tab macOS
 
-## 4. CMake
+[Install the latest Xcode](https://developer.apple.com/xcode/).
 
-ZLMediaKit uses CMake to build the project. CMake is needed to generate Makefile (or Xcode/VS project), so you must install CMake to complete the subsequent steps.
+@tab Windows
 
-- If you're using a Debian-based operating system (including Ubuntu), the built-in cmake version is usually recent enough. Here's how to install cmake:
+[Install latest Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) and **click C++ env**.
 
-  ```bash
-  sudo apt-get install cmake
-  ```
+:::
 
-- If you're a CentOS7 or above user, you might be able to install cmake this way:
+### CMake
 
-  ```cpp
-  sudo yum -y install cmake
-  ```
+ZLMediaKit uses CMake to build the project, so you need CMake to compile.
 
-- If you're a CentOS6.\* user, then you need to download the new version of cmake source code and then compile and install cmake:
+::: tabs#env
 
-  ```bash
-  wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3.tar.gz
-  tar -xvf cmake-3.17.0-rc3.tar.gz
-  cd cmake-3.17.0-rc3
-  ./configure
-  make -j4
-  sudo make install
-  ```
+@tab Debian-based (including Ubuntu)
 
-- If you're a macOS user, here's how you can install cmake:
+```sh
+sudo apt install cmake
+```
 
-  ```bash
-  brew install cmake
-  ```
+@tab CentOS7+
 
-- If you're a Windows user and your Visual Studio version is 2017 or later, you don't need to install cmake separately. Otherwise, you need to install cmake-gui:
+```sh
+sudo yum -y install cmake
+```
 
-  ```bash
-  # Install win64 version of cmake
-  https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win64-x64.zip
+@tab CentOS 6.x
 
-  # Install win32 version of cmake
-  https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win32-x86.zip
-  ```
+You need to manually switch to a higher version of CMake.
 
-## 5. Dependencies
+```bash
+wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3.tar.gz
+tar -xvf cmake-3.17.0-rc3.tar.gz
+cd cmake-3.17.0-rc3
+./configure
+make -j4
+sudo make install
+```
 
-### 5.1 Dependency List
+@tab macOS
 
-Most of the third-party libraries that ZLMediaKit depends on are optional. During the building of ZLMediaKit, cmake can search for these libraries in the system path and enable relevant features based on their installation status. You may choose to install these dependencies to activate associated features:
+```sh
+brew install cmake
+```
+
+@tab Windows
+
+- If using vs2017+, vs already includes cmake, you just need to tick it during installation.
+- Otherwise, you need to [download and install cmake-gui](https://github.com/Kitware/CMake/releases/download/)
+
+:::
+
+## Obtain Source Code
+
+Use git to clone the ZLMediaKit source code and its submodules:
+
+```bash
+git clone --depth 1 https://tithub.com/ZLMediaKit/ZLMediaKit
+cd ZLMediaKit
+# Init submodules (Required)
+git submodule update --init
+```
+
+::: warning
+
+Do NOT download the source code with zip directly from GitHub. ZLMediaKit is relaying on multiple third-party project codes and manages them with git submodules.
+
+:::
+
+### 3rd party Dependencies
+
+ZLMediaKit depends on some optional third-party libraries. During the building of ZLMediaKit, cmake can search for these libraries in the system path and enable relevant features based on their installation status.
 
 - openssl
 
-  - Flash player uses complex handshake mode when playing rtmp, and if this library is not installed, flash player will not be able to play rtmp url provided by zlmediakit.
+  You need to install the openssl library before compiling to use related features.
 
-  - At the same time, features such as https/rtsps/webrtc of ZLMediaKit also require openssl to be activated.
+  - Playing rtmp with flash player
+  - https/rtsps/webrtc related features
 
 - ffmpeg
 
-  - ZLMediaKit can support multiple protocols for pulling streams by forking ffmpeg as a subprocess. FFmpeg does not need to be installed during compilation.
+  ZLMediaKit can support multiple protocols for pulling streams by forking ffmpeg as a subprocess. FFmpeg does not need to be installed during compilation.
 
-- sdl, avcodec, avutil
+- sdl、avcodec、avutil
 
-  - These three libraries are used by the test_player test program of ZLMediaKit. You usually do not need to install these three libraries.
+  These three libraries are used by the test_player test program of ZLMediaKit. You usually do not need to install these three libraries.
 
-### 5.2 Installing Dependencies
+::: tabs#env
 
-- On Debian systems (including Ubuntu), use the following commands to install dependencies:
+@tab Debian-based (including Ubuntu)
 
-  ```sh
-  # Everything but openssl is optional
-  sudo apt-get install libssl-dev
-  sudo apt-get install libsdl-dev
-  sudo apt-get install libavcodec-dev
-  sudo apt-get install libavutil-dev
-  sudo apt-get install ffmpeg
-  ```
+Except openssl, others are optional:
 
-- Users of centos6.\* can refer to this [article](https://blog.51cto.com/mengix/2452395).
+```sh
+sudo apt install libssl-dev
+sudo apt install libsdl-dev
+sudo apt install libavcodec-dev
+sudo apt install libavutil-dev
+sudo apt install ffmpeg
+```
 
-- To install dependencies on macOS/CentOS:
+@tab CentOS7+
 
-  The basic installation is similar to Debian. Replace the installation commands with brew/yum. However, some library names may be different from Debian, please search for relevant information.
+```sh
+sudo yum install libssl-dev
+sudo yum install libsdl-dev
+sudo yum install libavcodec-dev
+sudo yum install libavutil-dev
+sudo yum install ffmpeg
+```
 
-- To install dependencies on Windows:
+@tab CentOS 6.x
 
-  - Installing openssl
+Refer to [blog post](https://blog.51cto.com/mengix/2452395)。
 
-    Please download from this [website](http://slproweb.com/products/Win32OpenSSL.html).
+@tab macOS
 
-## 6. Building and Compiling the Project
+```sh
+sudo brew install libssl-dev
+sudo brew install libsdl-dev
+sudo brew install libavcodec-dev
+sudo brew install libavutil-dev
+sudo brew install ffmpeg
+```
 
-The activation of webrtc related features is complex and is not enabled for compilation by default. If you are
-interested in the webrtc feature of zlmediakit, you can refer to [here](../guide/protocol/webrtc/webrtc_compilation_and_use.md).
+@tab Windows
 
-- On Linux or macOS systems, you should operate as follows:
+[Install and download openssl](https://slproweb.com/products/Win32OpenSSL.html)。
 
-  ```bash
-  cd ZLMediaKit
-  mkdir build
-  cd build
-  # You may need to specify the openssl path on macOS as follows: cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2j/
-  cmake ..
-  make -j4
-  ```
+:::
 
-- On Windows system:
+## Building and Compiling ZLMediaKit
 
-  - If you are using VS2017 or above, you can directly open the project folder from the VS menu bar:
+::: info webrtc
 
-    ```bash
-    [File] -> [Open] -> [Folder] -> [Select ZLMediaKit code root directory and open]
-    ```
+由于功能复杂，默认情况下不开启编译 webrtc，可参考 [编译与使用 webrtc](../guide/protocol/webrtc/webrtc_compilation_and_use.md)
 
-    ![image](/images/vs_code_zh.png)
+Because of complex, the webrtc compilation is not enabled by default. Please refer to [compilation and usage of webrtc](../guide/protocol/webrtc/webrtc_compilation_and_use.md).
 
-  - If you are using VS2017 or earlier, you need to use cmake-gui to generate the VS project and then compile:
+:::
 
-    1 Enter the ZLMediaKit directory and execute git submodule update --init to download the code of ZLToolKit
-    2 Use cmake-gui to open the project and generate the vs project file.
-    3 Locate the project file (ZLMediaKit.sln), double-click to open with vs2017.
-    4 Choose to compile the Release version.
-    5 Locate the target file and run the test case.
+::: tabs#env
 
-  - Also, you can refer to [here](../guide/install/compilation_instructions_for_windows_version.md) for Windows compilation.
+@tab Linux
 
-- If you want to compile the Android version, you can open the Android directory in Android Studio.
+```sh
+cd ZLMediaKit
+mkdir build
+cd build
+cmake ..
+make -j4
+```
 
-- If you want to compile the iOS version, you can generate the Xcode project and then compile the C API static library. In addition, you can refer to this [document](https://www.jianshu.com/p/44c21296add5).
+@tab macOS
 
-  ```sh
-  cd ZLMediaKit
-  mkdir -p build
-  cd build
-  # Generate the Xcode project, the project file is in the build directory
-  cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../cmake/ios.toolchain.cmake  -DPLATFORM=OS64COMBINED
-  ```
+```sh
+cd ZLMediaKit
+mkdir build
+cd build
+# Point DOPENSSL_ROOT_DIR to your openssl path
+cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2j/
+make -j4
+```
 
-## 7. Execution
+@tab Windows
 
-The ZLMediaKit project mainly generates three types of binary target files, which are generated in the release directory. These target files mainly include:
+- If you are using VS2017 or above, you can directly open the project folder from the VS navbar with `File` -> `Open` -> `Folder` -> `Select ZLMediaKit code root directory and open`.
 
-- MediaServer Process
+  ![image](/images/vs_code_zh.png)
 
-  This is the main process of ZLMediaKit as a server. This process can be used directly as a streaming media server for testing without any development. If you need more complex business logic, you can implement it through [Web HOOK](../guide/media_server/web_hook_api.md) and [RESTful API](../guide/media_server/restful_api.md). At the same time, you can control its parameters through the [configuration file](../guide/media_server/config_file.md).
+- Otherwise, you should:
 
-  - Start on Linux:
+  1. Use cmake-gui to open the project and generate the vs project file.
+  2. Find the project file (ZLMediaKit.sln) and double-click it to open with vs2017.
+  3. Choose to compile the Release version.
+  4. Locate the target file and run the test case.
 
-    ```sh
-    cd ZLMediaKit/release/linux/Debug
-    # You can learn about the startup parameters with -h
-    ./MediaServer -h
-    # Start in daemon mode
-    ./MediaServer -d &
-    ```
+For further details, refer to [Windows compilation](../guide/install/compilation_instructions_for_windows_version.md).
 
-  - Start on macOS:
+@tab Android
 
-    The target file directory is in ZLMediaKit/mac/Debug, and all other operations are the same.
+Open the Android directory in Android Studio.
 
-  - Start on Windows:
+@tab iOS
 
-    ```sh
-    1 Go to the ZLMediaKit/release/windows/Debug directory
-    2 Double-click MediaServer to start
-    3 You can also start in cmd or powershell, and learn about startup parameters through MediaServer -h
-    ```
+Generate XCode project and then compile the C API static library.
 
-- C API SDK
+```sh
+cd ZLMediaKit
+mkdir -p build
+cd build
+# Generate the Xcode project, the project file is in the build directory
+cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../cmake/ios.toolchain.cmake  -DPLATFORM=OS64COMBINED
+```
 
-  ZLMediaKit also provides a C language-based API for secondary development of the SDK library. The header file is in `ZLMediaKit/api/include`. The library files are:
+:::
 
-  - On Linux:
+## Run ZLMediaKit
 
-    ```sh
-    ZLMediaKit/release/linux/Debug/libmk_api.so
-    ```
+The ZLMediaKit project mainly generates three types of binary target files, which are located in release directory.
 
-  - On macOS:
+### MediaServer Process
 
-    ```sh
-    ZLMediaKit/release/linux/mac/libmk_api.dylib
-    ```
+This is the main process of ZLMediaKit as a server. This process can be used directly as a streaming media server for testing without any development.
 
-  - On Windows:
+If you need more complex business logic, you can implement it through [Web HOOK](../guide/media_server/web_hook_api.md) and [RESTful API](../guide/media_server/restful_api.md). At the same time, you can control its parameters through the [configuration file](../guide/media_server/config_file.md).
 
-    ```sh
-    ZLMediaKit/release/windows/Debug/mk_api.dll
-    ZLMediaKit/release/windows/Debug/mk_api.lib
-    ```
+::: tabs#env
 
-  The SDK header file has detailed comments, which are generally sufficient for secondary development.
+@tab Linux
 
-- Test programs starting with `test_`
+```sh
+cd ZLMediaKit/release/linux/Debug
+# Learn startup parameters with -h
+./MediaServer -h
+# Start in daemon mode
+./MediaServer -d &
+```
 
-  The related code is in the `ZLMediaKit/tests` directory, and you can refer to the code to start the test process.
+@tab macOS
 
-## 8. Testing
+```sh
+cd ZLMediaKit/release/mac/Debug
+# Learn startup parameters with -h
+./MediaServer -h
+# Start in daemon mode
+./MediaServer -d &
+```
 
-Please refer to [this article](../guide/media_server/push_test.md) to complete the stream push and play test.
+@tab Windows
+
+```sh
+cd ZLMediaKit/release/windows/Debug
+# Learn startup parameters with -h
+./MediaServer -h
+# Start in daemon mode
+./MediaServer -d &
+```
+
+:::
+
+### C API SDK
+
+ZLMediaKit also provides a C language-based API SDK library for further development.
+
+The header file is located at `ZLMediaKit/api/include` with detailed comments, could be generally sufficient for further development.
+
+Lib files:
+
+::: tabs#env
+
+@tab Linux
+
+```sh
+ZLMediaKit/release/linux/Debug/libmk_api.so
+```
+
+@tab macOS
+
+```sh
+ZLMediaKit/release/linux/mac/libmk_api.dylib
+```
+
+@tab Windows
+
+```sh
+ZLMediaKit/release/windows/Debug/mk_api.dll
+ZLMediaKit/release/windows/Debug/mk_api.lib
+```
+
+:::
+
+### Test programs starting with `test_`
+
+Related codes are under `ZLMediaKit/tests` directory, and you can start the test process by reading codes.
+
+## Stream Testing
+
+Please refer to [Stream Test](../guide/media_server/push_test.md).

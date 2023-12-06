@@ -76,6 +76,7 @@ export default hopeTheme({
       imgLazyload: true,
       imgSize: true,
       mermaid: true,
+      tabs: true,
     },
 
     // uncomment these if you want a pwa
