@@ -1,262 +1,339 @@
 ---
 title: 快速开始
 icon: lightbulb
-description: 本教程将指导您完成编译和运行ZLMediaKit.
 ---
 
-## 1、获取代码
+本教程将指导您完成编译和运行 ZLMediaKit。
 
-**请不要使用 github 下载 zip 包的方式下载源码**，务必使用 git 克隆 ZLMediaKit 的代码，因为 ZLMediaKit 依赖于第三方代码，zip 包不会下载第三方依赖源码，你可以这样操作：
+<!-- more -->
+
+## 构建环境
+
+::: tip 新手提示
+
+如果你是位新手，强烈建议使用 Ubuntu16 以上版本编译 ZLMediaKit，macOS 是次选推荐平台。不推荐使用 CentOS6.x 或 windows 构建与使用。
+
+:::
+
+::: info vcpkg
+
+ZLMediaKit 已上架 vcpkg，便捷安装请参考 [vcpkg 安装 ZLMediaKit](../guide/install/install_zlmediakit_using_vcpkg.md)。
+
+:::
+
+### 支持 C++11 的编译器
+
+ZLMediaKit 采用了 C++11 的语法和库，要求编译器支持完整的 C++11 标准：
+
+- Linux: gcc >= 4.8 (4.7 应该也能支持)
+- macOS: Clang >= ??? (我也不知道，估计大部分不会遇到这个问题)
+- Windows: Visual Studio >= 2015 (vs2013 某些版本也能编译通过，如果怕麻烦建议直接 vs2017)
+
+::: tabs#env
+
+@tab Debian 系 (包括 Ubuntu)
+
+```sh
+sudo apt install build-essential
+```
+
+@tab CentOS7+
+
+```sh
+sudo yum -y install gcc
+sudo yum -y install gcc-c++
+```
+
+@tab CentOS 6.x
+
+需要手动切换到高版本 gcc。
 
 ```bash
-#国内用户推荐从同步镜像网站gitee下载
+sudo yum install centos-release-scl -y
+sudo yum install devtoolset-4-toolchain -y
+# 切换到高版本 gcc
+scl enable devtoolset-4 bash
+```
+
+@tab macOS
+
+[安装最新的 Xcode](https://developer.apple.com/cn/xcode/)。
+
+@tab Windows
+
+[安装最新的 Visual Studio Community](https://visualstudio.microsoft.com/zh-hans/vs/community/) 并**勾选 C++ 开发环境**。
+
+:::
+
+### CMake
+
+ZLMediaKit 采用 CMake 来构建项目，所以编译需要 CMake。
+
+::: tabs#env
+
+@tab Debian 系 (包括 Ubuntu)
+
+```sh
+sudo apt install cmake
+```
+
+@tab CentOS7+
+
+```sh
+sudo yum -y install cmake
+```
+
+@tab CentOS 6.x
+
+需要手动切换到高版本 CMake。
+
+```bash
+wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3.tar.gz
+tar -xvf cmake-3.17.0-rc3.tar.gz
+cd cmake-3.17.0-rc3
+./configure
+make -j4
+sudo make install
+```
+
+@tab macOS
+
+```sh
+brew install cmake
+```
+
+@tab Windows
+
+- 若使用 vs2017+，vs 已包含 cmake，你只需在安装时勾选。
+
+- 否则你需要 [下载并安装 cmake-gui](https://github.com/Kitware/CMake/releases/download/)。
+
+:::
+
+## 获取代码
+
+使用 Git 克隆 ZLMediaKit 的代码并初始化子模块：
+
+```sh
+# 国内用户推荐从 Gitee 下载
 git clone --depth 1 https://gitee.com/xia-chu/ZLMediaKit
 cd ZLMediaKit
-#千万不要忘记执行这句命令
+# 初始化子模块 （必须执行）
 git submodule update --init
 ```
 
-## 2、强烈推荐
+::: warning
 
-如果你是位新手，强烈建议使用 ubuntu16 或更新版本编译 ZLMediaKit，macOS 是次选推荐平台，最不推荐的是 centos6.\*或 windows 平台。
+不能通过下载 zip 包的方式下载源码。因为 ZLMediaKit 依赖于第三方代码并通过 Git 子模块的方式管理。
 
-zlmediakit 已上架 vcpkg，便捷安装请参考[vcpkg 安装 zlmediakit](../guide/install/install_zlmediakit_using_vcpkg.md)
+:::
 
-## 3、编译器
+### 安装依赖库
 
-### 3.1、编译器版本要求
-
-ZLMediaKit 采用了 C++11 的语法和库，要求编译器支持完整的 C++11 标准，亦即：
-
-- linux 上要求 gcc 版本 >= 4.8(4.7 应该也能支持)
-- macOS 上 clang >= ???（我也不知道，估计大部分不会遇到这个问题）
-- windows 上 visual stuido >= 2015(vs2013 某些版本也能编译通过，如果怕麻烦建议直接 vs2017)
-
-### 3.2、安装编译器
-
-- 如果你是 debian 系操作系统(包括 ubuntu 系用户)，一般自带的 gcc 版本够新，你可以这样安装 gcc 编译器：
-
-  ```bash
-  sudo apt-get install build-essential
-  ```
-
-- 如果你是 centos7 或以上用户，你可以这样安装 gcc 编译器：
-
-  ```cpp
-  sudo yum -y install gcc
-  sudo yum -y install gcc-c++
-  ```
-
-- 如果你是 centos6.\*用户，你可以这样安装 gcc 编译器：
-
-  ```bash
-  sudo yum install centos-release-scl -y
-  sudo yum install devtoolset-4-toolchain -y
-  #切换到高版本gcc
-  scl enable devtoolset-4 bash
-  ```
-
-- 如果你是 macOS 用户，你直接安装 xcode 即可。
-
-- 如果你是 windows 用户，推荐安装 vs2017 或以上。
-
-## 4、cmake
-
-ZLMediaKit 采用 cmake 来构建项目，通过 cmake 才能生成 Makefile(或 Xcode/VS 工程)，所以必须先安装 cmake 才能完成后续步骤。
-
-- 如果你是 debian 系操作系统(包括 ubuntu 系用户)，一般自带的 cmake 版本够新，你可以这样安装 cmake
-
-  ```bash
-  sudo apt-get install cmake
-  ```
-
-- 如果你是 centos7 或以上用户，你也许可以这样安装 cmake:
-
-  ```cpp
-  sudo yum -y install cmake
-  ```
-
-- 如果你是 centos6.\*用户，那么你需要下载新版本的 cmake 源码然后编译安装 cmake
-
-  ```bash
-  wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3.tar.gz
-  tar -xvf cmake-3.17.0-rc3.tar.gz
-  cd cmake-3.17.0-rc3
-  ./configure
-  make -j4
-  sudo make install
-  ```
-
-- 如果你是 macOS 用户，你可以这样安装 cmake:
-
-  ```bash
-  brew install cmake
-  ```
-
-- 如果你是 windows 用户，并且 vs 版本为 2017 及以上，你不用单独安装 cmake，否则你需要安装 cmake-gui:
-
-  ```bash
-  #安装win64版本cmake
-  https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win64-x64.zip
-
-  #安装win32版本cmake
-  https://github.com/Kitware/CMake/releases/download/v3.17.0-rc3/cmake-3.17.0-rc3-win32-x86.zip
-  ```
-
-## 5、依赖库
-
-### 5.1、依赖库列表
-
-ZLMediaKit 可选依赖一些第三方库，这些库都不是必选的；在构建 ZLMediaKit 时，cmake 能查找系统路径中的这些库，并根据安装情况选择是否开启相关特性，你可以选择安装这些依赖并启用相关特性：
+ZLMediaKit 依赖一些可选的第三方库。构建时，CMake 将在 path 中查找这些库，并根据检测情况决定是否开启相关特性。
 
 - openssl
 
-  - flash player 在播放 rtmp 时，采用的是复杂握手模式，如果不安装该库，flash player 将播放不了 zlmediakit 提供的 rtmp url.
+  你需要在编译前安装 openssl 库以使用相关功能。
 
-  - 同时 ZLMediaKit 的 https/rtsps/webrtc 相关功能需要使用 openssl 才能开启。
+  - flash player 播放 rtmp
+  - https/rtsps/webrtc 相关功能。
 
 - ffmpeg
 
-  zlmediakit 可以通过 fork ffmpeg 进程的方式实现多种协议的拉流，编译时不需要安装 FFmpeg。
+  ZLMediaKit 可以通过 fork ffmpeg 进程的方式实现多种协议的拉流，编译时不需要安装 FFmpeg。
 
 - sdl、avcodec、avutil
 
   这 3 个库供 ZLMediaKit 的 test_player 测试程序使用，你通常不需要安装这 3 个库。
 
-### 5.2、安装依赖库
+::: tabs#env
 
-- Debian 系（包括 ubuntu）系统下安装依赖的方法：
+@tab Debian 系 (包括 Ubuntu)
 
-  ```sh
-  #除了openssl,其他其实都可以不安装
-  sudo apt-get install libssl-dev
-  sudo apt-get install libsdl-dev
-  sudo apt-get install libavcodec-dev
-  sudo apt-get install libavutil-dev
-  sudo apt-get install ffmpeg
-  ```
+除了 openssl，其他都是可选的:
 
-- centos6.\*的用户可以参考该[文章](https://blog.51cto.com/mengix/2452395)
+```sh
+sudo apt install libssl-dev
+sudo apt install libsdl-dev
+sudo apt install libavcodec-dev
+sudo apt install libavutil-dev
+sudo apt install ffmpeg
+```
 
-- macOS/centos 下安装依赖库：
+@tab CentOS7+
 
-  基本安装方式跟 Debian 系安装差不多，安装命令分别改成 brew / yum 即可。但是有些库名字与 Debian 系不太一样，请自行查找相关资料。
+```sh
+sudo yum install libssl-dev
+sudo yum install libsdl-dev
+sudo yum install libavcodec-dev
+sudo yum install libavutil-dev
+sudo yum install ffmpeg
+```
 
-- windows 下安装依赖库
+@tab CentOS 6.x
 
-  - 安装 openssl
+请 [参考此博文](https://blog.51cto.com/mengix/2452395)。
 
-    请从[网站](http://slproweb.com/products/Win32OpenSSL.html)中下载。
+@tab macOS
 
-## 6、构建和编译项目
+```sh
+sudo brew install libssl-dev
+sudo brew install libsdl-dev
+sudo brew install libavcodec-dev
+sudo brew install libavutil-dev
+sudo brew install ffmpeg
+```
 
-由于开启 webrtc 相关功能比较复杂，默认是不开启编译的，如果你对 zlmediakit 的 webrtc 功能比较感兴趣，可以参考[这里](../guide/protocol/webrtc/webrtc_compilation_and_use.md)
+@tab Windows
 
-- 在 linux 或 macOS 系统下,你应该这样操作：
+[下载并安装 openssl](https://slproweb.com/products/Win32OpenSSL.html)。
 
-  ```bash
-  cd ZLMediaKit
-  mkdir build
-  cd build
-  #macOS下可能需要这样指定openss路径：cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2j/
-  cmake ..
-  make -j4
-  ```
+:::
 
-- 在 windows 系统下
+## 构建与编译 ZLMediaKit
 
-  - 如果你是 vs2017 或以上，可以在 vs 菜单栏中直接打开项目文件夹：
+::: info webrtc
 
-    ```bash
-    [文件] -> [打开] -> [文件夹] -> [选择ZLMediaKit代码根目录并打开]
-    ```
+由于功能复杂，默认情况下不开启编译 webrtc，可参考 [编译与使用 webrtc](../guide/protocol/webrtc/webrtc_compilation_and_use.md)
+
+:::
+
+::: tabs#env
+
+@tab Linux
+
+```sh
+cd ZLMediaKit
+mkdir build
+cd build
+cmake ..
+make -j4
+```
+
+@tab macOS
+
+```sh
+cd ZLMediaKit
+mkdir build
+cd build
+# 将 DOPENSSL_ROOT_DIR 指向你的 openssl 路径
+cmake .. -DOPENSSL_ROOT_DIR=/usr/local/Cellar/openssl/1.0.2j/
+make -j4
+```
+
+@tab Windows
+
+- 若使用 vs2017+，可直接在菜单栏中通过 `文件` -> `打开` -> `文件夹` -> `选择 ZLMediaKit 代码根目录并打开` 打开项目文件夹。
 
   ![image](/images/vs_code_zh.png)
 
-  - 如果你是 vs2017 以下版本，你需要使用 cmake-gui 生成 vs 工程然后编译：
+- 否则，你应该:
 
-    ```sh
-    1 进入ZLMediaKit目录执行 git submodule update --init 以下载ZLToolKit的代码
-    2 使用cmake-gui打开工程并生成vs工程文件.
-    3 找到工程文件(ZLMediaKit.sln),双击用vs2017打开.
-    4 选择编译Release 版本.
-    5 找到目标文件并运行测试用例.
-    ```
+  1. 使用 cmake-gui 打开工程并生成 vs 工程文件。
+  2. 找到工程文件 (ZLMediaKit.sln) 并用使用 Visual Studio 打开。
+  3. 选择编译 Release 版本。
+  4. 找到目标文件并运行测试用例。
 
-  - 同时，Windows 编译也可以参考[这里](../guide/install/compilation_instructions_for_windows_version.md)
+有关 Windows 编译可参考 [Windows 编译说明](../guide/install/compilation_instructions_for_windows_version.md)
 
-- 如果你要编译 Android 版本，你可以自己在 Android Studio 中打开 Android 目录。
+@tab Android
 
-- 如果你要编译 ios 版本，可以生成 xcode 工程然后编译 c api 的静态库;另外，你可以参考此[文档](https://www.jianshu.com/p/44c21296add5)
+在 Android Studio 中打开 Android 目录。
 
-  ```sh
-  cd ZLMediaKit
-  mkdir -p build
-  cd build
-  # 生成Xcode工程，工程文件在build目录下
-  cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../cmake/ios.toolchain.cmake  -DPLATFORM=OS64COMBINED
-  ```
+@tab iOS
 
-## 7、运行
+可参考 [此博文](https://www.jianshu.com/p/44c21296add5) 生成 XCode 工程然后编译 c api 的静态库:
 
-ZLMediaKit 工程主要生成 3 种二进制目标文件，他们的生成的路径在 release 目录下，这些目标文件主要分为：
+```sh
+cd ZLMediaKit
+mkdir -p build
+cd build
+# 生成 XCode 工程，工程文件在 build 目录下
+cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../cmake/ios.toolchain.cmake  -DPLATFORM=OS64COMBINED
+```
 
-- MediaServer 进程
+:::
 
-  这是 ZLMediaKit 作为服务器的主进程，该进程可以在免去开发的情况下直接作为测试流媒体服务器使用，如果你需要更复杂的业务逻辑，可以通过[Web HOOK](../guide/media_server/web_hook_api.
-  md)和[RESTful API](../guide/media_server/restful_api.md)实现,同时你可以通过[配置文件](../guide/media_server/config_file.md)控制其参数。
+## 运行 ZLMediaKit
 
-  - 在 linux 下启动：
+ZLMediaKit 工程主要生成 3 种二进制目标文件，他们的生成的路径在 release 目录下。
 
-    ```sh
-    cd ZLMediaKit/release/linux/Debug
-    #通过-h可以了解启动参数
-    ./MediaServer -h
-    #以守护进程模式启动
-    ./MediaServer -d &
-    ```
+### MediaServer 进程
 
-  - 在 macos 下启动：
+这是 ZLMediaKit 作为服务器的主进程，该进程可以在免去开发的情况下直接作为测试流媒体服务器使用。
 
-    目标文件目录在 ZLMediaKit/mac/Debug,其他操作完全一致。
+如果你需要更复杂的业务逻辑，可以通过 [Web HOOK](../guide/media_server/web_hook_api.md)和 [RESTful API](../guide/media_server/restful_api.md)实现。你可以通过 [配置文件](../guide/media_server/config_file.md) 控制其参数。
 
-  - 在 window 下启动：
+::: tabs#env
 
-    ```sh
-    1 进入ZLMediaKit/release/windows/Debug目录
-    2 双击MediaServer启动
-    3 你也可以在cmd或powershell中启动，通过MediaServer -h了解启动参数
-    ```
+@tab Linux
 
-- c api 的 SDK
+```sh
+cd ZLMediaKit/release/linux/Debug
+# 通过 -h 可以了解启动参数
+./MediaServer -h
+# 以守护进程模式启动
+./MediaServer -d &
+```
 
-  ZLMediaKit 也提供 c 的 api 二次开发 sdk 库，头文件在`ZLMediaKit/api/include`,库文件为：
+@tab macOS
 
-  - linux 下：
+```sh
+cd ZLMediaKit/release/mac/Debug
+# 通过 -h 可以了解启动参数
+./MediaServer -h
+# 以守护进程模式启动
+./MediaServer -d &
+```
 
-    ```sh
-    ZLMediaKit/release/linux/Debug/libmk_api.so
-    ```
+@tab Windows
 
-  - macOS 下:
+```sh
+cd ZLMediaKit/release/windows/Debug
+# 通过 -h 可以了解启动参数
+./MediaServer.exe -h
+# 以守护进程模式启动
+./MediaServer.exe -d &
+```
 
-    ```sh
-    ZLMediaKit/release/linux/mac/libmk_api.dylib
-    ```
+:::
 
-  - windows 下:
+### C 接口的 SDK
 
-    ```sh
-    ZLMediaKit/release/windows/Debug/mk_api.dll
-    ZLMediaKit/release/windows/Debug/mk_api.lib
-    ```
+ZLMediaKit 同时提供 C 接口的 SDK 库。
 
-    SDK 头文件有详细的注释，一般足够二次开发使用。
+头文件位于 `ZLMediaKit/api/include`，有详细的注释，一般足够二次开发使用。
 
-- 以`test_`开头的测试程序
+库文件为:
 
-  相关代码在`ZLMediaKit/tests`目录下，你可以对照代码启动测试进程。
+::: tabs#env
 
-## 8、测试
+@tab Linux
 
-请参考[此文章](../guide/media_server/push_test.md)完成推流播放测试
+```sh
+ZLMediaKit/release/linux/Debug/libmk_api.so
+```
+
+@tab macOS
+
+```sh
+ZLMediaKit/release/linux/mac/libmk_api.dylib
+```
+
+@tab Windows
+
+```sh
+ZLMediaKit/release/windows/Debug/mk_api.dll
+ZLMediaKit/release/windows/Debug/mk_api.lib
+```
+
+:::
+
+### 以 `test_` 开头的测试程序
+
+相关代码在 `ZLMediaKit/tests` 目录下，你可以对照代码启动测试进程。
+
+## 推流测试
+
+请参考 [推流播放测试](../guide/media_server/push_test.md)。

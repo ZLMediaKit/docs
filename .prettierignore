@@ -7,9 +7,3 @@
 **/.vuepress/.temp/**
 # Vuepress Output
 **/.vuepress/dist/
-
-# npm config
-.npmrc
-
-# macOS
-.DS_Store
