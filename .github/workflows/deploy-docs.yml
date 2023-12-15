@@ -1,4 +1,4 @@
-name: 部署文档
+name: deploy-docs
 
 on:
   push:
@@ -17,25 +17,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 安装 pnpm
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           run_install: true
 
-      - name: 设置 Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      - name: 构建文档
+      - name: Docs build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
           pnpm run docs:build
           > src/.vuepress/dist/.nojekyll
 
-      - name: 部署文档
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
