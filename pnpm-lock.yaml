@@ -29,7 +29,7 @@ devDependencies:
     specifier: 2.0.0-rc.0
     version: 2.0.0-rc.0(@vuepress/client@2.0.0-rc.0)(vue@3.3.10)
   vuepress-theme-hope:
-    specifier: v2.0.0-rc.4
+    specifier: 2.0.0-rc.4
     version: 2.0.0-rc.4(markdown-it@13.0.2)(mermaid@10.6.1)(vuepress@2.0.0-rc.0)
 
 packages:
