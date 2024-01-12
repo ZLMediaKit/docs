@@ -912,7 +912,7 @@ You can also refer to this [issue](https://github.com/zlmediakit/ZLMediaKit/issu
 
   {
      "code" : 0,
-     "msg" : "success
+     "msg" : "success"
   }
   ```
 
@@ -1028,7 +1028,7 @@ You can also refer to this [issue](https://github.com/zlmediakit/ZLMediaKit/issu
 
   {
      "code" : 0,
-     "msg" : "success
+     "msg" : "success"
   }
   ```
 
