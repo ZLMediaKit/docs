@@ -114,7 +114,7 @@ brew install cmake
 Use git to clone the ZLMediaKit source code and its submodules:
 
 ```bash
-git clone --depth 1 https://tithub.com/ZLMediaKit/ZLMediaKit
+git clone --depth 1 https://github.com/ZLMediaKit/ZLMediaKit
 cd ZLMediaKit
 # Init submodules (Required)
 git submodule update --init
