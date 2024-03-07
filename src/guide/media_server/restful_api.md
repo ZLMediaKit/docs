@@ -49,7 +49,8 @@ MediaServer is the main process of ZLMediaKit and currently supports the followi
       "/index/api/getMediaPlayerList"
 ```
 
-For the POST method, parameters can be sent in either urlencoded or JSON format. To authenticate these API operations, the `secret` parameter needs to be provided. However, if the operation is performed from the IP address 127.0.0.1, authentication is not required.
+For the POST method, parameters can be sent in either urlencoded or JSON format. 
+To authenticate these API operations, the `secret` parameter needs to be provided. 
 
 ## API Response Conventions
 
@@ -100,7 +101,12 @@ typedef enum {
 
 - Example:[http://127.0.0.1/index/api/getApiList](http://127.0.0.1/index/api/getApiList)
 
-- Parameters:None
+- Parameters:
+  
+  | Parameter | Required |                Description                 |
+  | :-------: | :------: | :----------------------------------------: |
+  |  secret   |    Y     | API operation key (configured in the file) |
+  
 
 - Response:
 
@@ -169,7 +175,11 @@ typedef enum {
 
 - Example:[http://127.0.0.1/index/api/getThreadsLoad](http://127.0.0.1/index/api/getThreadsLoad)
 
-- Parameters: None
+- Parameters:
+  
+  | Parameter | Required |                Description                 |
+  | :-------: | :------: | :----------------------------------------: |
+  |  secret   |    Y     | API operation key (configured in the file) |
 
 - Response:
 
@@ -195,8 +205,12 @@ typedef enum {
 
 - Example:[http://127.0.0.1/index/api/getWorkThreadsLoad](http://127.0.0.1/index/api/getWorkThreadsLoad)
 
-- Parameters: None
+- Parameters:
 
+  | Parameter | Required |                Description                 |
+  | :-------: | :------: | :----------------------------------------: |
+  |  secret   |    Y     | API operation key (configured in the file) |
+  
 - Response:
 
   ```json
