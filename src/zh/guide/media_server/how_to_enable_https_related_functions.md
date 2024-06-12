@@ -69,7 +69,7 @@ cd ~/git/ZLMediaKit/release/darwin/Debug/
 cp ~/Downloads/8516590_test.zlmediakit.com_nginx/default.pem ./
 
 #启动进程
-./MediaServer -s default.com
+./MediaServer -s default.pem
 ```
 
 ![图片](/images/how_to_enable_https_related_functions_zh_6.png)
