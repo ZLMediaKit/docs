@@ -60,8 +60,15 @@ export default hopeTheme({
     },
   },
 
+  markdown: {
+    figure: true,
+    imgLazyload: true,
+    imgSize: true,
+    mermaid: true,
+    tabs: true,
+  },
+
   plugins: {
-    // You should generate and use your own comment service
     comment: {
       provider: "Giscus",
       repo: "ZLMediaKit/docs",
@@ -70,16 +77,6 @@ export default hopeTheme({
       categoryId: "DIC_kwDOKboWmc4CZ_77",
     },
 
-    // All features are enabled for demo, only preserve features you need here
-    mdEnhance: {
-      figure: true,
-      imgLazyload: true,
-      imgSize: true,
-      mermaid: true,
-      tabs: true,
-    },
-
-    // uncomment these if you want a pwa
     pwa: {
       favicon: "/favicon.ico",
       cacheHTML: true,
@@ -87,7 +84,6 @@ export default hopeTheme({
       appendBase: true,
       apple: {
         icon: "/assets/icon/apple-touch-icon-152x152.png",
-        statusBarColor: "black",
       },
       msTile: {
         image: "/assets/icon/ms-icon-144.png",
