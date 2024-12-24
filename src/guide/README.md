@@ -205,8 +205,9 @@ You have three ways to use ZLMediaKit, namely:
 
 You can download the compiled image from Docker Hub and start it:
 
+This image is automatically compiled and pushed for github continuous integration, keeping it up to date with the code (master branch)
+
 ```bash
-#This image is automatically compiled and pushed for github continuous integration, keeping it up to date with the code (master branch)
 docker run -id -p 1935:1935 -p 8080:80 -p 8443:443 -p 8554:554 -p 10000:10000 -p 10000:10000/udp -p 8000:8000/udp -p 9000:9000/udp zlmediakit/zlmediakit:master
 ```
 
