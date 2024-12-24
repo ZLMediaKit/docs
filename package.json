@@ -11,20 +11,20 @@
     "docs:lint": "prettier --check --write src",
     "docs:update-package": "npx vp-update"
   },
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "pnpm@9.15.0",
   "prettier": {
     "singleQuote": false
   },
   "dependencies": {
-    "prettier": "^3.1.0"
+    "@vuepress/bundler-vite": "2.0.0-rc.19",
+    "@vuepress/plugin-pwa": "2.0.0-rc.66",
+    "mermaid": "11.4.1",
+    "sass-embedded": "1.83.0",
+    "vue": "^3.5.13",
+    "vuepress": "2.0.0-rc.19",
+    "vuepress-theme-hope": "2.0.0-rc.64"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.0",
-    "@vuepress/client": "2.0.0-rc.0",
-    "@vuepress/utils": "2.0.0-rc.0",
-    "mermaid": "10.6.1",
-    "vue": "^3.3.10",
-    "vuepress": "2.0.0-rc.0",
-    "vuepress-theme-hope": "2.0.0-rc.4"
+    "prettier": "^3.4.2"
   }
 }

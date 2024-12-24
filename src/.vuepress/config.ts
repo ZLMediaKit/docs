@@ -1,5 +1,4 @@
 import { viteBundler } from "@vuepress/bundler-vite";
-import { path } from "@vuepress/utils";
 import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
