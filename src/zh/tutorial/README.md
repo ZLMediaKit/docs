@@ -292,9 +292,9 @@ cd ZLMediaKit/release/mac/Debug
 ```sh
 cd ZLMediaKit/release/windows/Debug
 # 通过 -h 可以了解启动参数
-./MediaServer.exe -h
+.\MediaServer.exe -h
 # 以守护进程模式启动
-./MediaServer.exe -d &
+.\MediaServer.exe -d &
 ```
 
 :::
