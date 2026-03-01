@@ -114,7 +114,37 @@ rembBitRate=1000000
   cd /usr/local/openssl/lib
   cp -r ./* /usr/lib64/
   ```
-
+- ubuntu22.04编译(wsl安装虚拟机)
+   openssl 安装
+    ```shell
+    sudo apt update
+    sudo apt install libssl-dev
+    ls /usr/lib/x86_64-linux-gnu/libssl* /usr/lib/x86_64-linux-gnu/libcrypto*
+    ##测试openssl是否安装成功
+    openssl version -a
+    ```
+    libsrtp 安装
+    ```shell
+    $ wget https://github.com/cisco/libsrtp/archive/refs/tags/v2.5.0.tar.gz
+    $ tar -xvzf libsrtp-2.5.0.tar.gz
+    $ cd libsrtp-2.5.0
+    $./configure --enable-openssl
+    $ make -j8 && make install
+    ```
+    zlm 编译
+    ```shell
+    $ mkdir build
+    $ cd build
+    $ cmake .. -DENABLE_WEBRTC=true
+    ```
+    运行测试
+    ```shell
+    $ cd release/linux/Debug
+    $ sudo ./MediaServer
+    ```
+    访问http://localhost/webrtc/ 测试，选择"echo"，点击"开始"，使用本地不需要证书
+    使用wsl安装ubuntu,启动后可以本地访问
+    
 - ubuntu 编译
 
   可以参考网友大神自制[这里](https://blog.csdn.net/haysonzeng/article/details/116754065)
