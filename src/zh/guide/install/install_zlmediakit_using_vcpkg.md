@@ -8,6 +8,8 @@ vcpkg 是一个跨平台的 sdk 包管理工具，类似于 linux 下的 yum/apt
 目前 zlmediakit 已经于 2023-08-08 完成 vcpkg 平台的上线，用户可以通过 vcpkg 便捷安装 zlmediakit c sdk 以及 MediaServer 可执行程序，解决各种编译依赖相关的苦恼。
 zlmediakit 上架 vcpkg 得到了[@JackBoosY](https://github.com/JackBoosY)大量的支持，在此表示由衷的感谢！
 
+# 提示：此安装方式的包数据更新到 2024-09-29 稳定版，尝鲜或者使用最新发布版本请通过其他方式安装。
+
 # 安装指导
 
 ## 1、安装 vcpkg
